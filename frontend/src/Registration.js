@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 const styles = {
     div: {
@@ -12,6 +13,13 @@ const styles = {
 
 
 export default function Registration() {
+    let history = useHistory();
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            history.push("/");
+        }
+    });
 
     // useState = kezdő érték
     // setterek meg változtatják az értékét
@@ -76,6 +84,12 @@ export default function Registration() {
                     <input name="password" type="password" placeholder="Write Your Password" value={inputPassword} onChange={(event) => setInputPassword(event.target.value)}/>
                 </div>
                 <button>Send</button>
+                <div>
+                    <p>Do you have account?</p>
+                    <Link to="/login">
+                        <p>Sign In</p>
+                    </Link>
+                </div>
             </form>
         </div>
     )

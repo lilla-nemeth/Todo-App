@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
 const styles = {
     // container: {
@@ -28,6 +29,8 @@ const styles = {
 }
 
 export default function ToDo() {
+    let history = useHistory();
+
     let initialList = [
         {
             id: 7,
@@ -44,6 +47,11 @@ export default function ToDo() {
 
     // class komponensnél a componentDidMount-nak funkció alapú verziója:
     useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            history.push("/login");
+        } 
+
+
         // fetch beépített JS funkció, amely http kéréseket (http requests) indít szerver felé
         // 2 paramétere lehet, 2-at akkor adjuk meg, amennyiben nem "get" kérést akarunk:
         // .then - az előző sornak az adatával kezdek valamit
