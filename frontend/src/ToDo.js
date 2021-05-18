@@ -11,16 +11,16 @@ const styles = {
     //     padding: '1rem',
     // },
     form: {
-        backgroundColor: '#daeddf', 
+        // backgroundColor: '#daeddf', 
         display: 'flex',
         flexDirection: 'column',
         padding: '10px',
     },
     flexrow: {
-        backgroundColor: '#daeddf', 
+        // backgroundColor: '#daeddf', 
         display: 'flex',
         justifyContent: 'space-between',
-        padding: '10px',
+        padding: '20px',
         alignItems: 'center'
     },
     completed: {
@@ -42,12 +42,19 @@ const styles = {
     }
 }
 
+const notImportantColor = 'grey';
+const importantColor = 'pink';
+const urgentColor = 'red';
+
 export default function ToDo(props) {
     const [input, setInput] = useState('');
     const [allTodos, setAllTodos] = useState([]);
     const [editedTodoId, setEditedTodoId] = useState(null);
     const [editedTodoInput, setEditedTodoInput] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [orderBy, setOrderBy] = useState('date');
+
+    console.log(orderBy);
 
     // fetch all todos:
     function getAllTodos () {
@@ -219,15 +226,52 @@ export default function ToDo(props) {
         .catch((err) => handleError(err, setErrorMsg));
     }
 
+    function updateImportance(el, event) {
+        let options = {
+            method: 'put',
+            url: `http://localhost:3002/${el.id}`,
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': props.token
+            },
+            data: {
+                title: el.title,
+                completed: el.completed,
+                importance: event.target.value
+            }
+        }
+
+        axios(options)
+        .then((res) => getAllTodos())
+        .catch((err) => handleError(err, setErrorMsg));
+    }
+
+    // input = el.importance:
+    function chooseBackgroundColor(input) {
+        if (input === 1) {
+            return notImportantColor;
+        } else if (input === 2) {
+            return importantColor;
+        } else {
+            return urgentColor;
+        }
+    }
+
     // function deleteAll() {
     //     setAllTodos([]);
     // }
 
     // console.log(allTodos);
     let sortedAllTodos = allTodos.sort((a, b) => {
-        return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
+        
+        if (orderBy === 'Date') {
+            return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
+        } else {
+            return a.importance < b.importance ? 1 : -1;
+        }
     });
-    console.log(sortedAllTodos);
+    // console.log(sortedAllTodos);
 
     return (
         <div>
@@ -241,9 +285,13 @@ export default function ToDo(props) {
                 />
                 <p style={{color: 'red'}}>{errorMsg}</p>
             </form>
+            <div style={{display: 'flex', width: '150px', justifyContent: 'space-between', padding: '20px'}}>
+                <p onClick={() => setOrderBy("Date")}>Date</p>
+                <p onClick={() => setOrderBy("Importance")}>Importance</p>
+            </div>
                 {sortedAllTodos.map((el) => {
                     // console.log(el);
-                    return  <div style={{...styles.flexrow,...{border: el.id == editedTodoId ? '1.5px solid green' : null}}} key={el.id}>
+                    return  <div style={{...styles.flexrow,...{backgroundColor: chooseBackgroundColor(el.importance)}}} key={el.id}>
                                 <input  
                                     type="checkbox" 
                                     checked={el.completed} 
@@ -259,6 +307,13 @@ export default function ToDo(props) {
                                     />
                                   </form>
                                 }
+                                <div>
+                                    <select value={el.importance} onChange={(event) => {updateImportance(el, event)}}>
+                                        <option value={1}>Not important</option>  {/* 1 */}
+                                        <option value={2}>Important</option> {/* 2 */}
+                                        <option value={3}>Urgent</option> {/* 3 */}
+                                    </select>
+                                </div>
                                 <div>
                                     <button 
                                         style={styles.editStyle} 

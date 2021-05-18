@@ -5,6 +5,7 @@ import Signin from "./Signin";
 // akkor kell kapcsos zárójelben beimportálni a file-t ha nincs export default csak sima export
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
+import "./App.css";
 
 function App() {
   const [token, setToken] = useState(null);
