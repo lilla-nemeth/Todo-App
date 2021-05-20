@@ -29,8 +29,9 @@ const devSettings = {
 }
 const prodSettings = {
     connectionString: process.env.DATABASE_URL,
+    //élesben hamisra kell állítani,
     ssl: {
-        rejectUnauthorized: process.env.NODE_ENV === "production" ? true : false
+        rejectUnauthorized: process.env.NODE_ENV === "production" ? false : true 
     }
 }
 
