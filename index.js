@@ -214,8 +214,8 @@ app.post('/login', [isPwLongEnough, isEmail], (request, response) => {
 
 });
 
-app.get('*', (request, response) => {
-    response.sendFile("./frontend/build/index.html");
-});
+// app.get('*', (request, response) => {
+//     response.sendFile("./frontend/build/index.html");
+// });
 //szerver, port változó:
 app.listen(port, () => console.log("server is running on 3002"));
