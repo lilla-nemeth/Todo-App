@@ -13,10 +13,18 @@ CREATE DATABASE tododb
 \c tododb
 
 -- automatikusan 1-es id-vel indulunk, ha ezt kitöröljük, de van egy 2-es akkor a 2-es 2-es marad
-CREATE TABLE todos (
-	id SERIAL PRIMARY KEY,
-    title VARCHAR(255)
+-- CREATE TABLE todos (
+-- 	id SERIAL PRIMARY KEY,
+--     title VARCHAR(255)
 
+-- );
+
+-- User registration and authentication model:
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(50) UNIQUE,
+    username VARCHAR(50),
+    pw VARCHAR(255)
 );
 
 CREATE TABLE todos (
@@ -47,13 +55,7 @@ SET age = 22
 WHERE email = 'johndoe@gmail.com'
 `;
 
--- User registration and authentication model:
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(50) UNIQUE,
-    username VARCHAR(50),
-    pw VARCHAR(255)
-);
+
 
 INSERT INTO users (email, username, pw) VALUES ('johndoe@johndoe.com','johndoe','123456');
 
