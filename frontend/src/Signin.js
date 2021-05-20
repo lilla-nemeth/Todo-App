@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { handleError } from './HelperFunctions.js';
 
 const styles = {
     div: {
@@ -13,42 +14,34 @@ const styles = {
 }
 
 
-export default function SignIn() {
+export default function SignIn(props) {
+
+    // let {setToken} = props;
+
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
-
-
-    console.log(email, pw);
-    let history = useHistory();
-
-    useEffect(() => {
-        if (localStorage.getItem("token")) {
-            history.push("/");
-        };
-
-        
-    });
+    const [errorMsg, setErrorMsg] = useState('');
 
     function handleSubmit(event) {
         event.preventDefault();
 
 
-        let body = {
-            // email: email,
-            // pw: pw
-            email,
-            pw
-        }
+        // let body = {
+        //     // email: email,
+        //     // pw: pw
+        //     email,
+        //     pw
+        // }
 
         let options = {
             // method: 'POST',
             method: 'post',
-            url: 'http://localhost:3002/login',
+            url: '/login',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
-            // body: JSON.stringify(body)
+            // body: JSON.stringify(body) = data: {email, pw}
             data: {
                 email,
                 pw
@@ -61,10 +54,16 @@ export default function SignIn() {
 
 
            localStorage.setItem("token", token);
-           history.push('/');
+        //    setToken(token);
+           props.setToken(token);
+        //    history.push('/');
 
         })
-        .catch((err) => console.log(err));
+        // .catch((err) => {setErrorMsg(err); console.log(Object.keys(err))});
+        // .catch((err) => {setErrorMsg(err); console.log(Object.values(err))});
+        .catch((err) => {
+           handleError(err, setErrorMsg);
+        });
     }
 
     return (
@@ -87,6 +86,7 @@ export default function SignIn() {
                     </Link>
                 </div>
             </form>
+            <p style={{color: 'red'}}>{errorMsg}</p>
         </div>
     )
 }

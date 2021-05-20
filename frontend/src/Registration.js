@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { handleError } from './HelperFunctions.js';
 
 const styles = {
     div: {
@@ -13,19 +15,13 @@ const styles = {
 
 
 export default function Registration() {
-    let history = useHistory();
-
-    useEffect(() => {
-        if (localStorage.getItem("token")) {
-            history.push("/");
-        }
-    });
-
     // useState = kezdő érték
     // setterek meg változtatják az értékét
     const [inputEmail, setInputEmail] = useState('');
     const [inputUsername, setInputUsername] = useState('');
     const [inputPassword, setInputPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+    const [successMsg, setSuccessMsg] = useState('');
 
     // event = a leütött billentyű, amit ezzel választunk ki: event.target.value
 
@@ -46,26 +42,29 @@ export default function Registration() {
         // console.log(inputEmail, inputUsername, inputPassword);
         // then mindig a válasz
         // fetch funkció 2 inputot fogad: URL, objektum (get kérésnél nem kötelező objektumot megadni, minden más esetben viszont kell)
-        let body = {
-                email: inputEmail,
-                username: inputUsername,
-                pw: inputPassword
-        }
-       
         let options = {
-            method: 'POST',
+            method: 'post',
+            url: '/signup',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify(body)
+            data: {
+                email: inputEmail,
+                username: inputUsername,
+                pw: inputPassword
+            }
         };
-        fetch('http://localhost:3002/signup', options)
-        .then((rawRes) => rawRes.json())
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        // fetch('http://localhost:3002/signup', options)
+        // .then((rawRes) => rawRes.json())
+        // .then((res) => console.log(res))
+
+        axios(options)
+        .then((res) => setSuccessMsg(res.data.msg))
+        .catch((err) => handleError(err, setErrorMsg));
     }
 
+    console.log(successMsg);
 
     return (
         <div>
@@ -91,6 +90,8 @@ export default function Registration() {
                     </Link>
                 </div>
             </form>
+            <p style={{color: 'red'}}>{errorMsg}</p>
+            <p style={{color: 'green'}}>{successMsg}</p>
         </div>
     )
 }
