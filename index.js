@@ -17,7 +17,7 @@ const devSettings = {
     database: process.env.PG_DATABASE
 }
 const prodSettings = {
-    connectionString: 'process.env.DATABASE_URL'
+    connectionString: process.env.DATABASE_URL
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? prodSettings : devSettings);
