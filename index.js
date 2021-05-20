@@ -1,14 +1,25 @@
-// process.env.PORT - szerver által megadott port, localban a sajátunkat használjuk
-const port = process.env.PORT || 3002;
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const bcrypt = require('bcryptjs'); // pw titkosítás
 const jwt = require('jsonwebtoken'); // hosszú random stringet generál felhasználó azonosításhoz, ezt a tokent küldjük a frontendnek, ameddig ez érvényes addig a felhasználó hozzáférhet a levédett útvonalakhoz
 const { Pool } = require('pg');
+const path = require("path")
 require('dotenv').config();
 
+// Middleware globálisan, minden útvonalra kiterjesztve ha
+// app.use(authMW());
+
+app.use(cors());
+app.use(express.json());
+// Middleware - amennyiben a környezet "éles", akkor statikus file-okat használjuk, ha nem
+// akkor a src mappából, esetünkben a frontend mappában vannak a statikus file-ok:
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "frontend/build")));  
+} 
+
+// process.env.PORT - szerver által megadott port, localban a sajátunkat használjuk
+const port = process.env.PORT || 3002;
 const devSettings = {
     host: process.env.PG_HOST,
     user: process.env.PG_USER,
@@ -17,7 +28,10 @@ const devSettings = {
     database: process.env.PG_DATABASE
 }
 const prodSettings = {
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: process.env.NODE_ENV === "production" ? true : false
+    }
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? prodSettings : devSettings);
@@ -77,18 +91,6 @@ function authMw (req, res, next) {
         res.status(401).json({msg: 'No token found'})
     }
 }
-
-
-// Middleware globálisan, minden útvonalra kiterjesztve ha
-// app.use(authMW());
-
-// Middleware - amennyiben a környezet "éles", akkor statikus file-okat használjuk, ha nem
-// akkor a src mappából, esetünkben a frontend mappában vannak a statikus file-ok:
-if (process.env.NODE_ENV === "production") {
-    app.use("/", express.static("./frontend/build"));  
-} 
-app.use(cors());
-app.use(express.json());
 
 // Itt az authMw csak egy útvonalra érvényes:
 app.get('/todos', authMw, (request, response) => {
@@ -215,7 +217,7 @@ app.post('/login', [isPwLongEnough, isEmail], (request, response) => {
 });
 
 app.get('*', (request, response) => {
-    response.sendFile("./frontend/build/index.html");
+    response.sendFile(path.join(__dirname, "frontend/build/index.html"));
 });
 //szerver, port változó:
 app.listen(port, () => console.log("server is running on 3002"));
