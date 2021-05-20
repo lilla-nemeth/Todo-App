@@ -1,17 +1,26 @@
+// process.env.PORT - szerver által megadott port, localban a sajátunkat használjuk
+const port = process.env.PORT || 3002;
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const bcrypt = require('bcryptjs'); // pw titkosítás
 const jwt = require('jsonwebtoken'); // hosszú random stringet generál felhasználó azonosításhoz, ezt a tokent küldjük a frontendnek, ameddig ez érvényes addig a felhasználó hozzáférhet a levédett útvonalakhoz
 const { Pool } = require('pg');
+require('dotenv').config();
 
-const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: 'masterpassword',
-    port: 5432,
-    database: 'tododb2'
-});
+const devSettings = {
+    host: process.env.PG_HOST,
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    port: process.env.PG_PORT,
+    database: process.env.PG_DATABASE
+}
+const prodSettings = {
+    connectionString: 'process.env.DATABASE_URL'
+}
+
+const pool = new Pool(process.env.NODE_ENV === "production" ? prodSettings : devSettings);
 
 // amiben next van az a middleware:
 function isPwLongEnough(req, res, next) {
@@ -72,11 +81,17 @@ function authMw (req, res, next) {
 
 // Middleware globálisan, minden útvonalra kiterjesztve ha
 // app.use(authMW());
+
+// Middleware - amennyiben a környezet "éles", akkor statikus file-okat használjuk, ha nem
+// akkor a src mappából, esetünkben a frontend mappában vannak a statikus file-ok:
+if (process.env.NODE_ENV === "production") {
+    app.use("/", express.static("./frontend/build"));  
+} 
 app.use(cors());
 app.use(express.json());
 
 // Itt az authMw csak egy útvonalra érvényes:
-app.get('/', authMw, (request, response) => {
+app.get('/todos', authMw, (request, response) => {
     console.log(request);
     let userId = request.userId;
     pool.query('SELECT * FROM todos WHERE userId=$1', [userId])
@@ -85,7 +100,7 @@ app.get('/', authMw, (request, response) => {
     .catch((err) => response.status(400).json({msg: 'Failed to fetch all todos'}));
 });
 
-app.get('/:id', (request, response) => {
+app.get('/todos/:id', (request, response) => {
     let id = request.params.id;
 
     pool.query('SELECT * FROM todos WHERE id=$1', [id])
@@ -93,7 +108,7 @@ app.get('/:id', (request, response) => {
     .catch((err) => response.status(400).json({msg: 'Failed to fetch todos2 by id'}));
 });
 
-app.post('/', authMw, (request, response) => {
+app.post('/todos', authMw, (request, response) => {
     let title = request.body.title;
     // let importance = request.body.importance;
     let userId = request.userId;
@@ -105,7 +120,7 @@ app.post('/', authMw, (request, response) => {
     .catch((err) => response.status(400).json({msg: 'Failed to add a new todo'}));
 });
 
-app.delete('/:id', authMw, (request, response) => {
+app.delete('/todos/:id', authMw, (request, response) => {
     let id = request.params.id;
 
     pool.query('DELETE FROM todos WHERE id=$1', [id])
@@ -113,7 +128,7 @@ app.delete('/:id', authMw, (request, response) => {
     .catch((err) => response.status(400).json({msg: 'Failed to delete the todo'}));
 });
 
-app.put('/:id', authMw, (request, response) => {
+app.put('/todos/:id', authMw, (request, response) => {
     let id = request.params.id;
     let title = request.body.title;
     let completed = request.body.completed;
@@ -199,6 +214,8 @@ app.post('/login', [isPwLongEnough, isEmail], (request, response) => {
 
 });
 
-
-
-app.listen(3002, () => console.log("server is running on 3002"));
+app.get('*', (request, response) => {
+    response.sendFile("./frontend/build/index.html");
+});
+//szerver, port változó:
+app.listen(port, () => console.log("server is running on 3002"));

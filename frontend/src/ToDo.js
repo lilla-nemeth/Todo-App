@@ -60,7 +60,7 @@ export default function ToDo(props) {
     function getAllTodos () {
         let options = {
             method: 'get',
-            url: 'http://localhost:3002/',
+            url: '/todos',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,8 +69,10 @@ export default function ToDo(props) {
         };
 
         axios(options)
-        .then((res) => setAllTodos(res.data))
-        .catch((err) => handleError(err, setErrorMsg));
+        // .then((res) => setAllTodos(res.data))
+        // .catch((err) => handleError(err, setErrorMsg));
+        .then((res) => {setAllTodos(res.data)})
+        .catch((err) => {handleError(err, setErrorMsg); console.log(err)});
     }
 
         // TODO:
@@ -117,7 +119,7 @@ export default function ToDo(props) {
 
         let options = {
             method: 'post',
-            url: 'http://localhost:3002/',
+            url: '/todos',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ export default function ToDo(props) {
 
         let options = {
             method: 'delete',
-            url: `http://localhost:3002/${id}`,
+            url: `/todos/${id}`,
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -168,7 +170,7 @@ export default function ToDo(props) {
 
         let options = {
             method: 'put',
-            url: `http://localhost:3002/${el.id}`,
+            url: `/todos/${el.id}`,
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -208,7 +210,7 @@ export default function ToDo(props) {
 
         let options = {
             method: 'put',
-            url: `http://localhost:3002/${el.id}`,
+            url: `/todos/${el.id}`,
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -229,7 +231,7 @@ export default function ToDo(props) {
     function updateImportance(el, event) {
         let options = {
             method: 'put',
-            url: `http://localhost:3002/${el.id}`,
+            url: `/todos/${el.id}`,
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -262,7 +264,6 @@ export default function ToDo(props) {
     //     setAllTodos([]);
     // }
 
-    // console.log(allTodos);
     let sortedAllTodos = allTodos.sort((a, b) => {
         
         if (orderBy === 'Date') {

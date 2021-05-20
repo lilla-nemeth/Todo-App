@@ -44,7 +44,7 @@ export default function Registration() {
         // fetch funkció 2 inputot fogad: URL, objektum (get kérésnél nem kötelező objektumot megadni, minden más esetben viszont kell)
         let options = {
             method: 'post',
-            url: 'http://localhost:3002/signup',
+            url: '/signup',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'

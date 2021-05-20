@@ -36,7 +36,7 @@ export default function SignIn(props) {
         let options = {
             // method: 'POST',
             method: 'post',
-            url: 'http://localhost:3002/login',
+            url: '/login',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
