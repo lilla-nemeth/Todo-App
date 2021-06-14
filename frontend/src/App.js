@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ToDo from "./ToDo";
-import Registration from "./Registration";
-import Signin from "./Signin";
+import SignUp from "./SignUp";
+import Login from "./Login";
 // akkor kell kapcsos zárójelben beimportálni a file-t ha nincs export default csak sima export
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -32,15 +32,15 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/registration">
-            <Registration/>
+          <Route path="/signup">
+            <SignUp/>
           </Route>
           <Route path="/login">
-            <Signin setToken={setToken}/>
+            <Login setToken={setToken}/>
           </Route>
           {/* "*" - fallback route */}
           <Route path="*">
-            <Signin setToken={setToken}/>
+            <Login setToken={setToken}/>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -71,11 +71,11 @@ function App() {
 //         <Route exact path="/">
 //           <ToDo/>
 //         </Route>
-//         <Route path="/registration">
-//           <Registration/>
+//         <Route path="/signup">
+//           <SignUp/>
 //         </Route>
 //         <Route path="/login">
-//           <Signin/>
+//           <Login/>
 //         </Route>
 //       </BrowserRouter>
 //     </>
@@ -85,11 +85,11 @@ function App() {
 //         <Route exact path="/">
 //           <ToDo/>
 //         </Route>
-//         <Route path="/registration">
-//           <Registration/>
+//         <Route path="/signup">
+//           <SignUp/>
 //         </Route>
 //         <Route path="/login">
-//           <Signin/>
+//           <Login/>
 //         </Route>
 //       </BrowserRouter>
 //     </>

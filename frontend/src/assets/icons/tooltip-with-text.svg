@@ -1,0 +1,19 @@
+<svg viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px">
+  <path stroke="null" d="M24,0H0v17h4v5l7-5h13V0z"/>
+  <text fontStyle="normal" 
+        fontWeight="normal" 
+        transform="matrix(2.3392 0 0 2.3392 -0.499653 -8.67889)" 
+        stroke="null" 
+        textAnchor="start" 
+        fontFamily="'Montserrat'" 
+        fontSize="4" 
+        stroke-width="0" 
+        fill="#000" 
+        id="svg_3" 
+        y="8.72565" 
+        x="1.31121"
+  >
+  	<tspan x="0" y="0">2021.11.23</tspan>
+	<tspan x="5.2" y="5">12:45</tspan>
+  </text>
+</svg>

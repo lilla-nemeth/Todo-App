@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { handleError } from './HelperFunctions.js';
+import createHistory from 'history/createBrowserHistory';
 
 const styles = {
     div: {
@@ -14,7 +15,7 @@ const styles = {
 }
 
 
-export default function Registration() {
+export default function SignUp() {
     // useState = kezdő érték
     // setterek meg változtatják az értékét
     const [inputEmail, setInputEmail] = useState('');
@@ -64,34 +65,40 @@ export default function Registration() {
         .catch((err) => handleError(err, setErrorMsg));
     }
 
-    console.log(successMsg);
+    createHistory().replace('/signup');
 
     return (
-        <div>
-            <h2>Registration</h2>
-            <form onSubmit={handleSubmit}>
-                <div style={styles.div}>
+        <main>
+            <section className="container">
+            <h3>Sign Up</h3>
+            <form className="form" onSubmit={handleSubmit}>
+                <div className="email" style={styles.div}>
                     <label style={styles.label}>Email</label>
                     <input name="email" type="email" placeholder="Write Your Email" value={inputEmail} onChange={(event) => setInputEmail(event.target.value)}/>
                 </div>
-                <div style={styles.div}>
+                <div className="username" style={styles.div}>
                     <label style={styles.label}>Username</label>
                     <input name="username" type="text" placeholder="Write Your Username" value={inputUsername} onChange={(event) => setInputUsername(event.target.value)}/>
                 </div>
-                <div style={styles.div}>
+                <div className="password" style={styles.div}>
                     <label style={styles.label}>Password</label>
                     <input name="password" type="password" placeholder="Write Your Password" value={inputPassword} onChange={(event) => setInputPassword(event.target.value)}/>
                 </div>
                 <button>Send</button>
-                <div>
+                <div className="textLoginContainer">
                     <p>Do you have account?</p>
-                    <Link to="/login">
-                        <p>Sign In</p>
+                    <Link className="textLoginUp" to="/login">
+                        <p>Login</p>
                     </Link>
                 </div>
             </form>
-            <p style={{color: 'red'}}>{errorMsg}</p>
-            <p style={{color: 'green'}}>{successMsg}</p>
-        </div>
+            <div className="errorMessage">
+                <p>{errorMsg}</p>
+            </div>
+            <div className="successMessage">
+                <p>{successMsg}</p>
+            </div>
+            </section>
+        </main>
     )
 }

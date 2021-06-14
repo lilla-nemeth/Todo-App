@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { handleError } from './HelperFunctions.js';
+import createHistory from 'history/createBrowserHistory';
 
 const styles = {
     div: {
@@ -14,7 +15,7 @@ const styles = {
 }
 
 
-export default function SignIn(props) {
+export default function Login(props) {
 
     // let {setToken} = props;
 
@@ -66,27 +67,33 @@ export default function SignIn(props) {
         });
     }
 
+    createHistory().replace('/login');
+
     return (
-        <div>
-            <h2>Sign In</h2>
-            <form onSubmit={handleSubmit}>
-                <div style={styles.div}>
-                    <label style={styles.label}>Email</label>
-                    <input name="email" type="email" placeholder="Write Your Email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+        <main>
+            <section className="container">
+                <h3>Login</h3>
+                <form className="form" onSubmit={handleSubmit}>
+                    <div className="email" style={styles.div}>
+                        <label style={styles.label}>Email</label>
+                        <input name="email" type="email" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                    </div>
+                    <div className="password" style={styles.div}>
+                        <label style={styles.label}>Password</label>
+                        <input name="password" type="password" placeholder="Password" value={pw} onChange={(event) => setPw(event.target.value)}/>
+                    </div>
+                    <button>Login</button>
+                    <div className="textSignUpContainer">
+                        <p>Don't have an account?</p>
+                        <Link className="textSignUp" to="/signup">
+                            <p>Sign Up</p>
+                        </Link>
+                    </div>
+                </form>
+                <div className="errorMessage">
+                    <p>{errorMsg}</p>
                 </div>
-                <div style={styles.div}>
-                    <label style={styles.label}>Password</label>
-                    <input name="password" type="password" placeholder="Write Your Username" value={pw} onChange={(event) => setPw(event.target.value)}/>
-                </div>
-                <button>Send</button>
-                <div>
-                    <p>Don't have an account?</p>
-                    <Link to="/registration">
-                        <p>Registration</p>
-                    </Link>
-                </div>
-            </form>
-            <p style={{color: 'red'}}>{errorMsg}</p>
-        </div>
+            </section>
+        </main>
     )
 }
