@@ -189,10 +189,11 @@ input:focus {
 
 .flexrow {
 	display: flex;
-	justify-content: flex-start;
+	/* justify-content: flex-start; */
+	justify-content: space-between;
 	padding: 20px;
 	align-items: center;
-	border-bottom: 1px solid var(--clr-lightgrey);
+	/* border-bottom: 1px solid var(--clr-lightgrey); */
 }
 
 /* Checkbox */
@@ -257,7 +258,7 @@ input:focus {
 }
 
 .completed {
-	display: flex;
+	/* display: flex; */
 	padding: 20px;
 	text-decoration: line-through;
 	text-decoration-color: var(--clr-darkgreen);
@@ -265,14 +266,14 @@ input:focus {
 }
 
 .titleContainer {
-	min-width: 60%;
+	min-width: 40%;
 	vertical-align: center;
 	font-size: 1.2em;
 }
 
 /* Buttons */
 .buttonListStyle {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: flex-end;
 }
@@ -304,7 +305,7 @@ button {
 .buttonCalendarStyle {
     width: 40px;
     height: 40px;
-	margin-right: 10px;
+	/* margin-right: 10px; */
     cursor: pointer;
     background-color: var(--clr-white);
     border-radius: 0.8rem;
@@ -321,14 +322,9 @@ button {
 
 
 /* dropdown list */
-.selectContainer {
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-}
+
 .selectBox {
 	padding: 10px;
-	/* borderRadius: 0.8rem 0.8rem 0 0; */
 	cursor: pointer;
 	border: none;
 	font-size: 1em;
@@ -337,16 +333,45 @@ button {
 	appearance: none;
 	padding: 10px;
 }
+/* borderRadius: 0.8rem 0.8rem 0 0; */
 
-.selectBox:focus {
+/* .selectBox:focus {
 	outline: none;
-}
+} */ 
 
 /* .selectBox * {
 	color: var(--clr-grey); 
 	background-color: var(--clr-white);
 } 
 */
+
+.dropdownContainer {
+	width: 100%;
+	/* padding-right: 20px; */
+	/* display: flex;
+	justify-content: space-around; */
+}
+
+.dropdownSelected {
+	/* border: 1px solid black;  */
+	cursor: pointer;
+	padding: 5px; 
+	/* width: 100%; */
+	display: flex; 
+	justify-content: space-between; 
+}
+
+.dropdownOptions {
+	/* border: 1px solid black;  */
+	cursor: pointer;
+	border-top: 0;
+	position: absolute; 
+	/* width: 100%; */
+	/* width: 125px; */
+}
+
+
+
 
 
 #notimportant {

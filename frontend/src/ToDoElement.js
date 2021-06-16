@@ -119,9 +119,6 @@ export default function ToDoElement(props) {
     }
 
     let sugarDate = Sugar.Date.create(el.created);
-    // let formattedDate = Sugar.Date.format(sugarDate, '%Y-%m-%d');
-    // let formattedDate = Sugar.Date.full(sugarDate);
-    // let formattedDate = Sugar.Date.format(sugarDate, '{yyyy}.{MM}.{dd}, {HH}:{mm}:{ss}');
     let formattedDate = Sugar.Date.format(sugarDate, '{dd}/{MM}/{yyyy}');
     let formattedTime = Sugar.Date.format(sugarDate, '{HH}:{mm}:{ss}');
 
@@ -156,7 +153,6 @@ export default function ToDoElement(props) {
             <Dropdown 
                 value={el.importance} 
                 isCompleted={el.completed}
-                // changeImportance={() => {updateImportance(el)}}
                 changeImportance={(num) => {updateImportance(el, num)}}
             />
             <div className="buttonListStyle">

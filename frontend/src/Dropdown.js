@@ -6,16 +6,25 @@ const importantColor = 'rgb(255, 157, 157)';
 const urgentColor = 'rgb(255, 103, 103)';
 const doneColor = '#fff';
 
-const options = [1, 2, 3];
+const options = {
+    '1': 'Not important',
+    '2': 'Important',
+    '3': 'Urgent'
+}
+
+
+let optionKeys = Object.keys(options);
+let optionKeysToNumber = optionKeys.map((i) => Number(i));
+let optionValues = Object.values(options);
 
 
 function changeNumberToText (num) {
     if (num === 1) {
-        return 'Not important';
+        return optionValues[0];
     } else if (num === 2) {
-        return 'Important';
+        return optionValues[1];
     } else {
-        return 'Urgent';
+        return optionValues[2];
     }
 }
 
@@ -46,30 +55,32 @@ export default function Dropdown(props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     // const [selected, setSelected] = useState(null);
 
-    const { isCompleted, changeImportance, value } = props;
+    const { value, isCompleted, changeImportance } = props;
  
     return (
-        <div>
+        <div className="dropdownContainer">
             <div 
-                style={{border: '1px solid black', padding: '5px', minWidth: '115px', display: 'flex', justifyContent: 'space-between', backgroundColor: chooseBackgroundColor(value, isCompleted)}}
+                className="dropdownSelected"
+                style={{backgroundColor: chooseBackgroundColor(value, isCompleted)}}
                 onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-                {changeNumberToText(value)} <ArrowDown />
+                {/* {changeNumberToText(value)} <ArrowDown /> */}
+                {options[value]} <ArrowDown />
             </div>
             {dropdownOpen &&
-            <div style={{border: '1px solid black', borderTop: '0', position: 'absolute', backgroundColor: 'white', width: '125px'}}>
-                {options.map((option) => {
+            <div className="dropdownOptions">
+                {optionKeysToNumber.map((num) => {
                     return (
                         <div 
-                            id={generateId(option)} 
+                            id={generateId(num)} 
                             style={{padding: '5px'}}
                             onClick={() => {
                                 setDropdownOpen(false);
-                                changeImportance(option)
+                                changeImportance(num)
                                 }
                             }    
                         >
-                            {changeNumberToText(option)}
+                            {changeNumberToText(num)}
                         </div>
                     )
                 })}
