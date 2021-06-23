@@ -83,11 +83,13 @@ export default function Login(props) {
                         <label style={styles.label}>Password</label>
                         <input className="loginInput" name="password" type="password" placeholder="Password" value={pw} onChange={(event) => setPw(event.target.value)}/>
                     </div>
-                    <button>Login</button>
+                    <div>
+                        <button className="buttonSignUp">Login</button>
+                    </div>
                     <div className="textSignUpContainer">
-                        <p>Don't have an account?</p>
+                        <p>Need an account?</p>
                         <Link className="textSignUp" to="/signup">
-                            <p>Sign Up</p>
+                            <p className="signUp">Login</p>
                         </Link>
                     </div>
                 </form>

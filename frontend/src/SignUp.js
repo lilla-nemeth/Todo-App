@@ -16,33 +16,15 @@ const styles = {
 
 
 export default function SignUp() {
-    // useState = kezdő érték
-    // setterek meg változtatják az értékét
     const [inputEmail, setInputEmail] = useState('');
     const [inputUsername, setInputUsername] = useState('');
     const [inputPassword, setInputPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
 
-    // event = a leütött billentyű, amit ezzel választunk ki: event.target.value
-
-    // This version or arrow function in the onChange (below)
-    // function handleEmailChange(event) {
-    //     setInputEmail(event.target.value);
-    // }
-    // function handleUsernameChange(event) {
-    //     setInputUsername(event.target.value);
-    // }
-    // function handlePasswordChange(event) {
-    //     setInputPassword(event.target.value);
-    // }
-
     function handleSubmit(event) {
         event.preventDefault();
 
-        // console.log(inputEmail, inputUsername, inputPassword);
-        // then mindig a válasz
-        // fetch funkció 2 inputot fogad: URL, objektum (get kérésnél nem kötelező objektumot megadni, minden más esetben viszont kell)
         let options = {
             method: 'post',
             url: '/signup',
@@ -56,9 +38,6 @@ export default function SignUp() {
                 pw: inputPassword
             }
         };
-        // fetch('http://localhost:3002/signup', options)
-        // .then((rawRes) => rawRes.json())
-        // .then((res) => console.log(res))
 
         axios(options)
         .then((res) => setSuccessMsg(res.data.msg))
@@ -84,11 +63,13 @@ export default function SignUp() {
                         <label style={styles.label}>Password</label>
                         <input className="signUpInput" name="password" type="password" placeholder="Password" value={inputPassword} onChange={(event) => setInputPassword(event.target.value)}/>
                     </div>
-                    <button>Send</button>
+                    <div>
+                        <button className="buttonSignUp">Create Account</button>
+                    </div>
                     <div className="textLoginContainer">
                         <p>Do you have account?</p>
                         <Link className="textLoginUp" to="/login">
-                            <p>Login</p>
+                            <p className="login">Login</p>
                         </Link>
                     </div>
                 </form>
