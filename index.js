@@ -157,8 +157,17 @@ app.post('/login', [isPwLongEnough, isEmail], (request, response) => {
     .catch((err) => response.status(400).json({msg: "User not found"}));
 });
 
+app.get('/user', authMw, (request, response) => {
+    let id = request.userId;
+
+    pool.query('SELECT * FROM users WHERE id=$1', [id])
+    .then((res) => response.status(200).json(res.rows[0].username))
+    .catch((err) => response.status(400).json({msg: 'Failed to fetch user'}));
+})
+
 app.get('*', (request, response) => {
     response.sendFile(path.join(__dirname, "frontend/build/index.html"));
 });
+
 
 app.listen(port, () => console.log("server is running on 3002"));

@@ -42,11 +42,11 @@ export default function ToDoInput(props) {
     return (
         <div>
             <form className="form" onSubmit={handleSubmit}>
-                <h3>Todo</h3>
                 <input 
                     type="text"
                     placeholder="Add to do"
                     value={input}
+                    className="todoInput"
                     onChange={handleChange}
                 />
                 <p style={{color: 'red'}}>{errorMsg}</p>

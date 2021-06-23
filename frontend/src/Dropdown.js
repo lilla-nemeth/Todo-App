@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import { ReactComponent as ArrowDown} from './assets/icons/arrow_down.svg';
 
-const notImportantColor = 'rgb(255, 234, 234)';
+const notImportantColor = 'rgb(255, 200, 200)';
 const importantColor = 'rgb(255, 157, 157)';
 const urgentColor = 'rgb(255, 103, 103)';
-const doneColor = '#fff';
+// const doneColor = '#fff';
+const doneColor = '#ccc';
 
 const options = {
     '1': 'Not important',
@@ -12,33 +13,18 @@ const options = {
     '3': 'Urgent'
 }
 
-
-let optionKeys = Object.keys(options);
-let optionKeysToNumber = optionKeys.map((i) => Number(i));
-let optionValues = Object.values(options);
-
-
-function changeNumberToText (num) {
-    if (num === 1) {
-        return optionValues[0];
-    } else if (num === 2) {
-        return optionValues[1];
-    } else {
-        return optionValues[2];
-    }
-}
-
 function generateId (num) {
-    if (num === 1) {
+    let number = Number(num);
+    if (number === 1) {
         return 'notimportant';
-    } else if (num === 2) {
+    } else if (number === 2) {
         return 'important';
     } else {
         return 'urgent';
     }
 }
 
-function chooseBackgroundColor(number, isCompleted) {
+function chooseColor(number, isCompleted) {
     if (isCompleted) {
         return doneColor;
     } else if (number === 1) {
@@ -50,37 +36,39 @@ function chooseBackgroundColor(number, isCompleted) {
     }
 }
 
-
 export default function Dropdown(props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    // const [selected, setSelected] = useState(null);
 
-    const { value, isCompleted, changeImportance } = props;
+    const { value, isCompleted, onSelect } = props;
  
     return (
-        <div className="dropdownContainer">
+        // <div className="dropdownContainer"
+        <div className={isCompleted ? "dropdownContainerInactive" : "dropdownContainer"}
+             onMouseLeave={() => setDropdownOpen(false)}  
+             onMouseEnter={() => setDropdownOpen(true)}  
+        >
             <div 
                 className="dropdownSelected"
-                style={{backgroundColor: chooseBackgroundColor(value, isCompleted)}}
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                // style={{backgroundColor: chooseColor(value, isCompleted)}}
+                style={{border: `2px solid ${chooseColor(value, isCompleted)}`, color: chooseColor(value, isCompleted)}}
             >
-                {/* {changeNumberToText(value)} <ArrowDown /> */}
-                {options[value]} <ArrowDown />
+                {/* {options[value]} <ArrowDown style={isCompleted ? {fill: "#ccc"} : {fill: "black"}}/> */}
+                {options[value]} <ArrowDown style={isCompleted ? {fill: "#ccc", strokeWidth: "3"} : {fill: chooseColor(value, isCompleted)}}/>
             </div>
-            {dropdownOpen &&
+            {dropdownOpen && !isCompleted &&
             <div className="dropdownOptions">
-                {optionKeysToNumber.map((num) => {
+                {Object.entries(options).map(option => {
                     return (
                         <div 
-                            id={generateId(num)} 
-                            style={{padding: '5px'}}
+                            id={generateId(option[0])} 
+                            className="dropdownOption"
                             onClick={() => {
                                 setDropdownOpen(false);
-                                changeImportance(num)
+                                onSelect(option[0])
                                 }
                             }    
                         >
-                            {changeNumberToText(num)}
+                            <div>{option[1]}</div>
                         </div>
                     )
                 })}

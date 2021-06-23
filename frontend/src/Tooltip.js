@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { ReactComponent as TooltipIcon } from './assets/icons/tooltip.svg';
-import { ReactComponent as TooltipWithTextIcon } from './assets/icons/tooltip-with-text.svg';
 
 const Bubble = ({ fill, date, time }) => {
     return <svg version="1.1" 
@@ -14,11 +12,9 @@ const Bubble = ({ fill, date, time }) => {
                   fill="#000"
                   fontSize="4"
                   textAnchor="center"
-                  y="8.72565" 
-                  x="1.31121"
             >
                 <tspan x="0" y="0">{date}</tspan>
-                <tspan x="5.2" y="5">{time}</tspan>
+                <tspan x="5.2" y="6">{time}</tspan>
             </text>
             </svg>
 };
@@ -26,20 +22,12 @@ const Bubble = ({ fill, date, time }) => {
 export default function Tooltip(props) {
     const [visibilty, setVisibility] = useState(false);
 
-
     return (
         <div style={{position: 'relative'}}>
            { 
            visibilty &&
-            // <div style={{backgroundColor: 'pink', position: 'absolute', bottom: '70%', right: '-30%', padding: '20px', borderRadius: '50px'}}>
-            //     <h2>{props.text}</h2>
-            // </div>
-
-            // <Tooltip style={{position: 'absolute', bottom: '10%', right: '-100%', padding: '20px', width:'60px', height: '60px'}}/>
-
-
-            <div style={{position: 'absolute', bottom: '10%', right: '-90%', padding: '20px', width:'60px', height: '60px'}}>
-                <Bubble fill={'rgb(177, 203, 187)'} date={props.date} time={props.time}/>
+            <div style={{position: 'absolute', bottom: '5%', left: '0', padding: '20px', width:'70px', height: '70px'}}>
+                <Bubble fill={'rgb(114, 180, 140)'} date={props.date} time={props.time}/>
             </div>
             }
             <div 

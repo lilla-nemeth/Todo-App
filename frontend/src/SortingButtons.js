@@ -1,19 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { order } from './ToDo.js'
 
 export default function SortingButtons(props) {
+    const [activeButton, setActiveButton] = useState("date");
 
     const { setOrderBy } = props;
 
     return (
         <div>
-            <div className="filterRow">
-                <button className="buttonDateStyle" 
-                        onClick={() => setOrderBy(order.date)}>
+            <div className="sortingRow">
+                <button onClick={() => {
+                        setOrderBy(order.date);
+                        setActiveButton("date")
+                        }
+                    }
+                        className={activeButton === "date" ? "buttonDateActiveStyle" : "buttonDateStyle"}
+                >
                         Date
                 </button>
-                <button className="buttonImportanceStyle" 
-                        onClick={() => setOrderBy(order.importance)}>
+                <button onClick={() => {
+                            setOrderBy(order.importance);
+                            setActiveButton("importance")
+                            }
+                        }
+                        className={activeButton === "importance" ? "buttonImportanceActiveStyle" : "buttonImportanceStyle"}
+                >
                         Importance
                 </button>
             </div> 

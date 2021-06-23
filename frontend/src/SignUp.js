@@ -70,34 +70,34 @@ export default function SignUp() {
     return (
         <main>
             <section className="container">
-            <h3>Sign Up</h3>
-            <form className="form" onSubmit={handleSubmit}>
-                <div className="email" style={styles.div}>
-                    <label style={styles.label}>Email</label>
-                    <input name="email" type="email" placeholder="Write Your Email" value={inputEmail} onChange={(event) => setInputEmail(event.target.value)}/>
+                <form className="form" onSubmit={handleSubmit}>
+                    <h3>Sign Up</h3>
+                    <div className="email" style={styles.div}>
+                        <label style={styles.label}>Email</label>
+                        <input className="signUpInput" name="email" type="email" placeholder="Email address" value={inputEmail} onChange={(event) => setInputEmail(event.target.value)}/>
+                    </div>
+                    <div className="username" style={styles.div}>
+                        <label style={styles.label}>Username</label>
+                        <input className="signUpInput" name="username" type="text" placeholder="Username" value={inputUsername} onChange={(event) => setInputUsername(event.target.value)}/>
+                    </div>
+                    <div className="password" style={styles.div}>
+                        <label style={styles.label}>Password</label>
+                        <input className="signUpInput" name="password" type="password" placeholder="Password" value={inputPassword} onChange={(event) => setInputPassword(event.target.value)}/>
+                    </div>
+                    <button>Send</button>
+                    <div className="textLoginContainer">
+                        <p>Do you have account?</p>
+                        <Link className="textLoginUp" to="/login">
+                            <p>Login</p>
+                        </Link>
+                    </div>
+                </form>
+                <div className="errorMessage">
+                    <p>{errorMsg}</p>
                 </div>
-                <div className="username" style={styles.div}>
-                    <label style={styles.label}>Username</label>
-                    <input name="username" type="text" placeholder="Write Your Username" value={inputUsername} onChange={(event) => setInputUsername(event.target.value)}/>
+                <div className="successMessage">
+                    <p>{successMsg}</p>
                 </div>
-                <div className="password" style={styles.div}>
-                    <label style={styles.label}>Password</label>
-                    <input name="password" type="password" placeholder="Write Your Password" value={inputPassword} onChange={(event) => setInputPassword(event.target.value)}/>
-                </div>
-                <button>Send</button>
-                <div className="textLoginContainer">
-                    <p>Do you have account?</p>
-                    <Link className="textLoginUp" to="/login">
-                        <p>Login</p>
-                    </Link>
-                </div>
-            </form>
-            <div className="errorMessage">
-                <p>{errorMsg}</p>
-            </div>
-            <div className="successMessage">
-                <p>{successMsg}</p>
-            </div>
             </section>
         </main>
     )

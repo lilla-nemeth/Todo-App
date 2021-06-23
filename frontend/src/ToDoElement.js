@@ -124,56 +124,82 @@ export default function ToDoElement(props) {
 
 
     return  (
-        <div className="flexrow"
-             key={el.id}> 
-            <label className="checkBoxContainer">
-                <input  
-                    type="checkbox" 
-                    checked={el.completed} 
-                    onChange={() => completeTodo(el)} 
-                />
-                <span class="checkmark"></span>
-            </label>
-            {editedTodoId != el.id 
-                ? 
-                <div className="titleContainer">
-                    <p className={el.completed ? "completed" : "flexrow"}>
-                        {el.title}
-                    </p>
+        <div className="todoWrapper">
+            <div className="checkboxTitleButtons">
+                <div className="todoElement"
+                    key={el.id}> 
+                    <label className="checkboxContainer">
+                        <input  
+                            type="checkbox" 
+                            checked={el.completed} 
+                            onChange={() => completeTodo(el)}/>
+                        <span class="checkmark"></span>
+                    </label>
+                    {editedTodoId != el.id 
+                    ? 
+                    <div className="titleContainer">
+                        <div className={el.completed ? "completed" : "todoElement"}>
+                            <p>&nbsp;&nbsp;{el.title}&nbsp;&nbsp;</p>
+                        </div>
+                    </div>
+                    : 
+                    <div className="titleContainer">
+                        <div className="todoElement">
+                            <form onSubmit={(event) => editTodo(el, event)}>
+                                <input 
+                                    type="text" 
+                                    value={editedTodoInput}
+                                    className="editInput"
+                                    autoFocus
+                                    onChange={(event) => setEditedTodoInput(event.target.value)}/>
+                            </form>
+                        </div>
+                    </div>
+                    }
                 </div>
-                : 
-                <form className="form" onSubmit={(event) => editTodo(el, event)}>
-                    <input 
-                        type="text" 
-                        value={editedTodoInput}
-                        onChange={(event) => setEditedTodoInput(event.target.value)}
-                    />
-                </form>
-            }
-            <Dropdown 
-                value={el.importance} 
-                isCompleted={el.completed}
-                changeImportance={(num) => {updateImportance(el, num)}}
-            />
-            <div className="buttonListStyle">
-                <button 
-                    className="buttonEditStyle" 
-                    onClick={() => selectToEdit(el)}>
-                    <PencilIcon className="iconStyle"/>   
-                </button>
-                <button 
-                    className="buttonDeleteStyle" 
-                    onClick={() => deleteElement(el.id)}>
-                    <TrashIcon className="iconStyle"/>  
-                </button>
-                <Tooltip date={formattedDate} time={formattedTime}>
-                    <button 
-                        className="buttonCalendarStyle"
-                    >
-                        <CalendarIcon className="iconStyle"/>  
-                    </button>
-                </Tooltip>
-            </div>
+                <div className="buttonListRow">
+                    {editedTodoId != el.id
+                    ?
+                    <div>
+                        <button 
+                            className={el.completed ? "buttonEditInactive" : "buttonEditStyle"} 
+                            onClick={() => selectToEdit(el)}>
+                            <PencilIcon className="iconStyle"/>   
+                        </button>
+                    </div>
+                    :
+                    <div>
+                        <button 
+                            className="buttonEditStyle"
+                            style={{backgroundColor: 'rgb(114, 180, 140)', border: 'none', fill: 'white'}}
+                            onClick={() => selectToEdit(el)}>
+                            <PencilIcon className="iconStyle"/>   
+                        </button>
+                    </div>
+                    }
+                    <div>
+                        <button 
+                            className="buttonDeleteStyle" 
+                            onClick={() => deleteElement(el.id)}>
+                            <TrashIcon className="iconStyle"/>  
+                        </button>
+                    </div>
+                    <Tooltip date={formattedDate} time={formattedTime}>
+                        <div>
+                            <button 
+                            className="buttonCalendarStyle">
+                                <CalendarIcon className="iconStyle"/>  
+                            </button>
+                        </div>
+                    </Tooltip>
+                </div>
+            </div> 
+                <div className="dropdownWrapper">
+                    <Dropdown 
+                        value={el.importance} 
+                        isCompleted={el.completed}
+                        onSelect={(num) => {updateImportance(el, num)}}/>
+                </div>
         </div>
     )
 }

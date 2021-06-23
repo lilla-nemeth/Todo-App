@@ -72,15 +72,16 @@ export default function Login(props) {
     return (
         <main>
             <section className="container">
-                <h3>Login</h3>
                 <form className="form" onSubmit={handleSubmit}>
+                    <h3>Login</h3>
                     <div className="email" style={styles.div}>
                         <label style={styles.label}>Email</label>
-                        <input name="email" type="email" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                        <input className="loginInput" name="email" type="email" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                        <span className="loginActive"></span>
                     </div>
                     <div className="password" style={styles.div}>
                         <label style={styles.label}>Password</label>
-                        <input name="password" type="password" placeholder="Password" value={pw} onChange={(event) => setPw(event.target.value)}/>
+                        <input className="loginInput" name="password" type="password" placeholder="Password" value={pw} onChange={(event) => setPw(event.target.value)}/>
                     </div>
                     <button>Login</button>
                     <div className="textSignUpContainer">
