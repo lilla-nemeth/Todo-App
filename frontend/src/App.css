@@ -1,50 +1,131 @@
 /* CSS Reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 body {
-	line-height: 1;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		background: var(--clr-pink);
+  line-height: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: var(--clr-pink);
 }
 
 ::after,
@@ -55,728 +136,690 @@ body {
 }
 
 main {
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	/* background-color: var(--clr-salmon); */
-	background-color: var(--clr-lightsalmon);
-	/* background-color: var(--clr-lightblue); */
-	overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--clr-lightsalmon);
+  overflow: hidden;
 }
 
 /* Variables */
 :root {
-	--clr-white: #fff;
-	--clr-lightgrey: #ccc;
-	--clr-grey: #999999;
-	--clr-lightblue: rgb(222, 234, 238);
-	--clr-lightgreen: rgb(225, 241, 232);
-	--clr-lightgreentransparent: rgba(225, 241, 232, 0.342);
-	--clr-green: rgb(177, 203, 187);
-	--clr-darkgreen:rgb(93, 175, 126);
-	--clr-lightsalmon: rgb(255, 200, 200);
-	--clr-salmon: rgb(255, 157, 157);
-	--clr-brightsalmon: rgb(255, 103, 103);
-	--spacing: 0.1rem;
-	--radius1: 1.7rem;
-	--radius2: 0.9rem;
-	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	--shadow: 0 5px 15px rgba(0, 0, 0, 0.178);
-	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.267);
-	--dropdown-shadow: 5px 5px 13px -6px rgba(0,0,0,0.33);
-	--max-width1: 35%;
-	--max-width2: 50%;
+  --clr-white: #fff;
+  --clr-lightgrey: #ccc;
+  --clr-grey: #999999;
+  --clr-lightblue: rgb(222, 234, 238);
+  --clr-lightgreen: rgb(225, 241, 232);
+  --clr-lightgreentransparent: rgba(225, 241, 232, 0.342);
+  --clr-green: rgb(177, 203, 187);
+  --clr-darkgreen: rgb(93, 175, 126);
+  --clr-lightsalmon: rgb(255, 200, 200);
+  --clr-salmon: rgb(255, 157, 157);
+  --clr-brightsalmon: rgb(255, 103, 103);
+  --spacing: 0.1rem;
+  --radius1: 1.7rem;
+  --radius2: 0.9rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.178);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.267);
+  --dropdown-shadow: 5px 5px 13px -6px rgba(0, 0, 0, 0.33);
+  --max-width1: 35%;
+  --max-width2: 50%;
 }
 
 .todoMain {
-	padding: 30px 0 30px 0;
+  padding: 30px 0 30px 0;
 }
 
 .container {
-	width: 20vw;
-	margin: 5rem 0;
-	max-width: var(--max-width1);
-	background: var(--clr-white);
-	border-radius: var(--radius1);
-	padding: 3.6rem 5rem;
-	box-shadow: var(--dark-shadow);
+  width: 20vw;
+  margin: 5rem 0;
+  max-width: var(--max-width1);
+  background: var(--clr-white);
+  border-radius: var(--radius1);
+  padding: 3.6rem 5rem;
+  box-shadow: var(--dark-shadow);
 }
 
 h3 {
-    font-size: 2.2rem;
+  font-size: 2.2rem;
 }
 
 .container h3 {
-	font-weight: normal;
-	text-transform: none;
-	margin-bottom: 2rem;
-	font-weight: 500;
-	color: var(--clr-darkgreen);
+  font-weight: normal;
+  text-transform: none;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  color: var(--clr-darkgreen);
 }
 
 .email,
 .username,
 .password {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	font-size: 1.05em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.05em;
 }
 
 .login,
 .signUp {
-	padding-top: 10px;
+  padding-top: 10px;
 }
 
 .buttonLogin,
 .buttonSignUp {
-	color: var(--clr-white);
-	display: block;
-	width: 100%;
-	border-color: transparent;
-	margin: 2rem auto 0 auto;
-	text-transform: capitalize;
-	font-size: 1.05em;
-	padding: 1rem 0;
-	letter-spacing: var(--spacing);
-	border-radius: var(--radius2);
-	/* background: var(--clr-darkgreen); */
-	background: var(--clr-brightsalmon);
+  color: var(--clr-white);
+  display: block;
+  width: 100%;
+  border-color: transparent;
+  margin: 2rem auto 0 auto;
+  text-transform: capitalize;
+  font-size: 1.05em;
+  padding: 1rem 0;
+  letter-spacing: var(--spacing);
+  border-radius: var(--radius2);
+  background: var(--clr-brightsalmon);
 }
 
 .buttonLogin:hover,
 .buttonSignUp:hover {
-	cursor: pointer;
-	/* background: var(--clr-green); */
-	background: var(--clr-salmon);
+  cursor: pointer;
+  background: var(--clr-salmon);
 }
-
-
 
 /* Navbar */
 .navbar {
-	width: 100%;
-	height: 90px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	top: 0;
-	left: 0;
-	flex-direction: row;
-	/* background-color: var(--clr-salmon); */
-	background-color: var(--clr-lightsalmon);
-	overflow: hidden;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  flex-direction: row;
+  background-color: var(--clr-lightsalmon);
+  overflow: hidden;
 }
 
 .navbarWelcomeBox {
-	width: 10%;
-	text-align: center;
-	font-weight: bold;
-	font-size: 1.6em;
-	/* color: var(--clr-white) */
-	color: var(--clr-brightsalmon)
+  width: 10%;
+  font-weight: bold;
+  font-size: 1.6em;
+  color: var(--clr-brightsalmon);
+  margin-left: 20px;
 }
 
 .navbarTodoBox h3 {
-	width: 10%; 
-	text-align: center;
-	font-weight: bold;
-	font-size: 3em;
-	/* color: var(--clr-white); */
-	color: var(--clr-brightsalmon);
+  width: 10%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: var(--clr-brightsalmon);
 }
 
 .navbarLogOutBox {
-	width: 10%;
-	text-align: right;
+  width: 10%;
+  text-align: right;
 }
 
 .buttonLogOut {
-	height: 60px;
-	font-size: 1.05em;
-	font-weight: bold;
-	color: white;
-	border-radius: 0.8rem;
-	border: none;
-	padding-left: 20px;
-    padding-right: 20px;
-	min-width: 30px;
-    margin-right: 10%;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;
-	background-color: var(--clr-brightsalmon);
+  height: 60px;
+  font-size: 1.05em;
+  font-weight: bold;
+  color: white;
+  border-radius: 0.8rem;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 110px;
+  margin-right: 20px;
+  background-clip: padding-box;
+  background-color: var(--clr-brightsalmon);
 }
 
 .buttonLogOut:hover {
-	/* background-color: var(--clr-white); */
-	/* color: var(--clr-brightsalmon); */
-	background-color: var(--clr-salmon);
-	cursor: pointer;
+  background-color: var(--clr-salmon);
+  cursor: pointer;
 }
 
 .buttonLogOut:focus {
-	outline: none;
+  outline: none;
 }
 
 /* Input */
 input {
-	font-size: 1.05em;
-	border-radius: var(--radius2);
-	color: var(--clr-darkgreen);
-	border: 2px solid var(--clr-white);
-	background-color: var(--clr-lightgreen);
-	
+  font-size: 1.05em;
+  border-radius: var(--radius2);
+  color: var(--clr-darkgreen);
+  border: 2px solid var(--clr-white);
+  background-color: var(--clr-lightgreen);
 }
 
 input:hover {
-	border: 2px solid var(--clr-white);
+  border: 2px solid var(--clr-white);
 }
 
 input:focus {
-	outline: none;
-	border:2px solid var(--clr-green); 
-	color: black;
-	background-color: var(--clr-lightgreentransparent);
+  outline: none;
+  border: 2px solid var(--clr-green);
+  color: black;
+  background-color: var(--clr-lightgreentransparent);
 }
 
 ::placeholder {
-	color: var(--clr-darkgreen);
+  color: var(--clr-darkgreen);
 }
 
 input:focus::placeholder {
-	color: var(--clr-darkgreen); 
+  color: var(--clr-darkgreen);
 }
 
 .form {
-	display: flex;
-	flex-direction: column; 
-	width: inherit;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
 }
 
 .signUpInput,
 .loginInput,
 .todoInput {
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .signUpInput,
 .loginInput {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .editInput {
-	padding: 10px;
-	vertical-align: center;
-	font-size: 1.05em;
-	/* margin: -15px; */
+  padding: 10px;
+  vertical-align: center;
+  font-size: 1.05em;
 }
 
 .sortingRow {
-	display: flex;
-	justify-content: flex-start; 
-	padding: 30px 0 60px 0;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 30px 0 60px 0;
+}
+
+.buttonDateStyle,
+.buttonImportanceStyle,
+.buttonStatusStyle {
+  font-size: 1.05em;
+  background-color: var(--clr-lightgreen);
+  border-radius: 0.8rem;
+  border: none;
+  padding: 15px;
+  margin-top: 15px;
 }
 
 .buttonDateStyle,
 .buttonImportanceStyle {
-	font-size: 1.05em;
-	background-color: var(--clr-lightgreen);
-	border-radius: 0.8rem;
-	border: none;
-	padding: 15px;
-}
-
-.buttonImportanceStyle {
-	margin-left: 15px;
+  margin-right: 15px;
 }
 
 .buttonDateStyle:hover,
-.buttonImportanceStyle:hover {
-	background-color: var(--clr-green);
-	cursor: pointer;
+.buttonImportanceStyle:hover,
+.buttonStatusStyle:hover {
+  background-color: var(--clr-green);
+  cursor: pointer;
 }
 
 .buttonDateStyle:active,
-.buttonImportanceStyle:active {
-	background-color: var(--clr-darkgreen);
-	color: var(--clr-white);
+.buttonImportanceStyle:active .buttonStatusStyle:active {
+  background-color: var(--clr-darkgreen);
+  color: var(--clr-white);
 }
 
-.buttonDateActiveStyle {
-	cursor: pointer;
-	font-size: 1.05em;
-	border-radius: 0.8rem;
-	border: none;
-	padding: 15px;
-	background-color: var(--clr-darkgreen);
-	color: var(--clr-white);
+.buttonDateActiveStyle,
+.buttonImportanceActiveStyle,
+.buttonStatusActiveStyle {
+  padding: 15px;
+  font-size: 1.05em;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: var(--clr-darkgreen);
+  color: var(--clr-white);
 }
 
+.buttonDateActiveStyle,
 .buttonImportanceActiveStyle {
-	margin-left: 15px;
-	cursor: pointer;
-	font-size: 1.05em;
-	border-radius: 0.8rem;
-	border: none;
-	padding: 15px;
-	background-color: var(--clr-darkgreen);
-	color: var(--clr-white);
+  margin-right: 15px;
 }
 
 .checkboxTitleButtons {
-	display: flex;
-	justify-content: space-between;
-	flex: 1;
-	padding-right: 20px;
-	align-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding-right: 20px;
+  align-self: flex-start;
 }
 
 .todoWrapper {
-	display: flex;
-	padding-bottom: 40px;
+  display: flex;
+  padding-bottom: 40px;
 }
 
 .titleContainer {
-    width: 100%;
-    /* word-wrap: break-word; */
-	font-weight: 500;
+  width: 100%;
+  font-weight: 500;
+  word-wrap: break-word;
 }
 
 .todoElement {
-	display: flex;
-	font-size: 1.05em;
-	/* word-break: break-all; */
-	hyphens:auto;
-	align-items: center;
-	/* align-self: flex-start; */
-	/* text-align: left; */
+  display: flex;
+  font-size: 1.05em;
+  hyphens: auto;
+  align-items: center;
+  padding-right: 10px;
 }
 
 .todoElement p {
-	display: inherit;
-	border-bottom: none;
+  display: inherit;
+  border-bottom: none;
+  line-height: initial;
 }
 
 /* Checkbox */
 .checkboxContainer {
-	display: block;
-	position: relative;
-	padding-left: 50px;
-	margin-bottom: 25px;
-	cursor: pointer;
-	font-size: 25px;
-	user-select: none;
-	/* align-self: flex-start; */
-	align-items: center;
+  display: block;
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 25px;
+  cursor: pointer;
+  font-size: 25px;
+  user-select: none;
+  align-items: center;
 }
 
 .checkboxContainer input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	height: 0;
-	width: 0;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
 .checkmark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 30px;
-	width: 30px;
-	background-color: var(--clr-lightgreen);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background-color: var(--clr-lightgreen);
 }
 
 .checkboxContainer:hover input ~ .checkmark {
-	background-color: var(--clr-green);
+  background-color: var(--clr-green);
 }
 
 .checkboxContainer input:checked ~ .checkmark {
-	background-color: var(--clr-darkgreen);
+  background-color: var(--clr-darkgreen);
 }
 
 .checkmark:after {
-	content: "";
-	position: absolute;
-	display: none;
+  content: "";
+  position: absolute;
+  display: none;
 }
 
 .checkboxContainer input:checked ~ .checkmark:after {
-	display: block;
+  display: block;
 }
 
 .checkboxContainer .checkmark:after {
-	left: 9px;
-	top: 5px;
-	width: 11px;
-	height: 16px;
-	border: solid var(--clr-white);
-	border-width: 0 3px 3px 0;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
+  left: 9px;
+  top: 5px;
+  width: 11px;
+  height: 16px;
+  border: solid var(--clr-white);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .completed {
-	text-decoration: 2px solid line-through;
-	text-decoration-color: var(--clr-darkgreen);
-	color: var(--clr-lightgrey);
-	font-size: 1.05em;
+  text-decoration: 2px solid line-through;
+  text-decoration-color: var(--clr-darkgreen);
+  color: var(--clr-lightgrey);
+  font-size: 1.05em;
 }
-
-/* .completed:before {
-	content: "\00a0\00a0";
-} */
 
 /* Buttons */
 .buttonListRow {
-    display: flex;
-    justify-content: flex-end;
-	align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .buttonEditStyle {
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
-	background-color: var(--clr-white);
-	border-radius: 0.8rem;
-	border: 2px solid var(--clr-green);
-	fill: var(--clr-green);
-	cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: var(--clr-white);
+  border-radius: 0.8rem;
+  border: 2px solid var(--clr-green);
+  fill: var(--clr-green);
+  cursor: pointer;
 }
 
 .buttonEditStyle:hover {
-	border: none;
-	background-color: var(--clr-green);
-	fill: white;
+  border: none;
+  background-color: var(--clr-green);
+  fill: white;
 }
 
 .buttonEditInactive {
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
-	background-color: var(--clr-white);
-	border-radius: 0.8rem;
-	border: 2px solid var(--clr-lightgrey);
-	fill: var(--clr-lightgrey);
-	pointer-events: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: var(--clr-white);
+  border-radius: 0.8rem;
+  border: 2px solid var(--clr-lightgrey);
+  fill: var(--clr-lightgrey);
+  pointer-events: none;
 }
 
 .buttonDeleteStyle {
-    width: 40px;
-    height: 40px;
-	margin-right: 10px;
-    cursor: pointer;
-    background-color: var(--clr-white);
-    border-radius: 0.8rem;
-    border: 2px solid var(--clr-green);
-	fill: var(--clr-green);
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: var(--clr-white);
+  border-radius: 0.8rem;
+  border: 2px solid var(--clr-green);
+  fill: var(--clr-green);
 }
 
 .buttonDeleteStyle:hover {
-	border: none;
-	background-color: var(--clr-green);
-	fill: white;
+  border: none;
+  background-color: var(--clr-green);
+  fill: white;
 }
 
 .buttonDeleteStyle:active {
-	border: none;
-	background-color: var(--clr-darkgreen);
-	fill: white;
+  border: none;
+  background-color: var(--clr-darkgreen);
+  fill: white;
 }
 
 .buttonCalendarStyle {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-color: var(--clr-white);
-    border-radius: 0.8rem;
-    border: 2px solid var(--clr-green);
-	fill: var(--clr-green);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: var(--clr-white);
+  border-radius: 0.8rem;
+  border: 2px solid var(--clr-green);
+  fill: var(--clr-green);
 }
 
 .buttonCalendarStyle:hover {
-	border: none;
-	background-color: var(--clr-green);
-	fill: white;
+  border: none;
+  background-color: var(--clr-green);
+  fill: white;
 }
 
 .iconStyle {
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 /* Dropdown */
 .dropdownWrapper {
-	width: 20%;
-	font-size: 1.05em;
-	font-weight: 500;
-	display: flex;
-	align-items: center;
-
+  width: 20%;
+  font-size: 1.05em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  min-width: 150px;
 }
 
 .dropdownContainer {
-	width: 100%;
-	position: relative;
-	box-shadow: var(--dropdown-shadow);
+  width: 100%;
+  position: relative;
+  box-shadow: var(--dropdown-shadow);
 }
 
 .dropdownContainerInactive {
-	width: 100%;
-	position: relative;
-	color: var(--clr-lightgrey);
-	pointer-events: none;
+  width: 100%;
+  position: relative;
+  color: var(--clr-lightgrey);
+  pointer-events: none;
 }
 
 .dropdownSelected {
-	cursor: pointer;
-	padding: 6px; 
-	display: flex; 
-	justify-content: space-between; 
-	align-items: center;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropdownOptions {
-	cursor: pointer;
-	border-top: 0;
-	position: absolute; 
-	width: inherit;
-	z-index: 10;
-	box-shadow: var(--dropdown-shadow);
+  cursor: pointer;
+  border-top: 0;
+  position: absolute;
+  width: inherit;
+  z-index: 10;
+  box-shadow: var(--dropdown-shadow);
 }
 
 .dropdownOption {
-	cursor: pointer;
-	border-top: 0;
-	padding: 10px;
+  cursor: pointer;
+  border-top: 0;
+  padding: 10px;
 }
 
 #notimportant {
-	/* background-color: var(--clr-lightsalmon); */
-	background-color: var(--clr-white);
-	color: var(--clr-lightsalmon);
-	border: 2px solid var(--clr-lightsalmon);
-	border-top: none;
+  background-color: var(--clr-white);
+  color: var(--clr-lightsalmon);
+  border: 2px solid var(--clr-lightsalmon);
+  border-top: none;
 }
 
 #important {
-	/* background-color: var(--clr-salmon); */
-	background-color: var(--clr-white);
-	color: var(--clr-salmon);
-	border: 2px solid var(--clr-salmon);
-	border-top: none;
+  background-color: var(--clr-white);
+  color: var(--clr-salmon);
+  border: 2px solid var(--clr-salmon);
+  border-top: none;
 }
 
 #urgent {
-	/* background-color: var(--clr-brightsalmon); */
-	background-color: var(--clr-white);
-	color: var(--clr-brightsalmon);
-	border: 2px solid var(--clr-brightsalmon);
-	border-top: none;
-
+  background-color: var(--clr-white);
+  color: var(--clr-brightsalmon);
+  border: 2px solid var(--clr-brightsalmon);
+  border-top: none;
 }
-
 
 /* Switch to Login/Sign Up */
 .textSignUpContainer,
 .textLoginContainer {
-	margin-top: 2.5em;
-	text-align: center;
-	font-size: 1.05em;
+  margin-top: 2.5em;
+  text-align: center;
+  font-size: 1.05em;
 }
 
-.textSignUp
-.textLogin {
-	text-decoration: none;
-	color: var(--clr-brightsalmon);
-	font-weight: bold;
+.textSignUp .textLogin {
+  text-decoration: none;
+  color: var(--clr-brightsalmon);
+  font-weight: bold;
 }
 
 .successMessage,
 .errorMessage {
-	margin-top: 2.5em;
-	text-align: center;
-	font-size: 1.2em;
+  margin-top: 2.5em;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .errorMessage {
-	color: var(--clr-brightsalmon);
+  color: var(--clr-brightsalmon);
 }
 
 .successMessage {
-	color: var(--clr-grey);
+  color: var(--clr-darkgreen);
 }
 
 .todoContainer {
-	width: 50%;
-	background: var(--clr-white); 
-	border-radius: var(--radius1);
-	padding: 5rem;
-	box-shadow: var(--dark-shadow);
+  width: 50%;
+  background: var(--clr-white);
+  border-radius: var(--radius1);
+  padding: 5rem;
+  box-shadow: var(--dark-shadow);
 }
 
 /* Loader */
 .loaderContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	/* background: var(--clr-salmon); */
-	background: var(--clr-lightsalmon);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--clr-lightsalmon);
 }
 
 .loader {
-	position: relative;
-	width: 80px;
-	height: 80px;
-	animation: rotate 2s linear infinite;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  animation: rotate 2s linear infinite;
 }
 
-@keyframes rotate
-{
-	0%
-	{
-		transform: rotate(0deg);
-	}
-	100%
-	{
-		transform: rotate(360deg);
-	}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loaderCircle {
-	width: 50%;
-	height: 50%;
-	fill: none;
-	stroke-width: 8;
-	stroke: #ffffff;
-	stroke-linecap: round;
-	transform: translate(5px, 5px);
-	stroke-dasharray: 220;
-	stroke-dashoffset: 220;
-	animation: animate 4s linear infinite;
+  width: 50%;
+  height: 50%;
+  fill: none;
+  stroke-width: 8;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: animate 4s linear infinite;
 }
 
-@keyframes animate
-{
-	0%,100%
-	{
-		stroke-dashoffset: 220;
-	}
-	50%
-	{
-		stroke-dashoffset: 0;
-	}
-	50.1%
-	{
-		stroke-dashoffset: 440;
-	}
+@keyframes animate {
+  0%,
+  100% {
+    stroke-dashoffset: 220;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  50.1% {
+    stroke-dashoffset: 440;
+  }
 }
 
 /* Media query */
-@media (max-width: 991.98px) { 
-	.container {
-		width: 100%;
-		min-width: 20%;
-		padding: 4rem;
-	}
-	
-	.navbarWelcomeBox {
-		width: 50%;
-	}
-	
-	.navbarTodoBox {
-		/* width: 60%;  */
-		text-align: center;
-	}
-	
-	.navbarLogOutBox {
-		width: 50%;
-	}
+@media (max-width: 991.98px) {
+  .container {
+    width: 100%;
+    min-width: 20%;
+    padding: 4rem;
+  }
 
-	.checkboxTitleButtons,
-	.dropdownWrapper {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		padding-top: 10px;
-	}
+  .navbarWelcomeBox {
+    width: 50%;
+  }
 
-	.todoContainer {
-		width: 60%;
-		padding: 2.5rem;
-	}
+  .navbarTodoBox h3 {
+    display: none;
+  }
 
-	h3 {
-		font-size: 1.9rem;
-	}
+  .navbarLogOutBox {
+    width: 50%;
+  }
 
-	.todoElement {
-		margin: 0;
-		font-size: 1em;
-		width: 75%;
-		align-items:flex-start;
-		display: flex;
-		justify-content: space-between;
-		padding-top: 0;
-		border-bottom: none;
-		padding-bottom: 0;
-	}
+  .checkboxTitleButtons,
+  .dropdownWrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
 
-	.todoElement p {
-		border-bottom: none;
-		font-size: 1em;	
-	}
+  .todoContainer {
+    width: 60%;
+    padding: 2.5rem;
+  }
 
-	.titleContainer {
-		width: 100%;
-		word-wrap: break-word;
-	}
+  h3 {
+    font-size: 1.9rem;
+  }
 
-	.checkboxContainer {
-		width: 10%;
-	}
+  .todoElement {
+    margin: 0;
+    font-size: 1em;
+    width: 70%;
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    padding-right: 0;
+  }
 
-	.dropdownContainer {
-		width: 100%;
-	}
+  .todoElement p {
+    border-bottom: none;
+    font-size: 1em;
+  }
 
-	.buttonListRow {
-		flex-direction: column;
-		width: 25%;
-		justify-content: flex-start;
-	}
+  .titleContainer {
+    width: 100%;
+  }
 
-	.buttonListElements {
-		padding-bottom: 5px;
-		justify-content: flex-end;
-		display: flex;
-	}
+  .checkboxContainer {
+    width: 10%;
+  }
 
-	.buttonEditStyle,
-	.buttonEditInactive,
-	.buttonDeleteStyle,
-	.buttonCalendarStyle {
-		margin: 0;
-		width: 50px;
-		height: 50px;
-	}
+  .dropdownContainer {
+    width: 100%;
+  }
 
-	.editInput {
-		width: 100%;
-		height: 50%;
-		resize: none;
-		box-sizing: border-box;
-	}
+  .buttonListRow {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 
-	.todoWrapper {
-		display: block
-	}
+  .buttonListElements {
+    padding-bottom: 5px;
+  }
+
+  .buttonEditStyle,
+  .buttonEditInactive,
+  .buttonDeleteStyle,
+  .buttonCalendarStyle {
+    margin: 0;
+    width: 50px;
+    height: 50px;
+  }
+
+  .editInput {
+    width: 100%;
+    height: 50%;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .todoWrapper {
+    display: block;
+  }
 }

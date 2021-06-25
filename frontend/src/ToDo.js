@@ -8,7 +8,8 @@ import SortingButtons from './SortingButtons.js';
 
 export const order = {
     date: 'Date',
-    importance: 'Importance'
+    importance: 'Importance',
+    completed: 'Status'
 }
 
 export default function ToDo(props) {
@@ -43,10 +44,13 @@ export default function ToDo(props) {
 
     
     let sortedAllTodos = allTodos.sort((a, b) => {
+        // console.log(a, b)
         if (orderBy === order.date) {
             return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
-        } else {
+        } else if (orderBy === order.importance) {
             return a.importance < b.importance ? 1 : -1;
+        } else if (orderBy === order.completed) {
+            return a.completed < b.completed ? 1 : -1;
         }
     });
 

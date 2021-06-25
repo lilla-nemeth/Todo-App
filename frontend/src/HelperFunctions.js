@@ -1,6 +1,11 @@
 
 export function handleError(err, setter) {
-    setter(err.response.data.msg);
+    setter(
+        err
+        &&err.response
+        &&err.response.data
+        &&err.response.data.msg
+    );
     setTimeout(() => {
         setter('');
     },5000);

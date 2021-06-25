@@ -1,6 +1,6 @@
 -- Create Database:
 
-CREATE DATABASE tododb
+CREATE DATABASE tododb2
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'

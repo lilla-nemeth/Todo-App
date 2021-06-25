@@ -27,6 +27,15 @@ export default function SortingButtons(props) {
                 >
                         Importance
                 </button>
+                <button onClick={() => {
+                            setOrderBy(order.completed);
+                            setActiveButton("status")
+                            }
+                        }
+                        className={activeButton === "status" ? "buttonStatusActiveStyle" : "buttonStatusStyle"}
+                >
+                        Status
+                </button>
             </div> 
         </div>
     )
