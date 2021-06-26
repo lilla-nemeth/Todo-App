@@ -141,6 +141,7 @@ main {
   justify-content: center;
   background-color: var(--clr-lightsalmon);
   overflow: hidden;
+  padding: 50px;
 }
 
 /* Variables */
@@ -172,13 +173,13 @@ main {
 }
 
 .container {
-  width: 20vw;
-  margin: 5rem 0;
+  min-width: 20vw;
   max-width: var(--max-width1);
   background: var(--clr-white);
   border-radius: var(--radius1);
   padding: 3.6rem 5rem;
   box-shadow: var(--dark-shadow);
+  max-height: 75vh;
 }
 
 h3 {
@@ -199,7 +200,7 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 .login,
@@ -215,7 +216,7 @@ h3 {
   border-color: transparent;
   margin: 2rem auto 0 auto;
   text-transform: capitalize;
-  font-size: 1.05em;
+  font-size: 1em;
   padding: 1rem 0;
   letter-spacing: var(--spacing);
   border-radius: var(--radius2);
@@ -265,7 +266,7 @@ h3 {
 
 .buttonLogOut {
   height: 60px;
-  font-size: 1.05em;
+  font-size: 1em;
   font-weight: bold;
   color: white;
   border-radius: 0.8rem;
@@ -289,7 +290,7 @@ h3 {
 
 /* Input */
 input {
-  font-size: 1.05em;
+  font-size: 1em;
   border-radius: var(--radius2);
   color: var(--clr-darkgreen);
   border: 2px solid var(--clr-white);
@@ -337,19 +338,47 @@ input:focus::placeholder {
 .editInput {
   padding: 10px;
   vertical-align: center;
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 .sortingRow {
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 30px 0 60px 0;
+  align-items: center;
+    fill: black;
 }
 
-.buttonDateStyle,
-.buttonImportanceStyle,
-.buttonStatusStyle {
-  font-size: 1.05em;
+.sortingButtonArrow {
+  display: flex;
+  justify-content: space-between;
+  fill: var(--clr-white);
+  flex-direction: row;
+  align-items: center;
+}
+
+.sortingButtonArrow svg {
+  width: 15px;
+}
+
+.buttonDate,
+.buttonDateActive {
+  min-width: 115px;
+}
+
+.buttonImportance,
+.buttonImportanceActive {
+  min-width: 180px;
+}
+.buttonStatus,
+.buttonStatusActive {
+  min-width: 160px;
+}
+
+.buttonDate,
+.buttonImportance,
+.buttonStatus {
+  font-size: 1em;
   background-color: var(--clr-lightgreen);
   border-radius: 0.8rem;
   border: none;
@@ -357,38 +386,65 @@ input:focus::placeholder {
   margin-top: 15px;
 }
 
-.buttonDateStyle,
-.buttonImportanceStyle {
+.buttonDate,
+.buttonImportance {
   margin-right: 15px;
 }
 
-.buttonDateStyle:hover,
-.buttonImportanceStyle:hover,
-.buttonStatusStyle:hover {
+.buttonDate:hover,
+.buttonImportance:hover,
+.buttonStatus:hover {
   background-color: var(--clr-green);
   cursor: pointer;
 }
 
-.buttonDateStyle:active,
-.buttonImportanceStyle:active .buttonStatusStyle:active {
+.buttonDate:active,
+.buttonImportance:active,
+.buttonStatus:active {
   background-color: var(--clr-darkgreen);
   color: var(--clr-white);
+  fill: white;
 }
 
-.buttonDateActiveStyle,
-.buttonImportanceActiveStyle,
-.buttonStatusActiveStyle {
+.buttonDateActive,
+.buttonImportanceActive,
+.buttonStatusActive {
   padding: 15px;
-  font-size: 1.05em;
-  cursor: pointer;
+  font-size: 1em;
   border-radius: 0.8rem;
   border: none;
+  margin-top: 15px;
+  cursor: pointer;
   background-color: var(--clr-darkgreen);
   color: var(--clr-white);
 }
 
-.buttonDateActiveStyle,
-.buttonImportanceActiveStyle {
+.buttonDeleteAllContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; 
+}
+
+.buttonDeleteAll {
+  font-size: 1em;
+  background-color: var(--clr-brightsalmon);
+  border-radius: 0.8rem;
+  border: none;
+  padding: 15px;
+  color: var(--clr-white);
+}
+
+.buttonDeleteAll:hover {
+  background-color: var(--clr-salmon);
+  cursor: pointer;
+}
+
+.buttonDeleteAll:focus {
+  outline: none;
+}
+
+.buttonDateActive,
+.buttonImportanceActive {
   margin-right: 15px;
 }
 
@@ -413,7 +469,7 @@ input:focus::placeholder {
 
 .todoElement {
   display: flex;
-  font-size: 1.05em;
+  font-size: 1em;
   hyphens: auto;
   align-items: center;
   padding-right: 10px;
@@ -488,7 +544,7 @@ input:focus::placeholder {
   text-decoration: 2px solid line-through;
   text-decoration-color: var(--clr-darkgreen);
   color: var(--clr-lightgrey);
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 /* Buttons */
@@ -498,7 +554,7 @@ input:focus::placeholder {
   align-items: center;
 }
 
-.buttonEditStyle {
+.buttonEdit {
   width: 40px;
   height: 40px;
   margin-right: 10px;
@@ -509,7 +565,7 @@ input:focus::placeholder {
   cursor: pointer;
 }
 
-.buttonEditStyle:hover {
+.buttonEdit:hover {
   border: none;
   background-color: var(--clr-green);
   fill: white;
@@ -526,7 +582,7 @@ input:focus::placeholder {
   pointer-events: none;
 }
 
-.buttonDeleteStyle {
+.buttonDelete {
   width: 40px;
   height: 40px;
   margin-right: 10px;
@@ -537,19 +593,19 @@ input:focus::placeholder {
   fill: var(--clr-green);
 }
 
-.buttonDeleteStyle:hover {
+.buttonDelete:hover {
   border: none;
   background-color: var(--clr-green);
   fill: white;
 }
 
-.buttonDeleteStyle:active {
+.buttonDelete:active {
   border: none;
   background-color: var(--clr-darkgreen);
   fill: white;
 }
 
-.buttonCalendarStyle {
+.buttonCalendar {
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -559,13 +615,13 @@ input:focus::placeholder {
   fill: var(--clr-green);
 }
 
-.buttonCalendarStyle:hover {
+.buttonCalendar:hover {
   border: none;
   background-color: var(--clr-green);
   fill: white;
 }
 
-.iconStyle {
+.icon {
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -574,7 +630,7 @@ input:focus::placeholder {
 /* Dropdown */
 .dropdownWrapper {
   width: 20%;
-  font-size: 1.05em;
+  font-size: 1em;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -643,7 +699,7 @@ input:focus::placeholder {
 .textLoginContainer {
   margin-top: 2.5em;
   text-align: center;
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 .textSignUp .textLogin {
@@ -691,15 +747,6 @@ input:focus::placeholder {
   animation: rotate 2s linear infinite;
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .loaderCircle {
   width: 50%;
   height: 50%;
@@ -711,6 +758,15 @@ input:focus::placeholder {
   stroke-dasharray: 220;
   stroke-dashoffset: 220;
   animation: animate 4s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes animate {
@@ -728,10 +784,16 @@ input:focus::placeholder {
 
 /* Media query */
 @media (max-width: 991.98px) {
+  
+  main {
+    padding: 25px;
+  }
+
   .container {
-    width: 100%;
-    min-width: 20%;
-    padding: 4rem;
+    max-width: 100%;
+    min-width: 70%;
+    padding: 2.5rem;
+    max-height: 120vh;
   }
 
   .navbarWelcomeBox {
@@ -803,10 +865,10 @@ input:focus::placeholder {
     padding-bottom: 5px;
   }
 
-  .buttonEditStyle,
+  .buttonEdit,
   .buttonEditInactive,
-  .buttonDeleteStyle,
-  .buttonCalendarStyle {
+  .buttonDelete,
+  .buttonCalendar {
     margin: 0;
     width: 50px;
     height: 50px;

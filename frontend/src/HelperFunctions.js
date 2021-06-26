@@ -1,6 +1,6 @@
-
 export function handleError(err, setter) {
     setter(
+        // short circuit evaluation:
         err
         &&err.response
         &&err.response.data

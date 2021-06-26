@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { handleError } from './HelperFunctions.js'; 
 
-
 export default function ToDoInput(props) {
     const [input, setInput] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    // const [loading, setLoading] = useState(false);
 
     const { getAllTodos, token } = props;
 
@@ -29,7 +27,6 @@ export default function ToDoInput(props) {
                 title: input
             }
         }
-
         if (input != '') {
             axios(options)
             .then((res) => getAllTodos())
@@ -38,15 +35,14 @@ export default function ToDoInput(props) {
         setInput('');
     }
 
-
     return (
         <div>
-            <form className="form" onSubmit={handleSubmit}>
+            <form className='form' onSubmit={handleSubmit}>
                 <input 
-                    type="text"
-                    placeholder="Add to do"
+                    type='text'
+                    placeholder='Add to do'
                     value={input}
-                    className="todoInput"
+                    className='todoInput'
                     onChange={handleChange}
                 />
                 <p style={{color: 'red'}}>{errorMsg}</p>
