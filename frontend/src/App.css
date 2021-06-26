@@ -702,12 +702,6 @@ input:focus::placeholder {
   font-size: 1em;
 }
 
-.textSignUp .textLogin {
-  text-decoration: none;
-  color: var(--clr-brightsalmon);
-  font-weight: bold;
-}
-
 .successMessage,
 .errorMessage {
   margin-top: 2.5em;

@@ -93,7 +93,7 @@ export default function SignUp() {
           </div>
           <div className='textLoginContainer'>
             <p>Do you have account?</p>
-            <Link className='textLoginUp' to='/login'>
+            <Link className='textLoginUp' to='/login' style={{textDecoration: 'none'}}>
               <p className='login'>Login</p>
             </Link>
           </div>

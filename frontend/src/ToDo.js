@@ -52,11 +52,15 @@ export default function ToDo(props) {
       return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
     } else if (orderBy === order.oldest) {
       return a.created.valueOf() < b.created.valueOf() ? -1 : 1;
-    } else if (orderBy === order.mostImportant) {
+    } 
+    
+    if (orderBy === order.mostImportant) {
       return a.importance < b.importance ? 1 : -1;
     } else if (orderBy === order.leastImportant) {
       return a.importance < b.importance ? -1 : 1;
-    } else if (orderBy === order.uncompleted) {
+    } 
+    
+    if (orderBy === order.uncompleted) {
       return a.completed < b.completed ? -1 : 1;
     } else if (orderBy === order.completed) {
       return a.completed < b.completed ? 1 : -1;

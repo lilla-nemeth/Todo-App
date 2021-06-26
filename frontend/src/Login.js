@@ -82,7 +82,7 @@ export default function Login(props) {
           </div>
           <div className='textSignUpContainer'>
             <p>Need an account?</p>
-            <Link className='textSignUp' to='/signup'>
+            <Link className='textSignUp' to='/signup' style={{textDecoration: 'none'}}>
               <p className='signUp'>Sign Up</p>
             </Link>
           </div>
