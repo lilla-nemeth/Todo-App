@@ -78,8 +78,8 @@ export default function ToDo(props) {
 
     if (orderBy === order.uncompleted) {
       console.log("uncompleted")
-      if (a.completed === b.completed) {
-        return a.title < b.title ? 1 : -1;
+      if (!a.completed && !b.completed) {
+        return;
       } else {
         return a.completed < b.completed ? -1 : 1;
       }
@@ -87,13 +87,13 @@ export default function ToDo(props) {
     
     if (orderBy === order.completed) {
       console.log("completed")
-      if (a.completed === b.completed) {
-        return a.title < b.title ? -1 : 1;
+      if (!a.completed && !b.completed) {
+        return;
       } else {
         return a.completed < b.completed ? 1 : -1;
       }
     }
-    
+
   });
 
   if (loading) {
