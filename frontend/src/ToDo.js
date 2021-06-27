@@ -49,22 +49,51 @@ export default function ToDo(props) {
   let sortedAllTodos = allTodos.sort((a, b) => {
 
     if (orderBy === order.newest) {
+      console.log("newest")
       return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
-    } else if (orderBy === order.oldest) {
+    } 
+    
+    if (orderBy === order.oldest) {
+      console.log("oldest")
       return a.created.valueOf() < b.created.valueOf() ? -1 : 1;
     } 
-    
+  
     if (orderBy === order.mostImportant) {
-      return a.importance < b.importance ? 1 : -1;
-    } else if (orderBy === order.leastImportant) {
-      return a.importance < b.importance ? -1 : 1;
+      console.log("most important")
+      if (a.importance === b.importance) {
+        return a.title < b.title ? 1 : -1;
+      } else {
+        return a.importance < b.importance ? 1 : -1;
+      }
     } 
     
-    if (orderBy === order.uncompleted) {
-      return a.completed < b.completed ? -1 : 1;
-    } else if (orderBy === order.completed) {
-      return a.completed < b.completed ? 1 : -1;
+    if (orderBy === order.leastImportant) {
+      console.log("least important")
+      if (a.importance === b.importance) {
+        return a.title < b.title ? -1 : 1;
+      } else {
+        return a.importance < b.importance ? -1 : 1;
+      }
     }
+
+    if (orderBy === order.uncompleted) {
+      console.log("uncompleted")
+      if (a.completed === b.completed) {
+        return a.title < b.title ? 1 : -1;
+      } else {
+        return a.completed < b.completed ? -1 : 1;
+      }
+    } 
+    
+    if (orderBy === order.completed) {
+      console.log("completed")
+      if (a.completed === b.completed) {
+        return a.title < b.title ? -1 : 1;
+      } else {
+        return a.completed < b.completed ? 1 : -1;
+      }
+    }
+    
   });
 
   if (loading) {

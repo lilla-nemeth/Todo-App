@@ -49,7 +49,7 @@ export default function SortingButtons(props) {
               : 'buttonImportance'
           }
         >
-          {createButtonText(orderBy, order.leastImportant, order.mostImportant, 'Importance')}
+          {createButtonText(orderBy, order.mostImportant, order.leastImportant, 'Importance')}
         </button>
         <button
           onClick={() => {
@@ -63,7 +63,7 @@ export default function SortingButtons(props) {
             orderBy === order.completed || orderBy === order.uncompleted ? 'buttonStatusActive' : 'buttonStatus'
           }
         >
-          {createButtonText(orderBy, order.completed, order.uncompleted, 'Status')}
+          {createButtonText(orderBy, order.uncompleted, order.completed, 'Status')}
         </button>
       </div>
     </div>
