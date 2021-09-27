@@ -242,7 +242,7 @@ h3 {
   top: 0;
   left: 0;
   flex-direction: row;
-  background-color: var(--clr-lightsalmon);
+  background-color: var(--clr-salmon);
   overflow: hidden;
 }
 
@@ -259,7 +259,7 @@ h3 {
   text-align: center;
   font-weight: bold;
   font-size: 3em;
-  color: var(--clr-brightsalmon);
+  color: var(--clr-white);
 }
 
 .navbarLogOutBox {
