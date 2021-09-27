@@ -136,12 +136,13 @@ body {
 }
 
 main {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: var(--clr-lightsalmon);
+  background-color: var(--clr-salmon);
   overflow: hidden;
   padding: 50px;
+  min-height: var(--min-height);
+  height: auto;
 }
 
 /* Variables */
@@ -164,8 +165,10 @@ main {
   --shadow: 0 5px 15px rgba(0, 0, 0, 0.178);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.267);
   --dropdown-shadow: 5px 5px 13px -6px rgba(0, 0, 0, 0.33);
-  --max-width1: 35%;
+  --max-width1: 100%;
   --max-width2: 50%;
+  --height: fit-content;
+  --min-height: 100vh;
 }
 
 .todoMain {
@@ -173,13 +176,13 @@ main {
 }
 
 .container {
-  min-width: 20vw;
+  min-width: 30vw;
   max-width: var(--max-width1);
   background: var(--clr-white);
   border-radius: var(--radius1);
-  padding: 3.6rem 5rem;
+  padding: 5rem;
   box-shadow: var(--dark-shadow);
-  max-height: 75vh;
+  height: var(--height);
 }
 
 h3 {

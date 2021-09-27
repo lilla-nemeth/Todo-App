@@ -4,7 +4,7 @@
     const bcrypt = require('bcryptjs'); 
     const jwt = require('jsonwebtoken');
     const { Pool } = require('pg');
-    const path = require("path")
+    const path = require("path");
     require('dotenv').config();
 
     app.use(cors());
@@ -50,24 +50,24 @@
         if (email.includes(at) && email.includes(dot)) {
             next();
         } else {
-            res.status(403).json({msg: 'Your email format is not valid'})
+            res.status(403).json({msg: 'Your email format is not valid'});
         }
     }
 
-    function authMw (req, res, next) {
-        let token = req.headers['x-auth-token'];
+    function authMw (request, response, next) {
+        let token = request.headers['x-auth-token'];
 
         if (token) {
             jwt.verify(token, 'nomoresecret', (err, decodedToken) => {
                 if (decodedToken) {
-                    req.userId = decodedToken.id;
+                    request.userId = decodedToken.id;
                     next();
                 } else {
-                    res.status(401).json({msg: 'Token is not valid'})
+                    response.status(401).json({msg: 'Token is not valid'});
                 }
             })
         } else {
-            res.status(401).json({msg: 'No token found'})
+            response.status(401).json({msg: 'No token found'});
         }
     }
 
@@ -79,12 +79,12 @@
         .catch((err) => response.status(400).json({msg: 'Failed to fetch all todos'}));
     });
 
-    app.get('/todos/:id', (request, response) => {
+    app.get('/todos/:id', authMw, (request, response) => {
         let id = request.params.id;
 
         pool.query('SELECT * FROM todos WHERE id=$1', [id])
         .then((res) => response.status(200).json(res.rows))
-        .catch((err) => response.status(400).json({msg: 'Failed to fetch todos2 by id'}));
+        .catch((err) => response.status(400).json({msg: 'Failed to fetch todos by id'}));
     });
 
     app.post('/todos', authMw, (request, response) => {
@@ -130,13 +130,14 @@
         let pw = request.body.pw;
         let encryptedPw = bcrypt.hashSync(pw, 10);
 
+
         pool.query('INSERT INTO users (email, username, pw) VALUES ($1, $2, $3) RETURNING *', [email, username, encryptedPw])
         .then((res) => {response.status(200).json({msg: 'User successfully created'})})
         .catch((err) => {
             if (err.code = '23505') {
                 response.status(403).json({msg: 'User already exists'});
             } else {
-                response.status(401).json({msg: 'Fail to create user'});
+                response.status(401).json({msg: 'Failed to create user'});
             }
         });
     });
@@ -153,8 +154,8 @@
                     jwt.sign({ id: res.rows[0].id }, 'nomoresecret', (err, token) => {
                         let currentUser = {};
                         currentUser.token = token;
-                        currentUser.id = res.rows[0].id;
-                        currentUser.name = res.rows[0].username;
+                        // currentUser.id = res.rows[0].id;
+                        // currentUser.name = res.rows[0].username;
                         response.status(200).json(currentUser);
                     });
                 } else {
@@ -162,7 +163,7 @@
                 }
             });
         })
-        .catch((err) => response.status(400).json({msg: "User not found"}));
+        .catch((err) => response.status(400).json({msg: 'User not found'}));
     });
 
     app.get('/user', authMw, (request, response) => {
