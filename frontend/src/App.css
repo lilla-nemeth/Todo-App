@@ -283,6 +283,7 @@ h3 {
 
 .buttonLogOut:hover {
   background-color: var(--clr-lightsalmon);
+  color: var(--clr-brightsalmon);
   cursor: pointer;
 }
 
