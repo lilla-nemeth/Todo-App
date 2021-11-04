@@ -4,14 +4,14 @@
     const bcrypt = require('bcryptjs'); 
     const jwt = require('jsonwebtoken');
     const { Pool } = require('pg');
-    const path = require("path");
+    const path = require('path');
     require('dotenv').config();
 
     app.use(cors());
     app.use(express.json());
 
-    if (process.env.NODE_ENV === "production") {
-        app.use(express.static(path.join(__dirname, "frontend/build")));  
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static(path.join(__dirname, 'frontend/build')));  
     } 
 
     const port = process.env.PORT || 3002;
@@ -25,11 +25,11 @@
     const prodSettings = {
         connectionString: process.env.DATABASE_URL,
         ssl: {
-            rejectUnauthorized: process.env.NODE_ENV === "production" ? false : true 
+            rejectUnauthorized: process.env.NODE_ENV === 'production' ? false : true 
         }
     }
 
-    const pool = new Pool(process.env.NODE_ENV === "production" ? prodSettings : devSettings);
+    const pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
 
     function isPwLongEnough(req, res, next) {
         let pw = req.body.pw;
