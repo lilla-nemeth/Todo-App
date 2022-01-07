@@ -15,9 +15,9 @@ const styles = {
 };
 
 export default function SignUp() {
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputUsername, setInputUsername] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [pw, setPw] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
@@ -32,18 +32,23 @@ export default function SignUp() {
         'Content-Type': 'application/json',
       },
       data: {
-        email: inputEmail,
-        username: inputUsername,
-        pw: inputPassword,
+        email,
+        username,
+        pw
       },
     };
 
     axios(options)
       .then(
-        (res) => setSuccessMsg(res.data.msg),
-        setTimeout(() => {
-          setSuccessMsg('');
-        }, 5000)
+        (res) => {
+          setSuccessMsg(res.data.msg);
+          setTimeout(() => {
+            setSuccessMsg('');
+            setEmail('');
+            setUsername('');
+            setPw('');
+          }, 2500)
+        }
       )
       .catch((err) => handleError(err, setErrorMsg));
   }
@@ -62,8 +67,8 @@ export default function SignUp() {
               name='email'
               type='email'
               placeholder='Email address'
-              value={inputEmail}
-              onChange={(event) => setInputEmail(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </div>
           <div className='username' style={styles.div}>
@@ -73,8 +78,8 @@ export default function SignUp() {
               name='username'
               type='text'
               placeholder='Username'
-              value={inputUsername}
-              onChange={(event) => setInputUsername(event.target.value)}
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </div>
           <div className='password' style={styles.div}>
@@ -84,8 +89,8 @@ export default function SignUp() {
               name='password'
               type='password'
               placeholder='Password'
-              value={inputPassword}
-              onChange={(event) => setInputPassword(event.target.value)}
+              value={pw}
+              onChange={(event) => setPw(event.target.value)}
             />
           </div>
           <div>
