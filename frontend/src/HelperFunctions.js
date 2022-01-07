@@ -1,13 +1,19 @@
+let timeOut;
+
 export function handleError(err, setter) {
-    setter(
-        // short circuit evaluation:
+    setter(        
         err
         &&err.response
         &&err.response.data
         &&err.response.data.msg
     );
-    setTimeout(() => {
+
+    timeOut = setTimeout(() => {
         setter('');
-    },5000);
+    }, 5000);
+}
+
+export function clearError() {
+    clearTimeout(timeOut);
 }
 

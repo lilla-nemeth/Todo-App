@@ -149,6 +149,7 @@ main {
   --clr-white: #fff;
   --clr-lightgrey: #ccc;
   --clr-grey: #999999;
+  --clr-darkgrey: #4e4e4e;
   --clr-lightblue: rgb(222, 234, 238);
   --clr-lightgreen: rgb(225, 241, 232);
   --clr-lightgreentransparent: rgba(225, 241, 232, 0.342);
@@ -176,7 +177,7 @@ main {
 
 .container {
   min-width: 30vw;
-  max-width: var(--max-width1);
+  max-width: 500px;
   background: var(--clr-white);
   border-radius: var(--radius1);
   padding: 5rem;
@@ -211,7 +212,9 @@ h3 {
 }
 
 .buttonLogin,
-.buttonSignUp {
+.buttonSignUp,
+.buttonLoginInactive,
+.buttonSignUpInactive {
   color: var(--clr-white);
   display: block;
   width: 100%;
@@ -219,11 +222,22 @@ h3 {
   margin: 2rem auto 0 auto;
   text-transform: capitalize;
   font-size: 1em;
-  padding: 1rem 0;
+  padding: 1.2rem 0;
   letter-spacing: var(--spacing);
   border-radius: var(--radius2);
+}
+
+.buttonLogin,
+.buttonSignUp {
   background: var(--clr-brightsalmon);
 }
+
+.buttonLoginInactive,
+.buttonSignUpInactive {
+  background: var(--clr-lightsalmon);
+  color: var(--clr-darkgrey);
+}
+
 
 .buttonLogin:hover,
 .buttonSignUp:hover {
@@ -330,7 +344,7 @@ input:focus::placeholder {
 .todoInput {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 1.2rem;
 }
 
 .signUpInput,
@@ -703,9 +717,14 @@ input:focus::placeholder {
   font-size: 1em;
 }
 
+.message {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  height: 10px;
+}
+
 .successMessage,
 .errorMessage {
-  margin-top: 2.5em;
   text-align: center;
   font-size: 1.2em;
 }

@@ -124,7 +124,7 @@
 
     });
 
-    app.post('/signup', [isPwLongEnough, isEmail], (request, response) => {
+    app.post('/signup', [isEmail, isPwLongEnough], (request, response) => {
         let email = request.body.email;
         let username = request.body.username;
         let pw = request.body.pw;
@@ -142,7 +142,7 @@
         });
     });
 
-    app.post('/login', [isPwLongEnough, isEmail], (request, response) => {
+    app.post('/login', [isEmail], (request, response) => {
         let email = request.body.email;
         let pw = request.body.pw;
 
