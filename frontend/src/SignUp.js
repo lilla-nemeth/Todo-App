@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { handleError } from './HelperFunctions.js';
+import { handleError, clearError } from './HelperFunctions.js';
 import createHistory from 'history/createBrowserHistory';
 
 const styles = {
@@ -20,10 +20,13 @@ export default function SignUp() {
   const [pw, setPw] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  let disabled = !email || !username || !pw || loading;
 
   function handleSubmit(event) {
     event.preventDefault();
-
+    
     let options = {
       method: 'post',
       url: '/signup',
@@ -37,20 +40,31 @@ export default function SignUp() {
         pw
       },
     };
+    
+    if (!disabled) {
+      setLoading(true);
+      // console.log('disabled status', disabled);
 
-    axios(options)
+      axios(options)
       .then(
-        (res) => {
-          setSuccessMsg(res.data.msg);
-          setTimeout(() => {
-            setSuccessMsg('');
-            setEmail('');
-            setUsername('');
-            setPw('');
-          }, 2500)
-        }
-      )
-      .catch((err) => handleError(err, setErrorMsg));
+          (res) => {
+            setLoading(false);
+            setErrorMsg('');
+            setSuccessMsg(res.data.msg);
+            setTimeout(() => {
+              setSuccessMsg('');
+              setEmail('');
+              setUsername('');
+              setPw('');
+            }, 2500)
+          }
+        )
+        .catch((err) => {
+          setLoading(false);
+          clearError();
+          handleError(err, setErrorMsg);
+        });
+    }
   }
 
   createHistory().replace('/signup');
@@ -58,9 +72,16 @@ export default function SignUp() {
   return (
     <main>
       <section className='container'>
-        <form className='form' onSubmit={handleSubmit}>
+        <form 
+          className='form'
+          method='POST' 
+          onSubmit={handleSubmit}
+        >
           <h3>Sign Up</h3>
-          <div className='email' style={styles.div}>
+          <div 
+            className='email' 
+            style={styles.div}
+          >
             <label style={styles.label}>Email</label>
             <input
               className='signUpInput'
@@ -71,7 +92,10 @@ export default function SignUp() {
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>
-          <div className='username' style={styles.div}>
+          <div 
+            className='username' 
+            style={styles.div}
+          >
             <label style={styles.label}>Username</label>
             <input
               className='signUpInput'
@@ -94,20 +118,28 @@ export default function SignUp() {
             />
           </div>
           <div>
-            <button className='buttonSignUp'>Create Account</button>
+            <button 
+              type='submit'
+              className={disabled ? 'buttonSignUpInactive' :'buttonSignUp'}
+              disabled={disabled}
+            >
+              Create Account
+            </button>
           </div>
           <div className='textLoginContainer'>
             <p>Do you have account?</p>
-            <Link className='textLoginUp' to='/login' style={{textDecoration: 'none'}}>
+            <Link 
+              className='textLoginUp' 
+              to='/login' 
+              style={{textDecoration: 'none'}}
+            >
               <p className='login'>Login</p>
             </Link>
           </div>
         </form>
-        <div className='errorMessage'>
-          <p>{errorMsg}</p>
-        </div>
-        <div className='successMessage'>
-          <p>{successMsg}</p>
+        <div className='message'>
+          <p className='errorMessage'>{errorMsg}</p>
+          <p className='successMessage'>{successMsg}</p>
         </div>
       </section>
     </main>

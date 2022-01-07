@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { handleError } from './HelperFunctions.js';
+import { handleError, clearError } from './HelperFunctions.js';
 import createHistory from 'history/createBrowserHistory';
 
 const styles = {
@@ -15,10 +15,12 @@ const styles = {
 };
 
 export default function Login(props) {
-
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  let disabled = !email || !pw || loading;
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -35,18 +37,28 @@ export default function Login(props) {
         pw,
       },
     };
-    axios(options)
-      .then((res) => {
-        let token = res.data.token;
 
-        localStorage.setItem('token', token);
-        props.setToken(token);
-        setEmail('');
-        setPw('');
-      })
-      .catch((err) => {
-        handleError(err, setErrorMsg);
-      });
+    if (!disabled) {
+      setLoading(true);
+      // console.log('disabled status', disabled);
+
+      axios(options)
+        .then((res) => {
+          setLoading(false);
+          setErrorMsg('');
+          let token = res.data.token;
+
+          localStorage.setItem('token', token);
+          props.setToken(token);
+          setEmail('');
+          setPw('');
+        })
+        .catch((err) => {
+          setLoading(false);
+          clearError();
+          handleError(err, setErrorMsg);
+        });
+    }
   }
 
   createHistory().replace('/login');
@@ -80,7 +92,13 @@ export default function Login(props) {
             />
           </div>
           <div>
-            <button className='buttonSignUp'>Login</button>
+            <button 
+              type='submit'
+              className={disabled ? 'buttonSignUpInactive' :'buttonSignUp'}
+              disabled={disabled}
+            >
+              Login
+            </button>
           </div>
           <div className='textSignUpContainer'>
             <p>Need an account?</p>
@@ -89,8 +107,8 @@ export default function Login(props) {
             </Link>
           </div>
         </form>
-        <div className='errorMessage'>
-          <p>{errorMsg}</p>
+        <div className='message'>
+          <p className='errorMessage'>{errorMsg}</p>
         </div>
       </section>
     </main>
