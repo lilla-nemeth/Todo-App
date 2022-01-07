@@ -41,6 +41,8 @@ export default function Login(props) {
 
         localStorage.setItem('token', token);
         props.setToken(token);
+        setEmail('');
+        setPw('');
       })
       .catch((err) => {
         handleError(err, setErrorMsg);
