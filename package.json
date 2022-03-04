@@ -1,14 +1,14 @@
 {
   "name": "todo_app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Todo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "heroku-postbuild": "cd frontend && npm i && npm run build"
   },
-  "author": "",
+  "author": "Lilla Németh",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
