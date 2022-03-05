@@ -26,7 +26,6 @@ npm install
 ### Run
 
 Server
-
 ```
 nodemon index.js
 ```
@@ -34,7 +33,6 @@ nodemon index.js
 Is running on port 3003
 
 Client
-
 ```
 cd frontend
 npm start
