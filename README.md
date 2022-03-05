@@ -2,7 +2,7 @@
 
 ## Description
 
-Everyone's favourite project, which covers the CRUD operations.
+Everyone's favourite project, which covers the CRUD operations.  
 It was created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
 
 ## Features
@@ -31,6 +31,7 @@ nodemon index.js
 ```
 
 Is running on port 3003
+
 
 Client
 ```
