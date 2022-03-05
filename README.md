@@ -1,5 +1,7 @@
 # Todo
 
+## Description
+
 Everyone's favourite project, which covers the CRUD operations.
 It was created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
 
@@ -13,20 +15,31 @@ It was created with Node.js, Express, PostgreSQL, JavaScript and React with cust
 - Edit the name of todo
 - Set completed status to todo element
 - Delete one or more selected todo
-- Set the order of todos by date, importance and completion (each filter effects the other)
+- Set the order of todos by date, importance and completion (each filter effect the other)
 
-## Installation
+## Install the dependencies
 
-npm install or npm i
+```
+npm install
+```
 
-### Run - Server
+### Run
 
+Server
+
+```
 nodemon index.js
+```
 
 Is running on port 3003
 
-### Run - Client
+Client
 
+```
 cd frontend
-
 npm start
+```
+
+## License
+
+MIT
