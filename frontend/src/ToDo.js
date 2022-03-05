@@ -1,149 +1,147 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { handleError } from './HelperFunctions.js';
-import createHistory from 'history/createBrowserHistory';
 import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
+import { createBrowserHistory } from 'history';
+
+let history = createBrowserHistory();
 
 export const order = {
-  newest: 'Newest',
-  oldest: 'Oldest',
-  mostImportant: 'Most Important',
-  leastImportant: 'Least Important',
-  uncompleted: 'Uncompleted',
-  completed: 'Completed'
+	newest: 'Newest',
+	oldest: 'Oldest',
+	mostImportant: 'Most Important',
+	leastImportant: 'Least Important',
+	uncompleted: 'Uncompleted',
+	completed: 'Completed',
 };
 
 export default function ToDo(props) {
-  const [allTodos, setAllTodos] = useState([]);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [orderBy, setOrderBy] = useState(order.newest);
-  const [loading, setLoading] = useState(true);
+	const [allTodos, setAllTodos] = useState([]);
+	const [errorMsg, setErrorMsg] = useState('');
+	const [orderBy, setOrderBy] = useState(order.newest);
+	const [loading, setLoading] = useState(true);
 
-  function getAllTodos() {
-    let options = {
-      method: 'get',
-      url: '/todos',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': props.token,
-      },
-    };
-    axios(options)
-      .then((res) => {
-        setLoading(false);
-        setAllTodos(res.data);
-      })
-      .catch((err) => {
-        handleError(err, setErrorMsg);
-      });
-  }
+	function getAllTodos() {
+		let options = {
+			method: 'get',
+			url: '/todos',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-auth-token': props.token,
+			},
+		};
+		axios(options)
+			.then((res) => {
+				setLoading(false);
+				setAllTodos(res.data);
+			})
+			.catch((err) => {
+				handleError(err, setErrorMsg);
+			});
+	}
 
-  useEffect(() => {
-    createHistory().replace('/');
-    getAllTodos();
-  }, []);
+	useEffect(() => {
+		history.replace('/');
+		getAllTodos();
+	}, []);
 
-  let sortedAllTodos = allTodos.sort((a, b) => {
+	let sortedAllTodos = allTodos.sort((a, b) => {
+		if (orderBy === order.newest) {
+			// console.log("newest")
+			return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
+		}
 
-    if (orderBy === order.newest) {
-      // console.log("newest")
-      return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
-    } 
-    
-    if (orderBy === order.oldest) {
-      // console.log("oldest")
-      return a.created.valueOf() < b.created.valueOf() ? -1 : 1;
-    } 
-  
-    if (orderBy === order.mostImportant) {
-      // console.log("most important")
-      if (a.importance === b.importance) {
-        return a.title < b.title ? 1 : -1;
-      } else {
-        return a.importance < b.importance ? 1 : -1;
-      }
-    } 
-    
-    if (orderBy === order.leastImportant) {
-      // console.log("least important")
-      if (a.importance === b.importance) {
-        return a.title < b.title ? -1 : 1;
-      } else {
-        return a.importance < b.importance ? -1 : 1;
-      }
-    }
+		if (orderBy === order.oldest) {
+			// console.log("oldest")
+			return a.created.valueOf() < b.created.valueOf() ? -1 : 1;
+		}
 
-    if (orderBy === order.uncompleted) {
-      // console.log("uncompleted")
-      if (!a.completed && !b.completed) {
-        return;
-      } else {
-        return a.completed < b.completed ? -1 : 1;
-      }
-    } 
-    
-    if (orderBy === order.completed) {
-      // console.log("completed")
-      if (!a.completed && !b.completed) {
-        return;
-      } else {
-        return a.completed < b.completed ? 1 : -1;
-      }
-    }
+		if (orderBy === order.mostImportant) {
+			// console.log("most important")
+			if (a.importance === b.importance) {
+				return a.title < b.title ? 1 : -1;
+			} else {
+				return a.importance < b.importance ? 1 : -1;
+			}
+		}
 
-  });
+		if (orderBy === order.leastImportant) {
+			// console.log("least important")
+			if (a.importance === b.importance) {
+				return a.title < b.title ? -1 : 1;
+			} else {
+				return a.importance < b.importance ? -1 : 1;
+			}
+		}
 
-  if (loading) {
-    return (
-      <div className='loaderContainer'>
-        <svg className='loader'>
-          <circle className='loaderCircle' cx='35' cy='35' r='35'></circle>
-        </svg>
-      </div>
-    );
-  }
+		if (orderBy === order.uncompleted) {
+			// console.log("uncompleted")
+			if (!a.completed && !b.completed) {
+				return;
+			} else {
+				return a.completed < b.completed ? -1 : 1;
+			}
+		}
 
-  function deleteAllTodos() {
-    let options = {
-      method: 'delete',
-      url: '/todos',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': props.token,
-      },
-    } 
-    axios(options)
-    .then((res) => {setAllTodos([]);})
-    .catch((err) => {handleError(err, setErrorMsg);});
-  }
+		if (orderBy === order.completed) {
+			// console.log("completed")
+			if (!a.completed && !b.completed) {
+				return;
+			} else {
+				return a.completed < b.completed ? 1 : -1;
+			}
+		}
+	});
 
-  return (
-    <main className='todoMain'>
-      <section className='todoContainer'>
-        <ToDoInput getAllTodos={() => getAllTodos()} token={props.token} />
-        <SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
+	if (loading) {
+		return (
+			<div className='loaderContainer'>
+				<svg className='loader'>
+					<circle className='loaderCircle' cx='35' cy='35' r='35'></circle>
+				</svg>
+			</div>
+		);
+	}
 
-        {sortedAllTodos.map((el) => {
-          return (
-            <ToDoElement
-              getAllTodos={() => getAllTodos()}
-              el={el}
-              token={props.token}
-            />
-          );
-        })}
-        {allTodos.length > 0 &&
-        <div className='buttonDeleteAllContainer'>
-          <button onClick={deleteAllTodos} className='buttonDeleteAll'>
-            Delete all
-          </button>
-        </div>
-        } 
-      </section>
-    </main>
-  );
+	function deleteAllTodos() {
+		let options = {
+			method: 'delete',
+			url: '/todos',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-auth-token': props.token,
+			},
+		};
+		axios(options)
+			.then((res) => {
+				setAllTodos([]);
+			})
+			.catch((err) => {
+				handleError(err, setErrorMsg);
+			});
+	}
+
+	return (
+		<main className='todoMain'>
+			<section className='todoContainer'>
+				<ToDoInput getAllTodos={() => getAllTodos()} token={props.token} />
+				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
+
+				{sortedAllTodos.map((el) => {
+					return <ToDoElement getAllTodos={() => getAllTodos()} el={el} token={props.token} />;
+				})}
+				{allTodos.length > 0 && (
+					<div className='buttonDeleteAllContainer'>
+						<button onClick={deleteAllTodos} className='buttonDeleteAll'>
+							Delete all
+						</button>
+					</div>
+				)}
+			</section>
+		</main>
+	);
 }
