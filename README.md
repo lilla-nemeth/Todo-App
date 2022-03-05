@@ -23,7 +23,7 @@ It was created with Node.js, Express, PostgreSQL, JavaScript and React with cust
 npm install
 ```
 
-### Run
+## Run
 
 Server
 ```
