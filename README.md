@@ -19,9 +19,6 @@ It was created with Node.js, Express, PostgreSQL, JavaScript and React with cust
 
 ## Installing, running locally  
 
-Prerequisite  
-Node version 14.15.0 or higher.
-</br></br>
 Clone the repo
 
 ```
