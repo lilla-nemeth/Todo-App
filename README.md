@@ -17,25 +17,47 @@ It was created with Node.js, Express, PostgreSQL, JavaScript and React with cust
 - Delete one or more selected todo
 - Set the order of todos by date, importance and completion (each filter effect the other)
 
-## Install the dependencies
+## Installing, running locally  
+
+Clone the repo
+
+```
+git clone https://github.com/lilla-nemeth/todo.git
+```
+
+### Server
+
+Go to the project root directory
+```
+cd todo
+```
+
+Install the dependencies
 
 ```
 npm install
 ```
 
-## Run
-
-Server
+Run the server
 ```
 nodemon index.js
 ```
+Server is running on port 3002
+</br></br>
+### Client
 
-Is running on port 3003
-
-
-Client
+Go to the frontend folder
 ```
 cd frontend
+```
+Install the dependencies
+
+```
+npm install
+```
+
+Start the client
+```
 npm start
 ```
 

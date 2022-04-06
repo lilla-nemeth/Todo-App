@@ -1,18 +1,33 @@
 import React from 'react';
-import { order } from './ToDo.js';
-import { ReactComponent as AscArrow } from './assets/icons/ascending_arrow.svg';
-import { ReactComponent as DescArrow } from './assets/icons/descending_arrow.svg';
+import { order } from '../components/ToDo.js';
+import { ReactComponent as AscArrow } from '../assets/icons/ascending_arrow.svg';
+import { ReactComponent as DescArrow } from '../assets/icons/descending_arrow.svg';
 
 export default function SortingButtons(props) {
   const { orderBy, setOrderBy } = props;
 
   function createButtonText(currentState, descending, ascending, passive) {
     if (currentState === descending) {
-      return <div className='sortingButtonArrow'>{descending}<DescArrow /></div>;
+      return (
+        <div className='sortingButtonArrow'>
+          {descending}
+          <DescArrow />
+        </div>
+      );
     } else if (currentState === ascending) {
-      return <div className='sortingButtonArrow'>{ascending}<AscArrow /></div>;
+      return (
+        <div className='sortingButtonArrow'>
+          {ascending}
+          <AscArrow />
+        </div>
+      );
     } else {
-      return <div className='sortingButtonArrow'>{passive}<AscArrow style={{fill: 'none'}}/></div>;
+      return (
+        <div className='sortingButtonArrow'>
+          {passive}
+          <AscArrow style={{ fill: 'none' }} />
+        </div>
+      );
     }
   }
 
@@ -49,7 +64,12 @@ export default function SortingButtons(props) {
               : 'buttonImportance'
           }
         >
-          {createButtonText(orderBy, order.mostImportant, order.leastImportant, 'Importance')}
+          {createButtonText(
+            orderBy,
+            order.mostImportant,
+            order.leastImportant,
+            'Importance'
+          )}
         </button>
         <button
           onClick={() => {
@@ -60,10 +80,17 @@ export default function SortingButtons(props) {
             }
           }}
           className={
-            orderBy === order.completed || orderBy === order.uncompleted ? 'buttonStatusActive' : 'buttonStatus'
+            orderBy === order.completed || orderBy === order.uncompleted
+              ? 'buttonStatusActive'
+              : 'buttonStatus'
           }
         >
-          {createButtonText(orderBy, order.uncompleted, order.completed, 'Status')}
+          {createButtonText(
+            orderBy,
+            order.uncompleted,
+            order.completed,
+            'Status'
+          )}
         </button>
       </div>
     </div>
