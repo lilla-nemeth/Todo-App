@@ -324,6 +324,10 @@ input:focus {
   background-color: var(--clr-lightgreentransparent);
 }
 
+input:invalid {
+  box-shadow: none;
+}
+
 ::placeholder {
   color: var(--clr-darkgreen);
 }
