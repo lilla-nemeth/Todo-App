@@ -2,14 +2,16 @@
 
 ## Description
 
-Everyone's favourite project, which covers the CRUD operations.  
-It was created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
+Todo app, that covers the CRUD operations.  
+🛠 Created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
+
+![Todo List](https://raw.githubusercontent.com/lilla-nemeth/todo/updating-readme/frontend/src/assets/screenshots/app_screenshot_00.png)
+
 
 ## Features
 
 - Registration
 - Login/Log out
-
 - Fetch the user's all todos
 - Create new todo element
 - Edit the name of todo
@@ -60,6 +62,20 @@ Start the client
 ```
 npm start
 ```
+
+## Environment Variables
+
+To run this app, you need to add the following environment variables to your .env file
+
+### Server
+
+#### Postgres
+
+`PG_HOST`
+`PG_USER`
+`PG_PASSWORD`
+`PG_PORT`
+`PG_DATABASE`
 
 ## License
 
