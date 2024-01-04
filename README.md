@@ -2,8 +2,8 @@
 
 ## Description
 
-Everyone's favourite project, which covers the CRUD operations.  
-It was created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
+Todo app, that covers the CRUD operations.  
+🛠 Created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
 
 ![Todo List](https://raw.githubusercontent.com/lilla-nemeth/todo/updating-readme/frontend/src/assets/screenshots/app_screenshot_00.png)
 
