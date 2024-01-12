@@ -4,7 +4,7 @@ import SignUp from './components/login-signup/SignUp';
 import Login from './components/login-signup/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import './App.css';
+import './styles/App.css';
 import axios from 'axios';
 import { handleError, handleLogOut } from './utils/HelperFunctions';
 

@@ -1,0 +1,904 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	line-height: 1;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+::after,
+::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	background-color: var(--clr-salmon);
+	overflow: hidden;
+	padding: 50px;
+	min-height: var(--min-height);
+	height: auto;
+}
+
+:root {
+	--clr-white: #fff;
+	--clr-lightgrey: #ccc;
+	--clr-grey: #999999;
+	--clr-darkgrey: #4e4e4e;
+	--clr-lightblue: rgb(222, 234, 238);
+	--clr-lightgreen: rgb(225, 241, 232);
+	--clr-lightgreentransparent: rgba(225, 241, 232, 0.342);
+	--clr-green: rgb(177, 203, 187);
+	--clr-darkgreen: rgb(93, 175, 126);
+	--clr-lightsalmon: rgb(255, 200, 200);
+	--clr-salmon: rgb(255, 157, 157);
+	--clr-brightsalmon: rgb(255, 103, 103);
+	--spacing: 0.1rem;
+	--radius1: 1.7rem;
+	--radius2: 0.9rem;
+	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	--shadow: 0 5px 15px rgba(0, 0, 0, 0.178);
+	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.267);
+	--dropdown-shadow: 5px 5px 13px -6px rgba(0, 0, 0, 0.33);
+	--max-width1: 100%;
+	--max-width2: 50%;
+	--height: fit-content;
+	--min-height: 100vh;
+}
+
+.todoMain {
+	padding: 30px 0 30px 0;
+}
+
+.container {
+	min-width: 30vw;
+	max-width: 500px;
+	background: var(--clr-white);
+	border-radius: var(--radius1);
+	padding: 5rem;
+	box-shadow: var(--dark-shadow);
+	height: var(--height);
+}
+
+h3 {
+	font-size: 2.2rem;
+}
+
+.container h3 {
+	font-weight: normal;
+	text-transform: none;
+	margin-bottom: 2rem;
+	font-weight: 500;
+	color: var(--clr-darkgreen);
+}
+
+.email,
+.password {
+	margin: 0 0 20px 0;
+}
+
+.emailLabel,
+.passwordLabel {
+	display: inline-block;
+	width: 100px;
+}
+
+.email,
+.username,
+.password {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 1em;
+}
+
+.login,
+.signUp {
+	padding-top: 10px;
+}
+
+.buttonLogin,
+.buttonSignUp,
+.buttonLoginInactive,
+.buttonSignUpInactive {
+	color: var(--clr-white);
+	display: block;
+	width: 100%;
+	border-color: transparent;
+	margin: 2rem auto 0 auto;
+	text-transform: capitalize;
+	font-size: 1em;
+	padding: 1.2rem 0;
+	letter-spacing: var(--spacing);
+	border-radius: var(--radius2);
+}
+
+.buttonLogin,
+.buttonSignUp {
+	background: var(--clr-brightsalmon);
+}
+
+.buttonLoginInactive,
+.buttonSignUpInactive {
+	background: var(--clr-lightsalmon);
+	color: var(--clr-darkgrey);
+}
+
+.buttonLogin:hover,
+.buttonSignUp:hover {
+	cursor: pointer;
+	background: var(--clr-salmon);
+}
+
+.navbar {
+	width: 100%;
+	height: 90px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	top: 0;
+	left: 0;
+	flex-direction: row;
+	background-color: var(--clr-salmon);
+	overflow: hidden;
+}
+
+.navbarWelcomeBox {
+	width: 10%;
+	font-weight: bold;
+	font-size: 1.6em;
+	color: var(--clr-white);
+	margin-left: 20px;
+}
+
+.navbarTodoBox h3 {
+	width: 10%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 3em;
+	color: var(--clr-white);
+}
+
+.navbarLogOutBox {
+	width: 10%;
+	text-align: right;
+}
+
+.buttonLogOut {
+	height: 60px;
+	font-size: 1em;
+	font-weight: bold;
+	color: white;
+	border-radius: 0.8rem;
+	border: none;
+	padding-left: 20px;
+	padding-right: 20px;
+	min-width: 110px;
+	margin-right: 20px;
+	background-clip: padding-box;
+	background-color: var(--clr-brightsalmon);
+}
+
+.buttonLogOut:hover {
+	background-color: var(--clr-lightsalmon);
+	color: var(--clr-brightsalmon);
+	cursor: pointer;
+}
+
+.buttonLogOut:focus {
+	outline: none;
+}
+
+input {
+	font-size: 1em;
+	border-radius: var(--radius2);
+	color: var(--clr-darkgreen);
+	border: 2px solid var(--clr-white);
+	background-color: var(--clr-lightgreen);
+}
+
+input:hover {
+	border: 2px solid var(--clr-white);
+}
+
+input:focus {
+	outline: none;
+	border: 2px solid var(--clr-green);
+	color: black;
+	background-color: var(--clr-lightgreentransparent);
+}
+
+input:invalid {
+	box-shadow: none;
+}
+
+::placeholder {
+	color: var(--clr-darkgreen);
+}
+
+input:focus::placeholder {
+	color: var(--clr-darkgreen);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: inherit;
+}
+
+.signUpInput,
+.loginInput,
+.todoInput {
+	display: flex;
+	flex-direction: column;
+	padding: 1.2rem;
+}
+
+.signUpInput,
+.loginInput {
+	margin-top: 20px;
+}
+
+.editInput {
+	padding: 10px;
+	vertical-align: center;
+	font-size: 1em;
+}
+
+.sortingRow {
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	padding: 30px 0 60px 0;
+	align-items: center;
+	fill: black;
+}
+
+.sortingButtonArrow {
+	display: flex;
+	justify-content: space-between;
+	fill: var(--clr-white);
+	flex-direction: row;
+	align-items: center;
+}
+
+.sortingButtonArrow svg {
+	width: 15px;
+}
+
+.buttonDate,
+.buttonDateActive {
+	min-width: 115px;
+}
+
+.buttonImportance,
+.buttonImportanceActive {
+	min-width: 180px;
+}
+.buttonStatus,
+.buttonStatusActive {
+	min-width: 160px;
+}
+
+.buttonDate,
+.buttonImportance,
+.buttonStatus {
+	font-size: 1em;
+	background-color: var(--clr-lightgreen);
+	border-radius: 0.8rem;
+	border: none;
+	padding: 15px;
+	margin-top: 15px;
+}
+
+.buttonDate,
+.buttonImportance {
+	margin-right: 15px;
+}
+
+.buttonDate:hover,
+.buttonImportance:hover,
+.buttonStatus:hover {
+	background-color: var(--clr-green);
+	cursor: pointer;
+}
+
+.buttonDate:active,
+.buttonImportance:active,
+.buttonStatus:active {
+	background-color: var(--clr-darkgreen);
+	color: var(--clr-white);
+	fill: white;
+}
+
+.buttonDateActive,
+.buttonImportanceActive,
+.buttonStatusActive {
+	padding: 15px;
+	font-size: 1em;
+	border-radius: 0.8rem;
+	border: none;
+	margin-top: 15px;
+	cursor: pointer;
+	background-color: var(--clr-darkgreen);
+	color: var(--clr-white);
+}
+
+.buttonDeleteAllContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.buttonDeleteAll {
+	font-size: 1em;
+	background-color: var(--clr-brightsalmon);
+	border-radius: 0.8rem;
+	border: none;
+	padding: 15px;
+	color: var(--clr-white);
+}
+
+.buttonDeleteAll:hover {
+	background-color: var(--clr-salmon);
+	cursor: pointer;
+}
+
+.buttonDeleteAll:focus {
+	outline: none;
+}
+
+.buttonDateActive,
+.buttonImportanceActive {
+	margin-right: 15px;
+}
+
+.checkboxTitleButtons {
+	display: flex;
+	justify-content: space-between;
+	flex: 1;
+	padding-right: 20px;
+	align-self: flex-start;
+}
+
+.todoWrapper {
+	display: flex;
+	padding-bottom: 40px;
+}
+
+.titleContainer {
+	width: 100%;
+	font-weight: 500;
+	word-wrap: break-word;
+}
+
+.todoElement {
+	display: flex;
+	font-size: 1em;
+	hyphens: auto;
+	align-items: center;
+	padding-right: 10px;
+}
+
+.todoElement p {
+	display: inherit;
+	border-bottom: none;
+	line-height: initial;
+}
+
+.checkboxContainer {
+	display: block;
+	position: relative;
+	padding-left: 50px;
+	margin-bottom: 25px;
+	cursor: pointer;
+	font-size: 25px;
+	user-select: none;
+	align-items: center;
+}
+
+.checkboxContainer input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 30px;
+	background-color: var(--clr-lightgreen);
+}
+
+.checkboxContainer:hover input ~ .checkmark {
+	background-color: var(--clr-green);
+}
+
+.checkboxContainer input:checked ~ .checkmark {
+	background-color: var(--clr-darkgreen);
+}
+
+.checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+.checkboxContainer input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.checkboxContainer .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 11px;
+	height: 16px;
+	border: solid var(--clr-white);
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+}
+
+.completed {
+	text-decoration: 2px solid line-through;
+	text-decoration-color: var(--clr-darkgreen);
+	color: var(--clr-lightgrey);
+	font-size: 1em;
+}
+
+.buttonListRow {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.buttonEdit {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	background-color: var(--clr-white);
+	border-radius: 0.8rem;
+	border: 2px solid var(--clr-green);
+	fill: var(--clr-green);
+	cursor: pointer;
+}
+
+.buttonEdit:hover {
+	border: none;
+	background-color: var(--clr-green);
+	fill: white;
+}
+
+.buttonEditInactive {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	background-color: var(--clr-white);
+	border-radius: 0.8rem;
+	border: 2px solid var(--clr-lightgrey);
+	fill: var(--clr-lightgrey);
+	pointer-events: none;
+}
+
+.buttonDelete {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	cursor: pointer;
+	background-color: var(--clr-white);
+	border-radius: 0.8rem;
+	border: 2px solid var(--clr-green);
+	fill: var(--clr-green);
+}
+
+.buttonDelete:hover {
+	border: none;
+	background-color: var(--clr-green);
+	fill: white;
+}
+
+.buttonDelete:active {
+	border: none;
+	background-color: var(--clr-darkgreen);
+	fill: white;
+}
+
+.buttonCalendar {
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	background-color: var(--clr-white);
+	border-radius: 0.8rem;
+	border: 2px solid var(--clr-green);
+	fill: var(--clr-green);
+}
+
+.buttonCalendar:hover {
+	border: none;
+	background-color: var(--clr-green);
+	fill: white;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.dropdownWrapper {
+	width: 20%;
+	font-size: 1em;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	min-width: 160px;
+}
+
+.dropdownContainer {
+	width: 100%;
+	position: relative;
+	box-shadow: var(--dropdown-shadow);
+}
+
+.dropdownContainerInactive {
+	width: 100%;
+	position: relative;
+	color: var(--clr-lightgrey);
+	pointer-events: none;
+}
+
+.dropdownSelected {
+	cursor: pointer;
+	padding: 6px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dropdownOptions {
+	cursor: pointer;
+	border-top: 0;
+	position: absolute;
+	width: inherit;
+	z-index: 10;
+	box-shadow: var(--dropdown-shadow);
+}
+
+.dropdownOption {
+	cursor: pointer;
+	border-top: 0;
+	padding: 10px;
+}
+
+#notimportant {
+	background-color: var(--clr-white);
+	color: var(--clr-lightsalmon);
+	border: 2px solid var(--clr-lightsalmon);
+	border-top: none;
+}
+
+#important {
+	background-color: var(--clr-white);
+	color: var(--clr-salmon);
+	border: 2px solid var(--clr-salmon);
+	border-top: none;
+}
+
+#urgent {
+	background-color: var(--clr-white);
+	color: var(--clr-brightsalmon);
+	border: 2px solid var(--clr-brightsalmon);
+	border-top: none;
+}
+
+.textSignUpContainer,
+.textLoginContainer {
+	margin-top: 2.5em;
+	text-align: center;
+	font-size: 1em;
+}
+
+.message {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	height: 10px;
+}
+
+.successMessage,
+.errorMessage {
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.errorMessage {
+	color: var(--clr-brightsalmon);
+}
+
+.successMessage {
+	color: var(--clr-darkgreen);
+}
+
+.todoContainer {
+	width: 50%;
+	background: var(--clr-white);
+	border-radius: var(--radius1);
+	padding: 5rem;
+	box-shadow: var(--dark-shadow);
+}
+
+.loaderContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: var(--clr-salmon);
+}
+
+.loader {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	animation: rotate 2s linear infinite;
+}
+
+.loaderCircle {
+	width: 50%;
+	height: 50%;
+	fill: none;
+	stroke-width: 8;
+	stroke: #ffffff;
+	stroke-linecap: round;
+	transform: translate(5px, 5px);
+	stroke-dasharray: 220;
+	stroke-dashoffset: 220;
+	animation: animate 4s linear infinite;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes animate {
+	0%,
+	100% {
+		stroke-dashoffset: 220;
+	}
+	50% {
+		stroke-dashoffset: 0;
+	}
+	50.1% {
+		stroke-dashoffset: 440;
+	}
+}
+
+@media (max-width: 991.98px) {
+	main {
+		padding: 25px;
+	}
+
+	.container {
+		max-width: 100%;
+		min-width: 70%;
+		padding: 2.5rem;
+		max-height: 120vh;
+	}
+
+	.navbarWelcomeBox {
+		width: 50%;
+	}
+
+	.navbarTodoBox h3 {
+		display: none;
+	}
+
+	.navbarLogOutBox {
+		width: 50%;
+	}
+
+	.checkboxTitleButtons,
+	.dropdownWrapper {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		padding-top: 10px;
+	}
+
+	.todoContainer {
+		width: 60%;
+		padding: 2.5rem;
+	}
+
+	h3 {
+		font-size: 1.9rem;
+	}
+
+	.todoElement {
+		margin: 0;
+		font-size: 1em;
+		width: 70%;
+		align-items: flex-start;
+		display: flex;
+		justify-content: space-between;
+		padding-top: 0;
+		border-bottom: none;
+		padding-bottom: 0;
+		padding-right: 0;
+	}
+
+	.todoElement p {
+		border-bottom: none;
+		font-size: 1em;
+	}
+
+	.titleContainer {
+		width: 100%;
+	}
+
+	.checkboxContainer {
+		width: 10%;
+	}
+
+	.dropdownContainer {
+		width: 100%;
+	}
+
+	.buttonListRow {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.buttonListElements {
+		padding-bottom: 5px;
+		cursor: pointer;
+	}
+
+	.buttonEdit,
+	.buttonEditInactive,
+	.buttonDelete,
+	.buttonCalendar {
+		margin: 0;
+		width: 50px;
+		height: 50px;
+	}
+
+	.editInput {
+		width: 100%;
+		height: 50%;
+		resize: none;
+		box-sizing: border-box;
+	}
+
+	.todoWrapper {
+		display: block;
+	}
+}
