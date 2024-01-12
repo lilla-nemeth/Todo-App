@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { handleError } from './HelperFunctions.js'; 
+import { handleError } from '../utils/HelperFunctions'; 
 
 export default function ToDoInput(props) {
     const [input, setInput] = useState('');

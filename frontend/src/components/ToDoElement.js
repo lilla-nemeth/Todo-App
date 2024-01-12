@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Sugar from 'sugar';
-import { handleError, selectToEdit } from '../utils/HelperFunctions.js';
+import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown.js';
 import Tooltip from './Tooltip.js';
 import { ReactComponent as PencilIcon } from '../assets/icons/pencil.svg';
@@ -118,7 +118,7 @@ export default function ToDoElement(props) {
               checked={el.completed}
               onChange={() => completeTodo(el)}
             />
-            <span class='checkmark'></span>
+            <span className='checkmark'></span>
           </label>
           {editedTodoId != el.id ? (
             <div className='titleContainer'>

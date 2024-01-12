@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import './App.css';
 import axios from 'axios';
-import { handleError } from './components/HelperFunctions';
+import { handleError } from './utils/HelperFunctions';
 
 function App() {
   const [token, setToken] = useState(null);
