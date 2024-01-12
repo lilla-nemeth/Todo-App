@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions.js';
 import { createBrowserHistory } from 'history';
-import { createOptionsWithData } from '../../context/Options.js';
+import { createOptionsWithData } from '../../context/RequestOptions.js';
 import { changeOrGetData } from '../../context/Requests.js';
 
 let history = createBrowserHistory();
@@ -27,10 +27,10 @@ export default function Login(props) {
 			changeOrGetData({
 				options,
 				successCb: (res) => {
-					setLoading(false);
-					setErrorMsg('');
 					const token = res.data.token;
 					localStorage.setItem('token', token);
+					setLoading(false);
+					setErrorMsg('');
 					setToken(token);
 					setEmail('');
 					setPw('');

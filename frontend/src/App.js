@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import './styles/App.css';
 import axios from 'axios';
 import { handleError, handleLogOut } from './utils/HelperFunctions';
-import { createOptionsWithToken } from './context/Options';
+import { createOptionsWithToken } from './context/RequestOptions';
 import { changeOrGetData } from './context/Requests';
 
 function App() {

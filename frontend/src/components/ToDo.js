@@ -5,7 +5,7 @@ import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
 import { createBrowserHistory } from 'history';
-import { createOptionsWithToken } from '../context/Options.js';
+import { createOptionsWithToken } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
 
 let history = createBrowserHistory();
