@@ -40,12 +40,26 @@ export default function ToDo(props) {
 		});
 	}
 
+	function deleteAllTodos() {
+		const options = createOptionsWithToken('delete', '/todos', 'cors', 'application/json', props.token);
+
+		changeOrGetData({
+			options,
+			successCb: (res) => {
+				setAllTodos([]);
+			},
+			errorCb: (err) => {
+				handleError(err, setErrorMsg);
+			},
+		});
+	}
+
 	useEffect(() => {
 		history.replace('/');
 		getAllTodos();
 	}, []);
 
-	let sortedAllTodos = allTodos.sort((a, b) => {
+	const sortedAllTodos = allTodos.sort((a, b) => {
 		if (orderBy === order.newest) {
 			return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
 		}
@@ -95,25 +109,6 @@ export default function ToDo(props) {
 				</svg>
 			</div>
 		);
-	}
-
-	function deleteAllTodos() {
-		let options = {
-			method: 'delete',
-			url: '/todos',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-auth-token': props.token,
-			},
-		};
-		axios(options)
-			.then((res) => {
-				setAllTodos([]);
-			})
-			.catch((err) => {
-				handleError(err, setErrorMsg);
-			});
 	}
 
 	return (
