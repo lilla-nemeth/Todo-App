@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history';
 let history = createBrowserHistory();
 
 export default function Login(props) {
+	const { setToken } = props;
 	const [email, setEmail] = useState('');
 	const [pw, setPw] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
@@ -39,7 +40,7 @@ export default function Login(props) {
 					let token = res.data.token;
 
 					localStorage.setItem('token', token);
-					props.setToken(token);
+					setToken(token);
 					setEmail('');
 					setPw('');
 				})
