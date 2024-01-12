@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
+import { createOptionsWithData } from '../../context/Options';
 
 export default function SignUp() {
 	const [email, setEmail] = useState('');
@@ -18,19 +19,20 @@ export default function SignUp() {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		let options = {
-			method: 'post',
-			url: '/signup',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			data: {
-				email,
-				username,
-				pw,
-			},
-		};
+		// let options = {
+		// 	method: 'post',
+		// 	url: '/signup',
+		// 	mode: 'cors',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 	},
+		// 	data: {
+		// 		email,
+		// 		username,
+		// 		pw,
+		// 	},
+		// };
+		const options = createOptionsWithData('post', '/signup', 'cors', 'application/json', { email, username, pw });
 
 		if (!disabled) {
 			setLoading(true);
@@ -72,8 +74,8 @@ export default function SignUp() {
 							onChange={(event) => setEmail(event.target.value)}
 						/>
 					</div>
-					<div className='username' style={styles.div}>
-						<label style={styles.label}>Username</label>
+					<div className='username'>
+						<label className='usernameLabel'>Username</label>
 						<input
 							className='signUpInput'
 							name='username'
@@ -83,8 +85,8 @@ export default function SignUp() {
 							onChange={(event) => setUsername(event.target.value)}
 						/>
 					</div>
-					<div className='password' style={styles.div}>
-						<label style={styles.label}>Password</label>
+					<div className='password'>
+						<label className='passwordLabel'>Password</label>
 						<input
 							className='signUpInput'
 							name='password'

@@ -19,9 +19,10 @@ export default function Login(props) {
 	function handleSubmit(event) {
 		event.preventDefault();
 
+		const options = createOptionsWithData('post', '/login', 'cors', 'application/json', { email, pw });
+
 		if (!disabled) {
 			setLoading(true);
-			const options = createOptionsWithData('post', '/login', 'cors', 'application/json', { email, pw });
 
 			changeOrGetData({
 				options,

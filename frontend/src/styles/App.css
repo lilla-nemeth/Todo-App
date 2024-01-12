@@ -195,23 +195,20 @@ h3 {
 }
 
 .email,
-.password {
-	margin: 0 0 20px 0;
-}
-
-.emailLabel,
-.passwordLabel {
-	display: inline-block;
-	width: 100px;
-}
-
-.email,
 .username,
 .password {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	font-size: 1em;
+	margin: 0 0 20px 0;
+}
+
+.emailLabel,
+.passwordLabel,
+.usernameLabel {
+	display: inline-block;
+	width: 100px;
 }
 
 .login,
