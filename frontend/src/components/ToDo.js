@@ -1,10 +1,12 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { handleError } from '../utils/HelperFunctions';
 import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
 import { createBrowserHistory } from 'history';
+import { createOptionsWithToken } from '../context/Options.js';
+import { changeOrGetData } from '../context/Requests.js';
 
 let history = createBrowserHistory();
 
@@ -24,23 +26,18 @@ export default function ToDo(props) {
 	const [loading, setLoading] = useState(true);
 
 	function getAllTodos() {
-		let options = {
-			method: 'get',
-			url: '/todos',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-auth-token': props.token,
-			},
-		};
-		axios(options)
-			.then((res) => {
+		const options = createOptionsWithToken('get', '/todos', 'cors', 'application/json', props.token);
+
+		changeOrGetData({
+			options,
+			successCb: (res) => {
 				setLoading(false);
 				setAllTodos(res.data);
-			})
-			.catch((err) => {
+			},
+			errorCb: (err) => {
 				handleError(err, setErrorMsg);
-			});
+			},
+		});
 	}
 
 	useEffect(() => {
