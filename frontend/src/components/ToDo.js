@@ -5,7 +5,7 @@ import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
 import { createBrowserHistory } from 'history';
-import { createOptionsWithToken } from '../context/RequestOptions.js';
+import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
 
 let history = createBrowserHistory();
@@ -26,7 +26,7 @@ export default function ToDo(props) {
 	const [loading, setLoading] = useState(true);
 
 	function getAllTodos() {
-		const options = createOptionsWithToken('get', '/todos', 'cors', 'application/json', props.token);
+		const options = createOptions('get', '/todos', 'cors', 'application/json', props.token, null);
 
 		changeOrGetData({
 			options,
@@ -41,7 +41,7 @@ export default function ToDo(props) {
 	}
 
 	function deleteAllTodos() {
-		const options = createOptionsWithToken('delete', '/todos', 'cors', 'application/json', props.token);
+		const options = createOptions('delete', '/todos', 'cors', 'application/json', props.token, null);
 
 		changeOrGetData({
 			options,

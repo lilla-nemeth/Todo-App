@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import './styles/App.css';
 import axios from 'axios';
 import { handleError, handleLogOut } from './utils/HelperFunctions';
-import { createOptionsWithToken } from './context/RequestOptions';
+import { createOptions } from './context/RequestOptions';
 import { changeOrGetData } from './context/Requests';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 	const [errorMsg, setErrorMsg] = useState('');
 
 	function addUser(token) {
-		const options = createOptionsWithToken('get', '/user', 'cors', 'application/json', token);
+		const options = createOptions('get', '/user', 'cors', 'application/json', token, null);
 
 		changeOrGetData({
 			options,

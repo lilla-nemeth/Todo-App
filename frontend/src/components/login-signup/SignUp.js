@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
-import { createOptionsWithData } from '../../context/RequestOptions';
+import { createOptions } from '../../context/RequestOptions';
 import { changeOrGetData } from '../../context/Requests';
 
 export default function SignUp() {
@@ -19,7 +19,7 @@ export default function SignUp() {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const options = createOptionsWithData('post', '/signup', 'cors', 'application/json', { email, username, pw });
+		const options = createOptions('post', '/signup', 'cors', 'application/json', null, { email, username, pw });
 
 		if (!disabled) {
 			setLoading(true);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions.js';
 import { createBrowserHistory } from 'history';
-import { createOptionsWithData } from '../../context/RequestOptions.js';
+import { createOptions } from '../../context/RequestOptions.js';
 import { changeOrGetData } from '../../context/Requests.js';
 
 let history = createBrowserHistory();
@@ -19,7 +19,7 @@ export default function Login(props) {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const options = createOptionsWithData('post', '/login', 'cors', 'application/json', { email, pw });
+		const options = createOptions('post', '/login', 'cors', 'application/json', null, { email, pw });
 
 		if (!disabled) {
 			setLoading(true);

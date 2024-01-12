@@ -1,5 +1,5 @@
 import axios from 'axios';
-// options - createOptionsWithData function (object)
+// options - createOptions function (object)
 // successCb - success callback
 // errorCb - error callback
 export function changeOrGetData({ options, successCb, errorCb }) {
