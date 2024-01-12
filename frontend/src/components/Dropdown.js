@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ReactComponent as ArrowDown } from '../assets/icons/arrow_down.svg';
+import { generateId, chooseColor } from './HelperFunctions';
 
 const notImportantColor = 'rgb(255, 200, 200)';
 const importantColor = 'rgb(255, 157, 157)';
@@ -12,32 +13,8 @@ const options = {
   3: 'Urgent',
 };
 
-function generateId(num) {
-  let number = Number(num);
-  if (number === 1) {
-    return 'notimportant';
-  } else if (number === 2) {
-    return 'important';
-  } else {
-    return 'urgent';
-  }
-}
-
-function chooseColor(number, isCompleted) {
-  if (isCompleted) {
-    return doneColor;
-  } else if (number === 1) {
-    return notImportantColor;
-  } else if (number === 2) {
-    return importantColor;
-  } else if (number === 3) {
-    return urgentColor;
-  }
-}
-
 export default function Dropdown(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const { value, isCompleted, onSelect } = props;
 
   return (
@@ -51,8 +28,8 @@ export default function Dropdown(props) {
       <div
         className='dropdownSelected'
         style={{
-          border: `2px solid ${chooseColor(value, isCompleted)}`,
-          color: chooseColor(value, isCompleted),
+          border: `2px solid ${chooseColor(value, isCompleted, doneColor, notImportantColor, importantColor, urgentColor)}`,
+          color: chooseColor(value, isCompleted, doneColor, notImportantColor, importantColor, urgentColor),
         }}
       >
         {options[value]}{' '}
@@ -60,7 +37,7 @@ export default function Dropdown(props) {
           style={
             isCompleted
               ? { fill: '#ccc', strokeWidth: '3' }
-              : { fill: chooseColor(value, isCompleted) }
+              : { fill: chooseColor(value, isCompleted, doneColor, notImportantColor, importantColor, urgentColor) }
           }
         />
       </div>
