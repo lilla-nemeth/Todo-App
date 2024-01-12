@@ -53,49 +53,41 @@ export default function ToDoElement(props) {
 	function editTodo(el, event) {
 		event.preventDefault();
 
-		let options = {
-			method: 'put',
-			url: `/todos/${el.id}`,
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-auth-token': token,
-			},
-			data: {
-				title: editedTodoInput,
-				completed: el.completed,
-				importance: el.importance,
-			},
-		};
+		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
+			title: editedTodoInput,
+			completed: el.completed,
+			importance: el.importance,
+		});
 
-		axios(options)
-			.then((res) => {
+		changeOrGetData({
+			options,
+			successCb: (res) => {
 				getAllTodos();
 				setEditedTodoId(null);
 				setEditedTodoInput('');
-			})
-			.catch((err) => handleError(err, setErrorMsg));
+			},
+			errorCb: (err) => {
+				handleError(err, setErrorMsg);
+			},
+		});
 	}
 
 	function updateImportance(el, number) {
-		let options = {
-			method: 'put',
-			url: `/todos/${el.id}`,
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-auth-token': token,
-			},
-			data: {
-				title: el.title,
-				completed: el.completed,
-				importance: number,
-			},
-		};
+		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
+			title: el.title,
+			completed: el.completed,
+			importance: number,
+		});
 
-		axios(options)
-			.then((res) => getAllTodos())
-			.catch((err) => handleError(err, setErrorMsg));
+		changeOrGetData({
+			options,
+			successCb: (res) => {
+				getAllTodos();
+			},
+			errorCb: (err) => {
+				handleError(err, setErrorMsg);
+			},
+		});
 	}
 
 	let sugarDate = Sugar.Date.create(el.created);
