@@ -195,6 +195,15 @@ h3 {
   color: var(--clr-darkgreen);
 }
 
+.email {
+  margin: 0 0 20px 0;
+}
+
+.emailLabel {
+  display: inline-block;
+  width: 100px;
+}
+
 .email,
 .username,
 .password {
