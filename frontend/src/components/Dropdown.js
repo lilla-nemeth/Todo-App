@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ReactComponent as ArrowDown } from '../assets/icons/arrow_down.svg';
-import { generateId, chooseColor } from './HelperFunctions';
+import { generateId, chooseColor } from '../utils/HelperFunctions';
 
 const notImportantColor = 'rgb(255, 200, 200)';
 const importantColor = 'rgb(255, 157, 157)';

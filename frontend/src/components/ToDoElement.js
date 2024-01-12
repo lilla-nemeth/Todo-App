@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Sugar from 'sugar';
-import { handleError, selectToEdit } from './HelperFunctions';
+import { handleError, selectToEdit } from '../utils/HelperFunctions.js';
 import Dropdown from './Dropdown.js';
 import Tooltip from './Tooltip.js';
 import { ReactComponent as PencilIcon } from '../assets/icons/pencil.svg';
