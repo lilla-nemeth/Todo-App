@@ -3,10 +3,10 @@ import axios from 'axios';
 import { handleError } from '../utils/HelperFunctions'; 
 
 export default function ToDoInput(props) {
+    const { getAllTodos, token } = props;
+
     const [input, setInput] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-
-    const { getAllTodos, token } = props;
 
     function handleChange(event) {
         setInput(event.target.value);
