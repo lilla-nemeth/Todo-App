@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { handleError, clearError } from '../../utils/HelperFunctions.js';
 import { createBrowserHistory } from 'history';
+import { createOptionsWithData } from '../../context/Options.js';
+import { changeOrGetData } from '../../context/Requests.js';
 
 let history = createBrowserHistory();
 
@@ -18,37 +19,27 @@ export default function Login(props) {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		let options = {
-			method: 'post',
-			url: '/login',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			data: {
-				email,
-				pw,
-			},
-		};
-
 		if (!disabled) {
 			setLoading(true);
-			axios(options)
-				.then((res) => {
+			const options = createOptionsWithData('post', '/login', 'cors', 'application/json', { email, pw });
+
+			changeOrGetData({
+				options,
+				successCb: (res) => {
 					setLoading(false);
 					setErrorMsg('');
-					let token = res.data.token;
-
+					const token = res.data.token;
 					localStorage.setItem('token', token);
 					setToken(token);
 					setEmail('');
 					setPw('');
-				})
-				.catch((err) => {
+				},
+				errorCb: (err) => {
 					setLoading(false);
 					clearError();
 					handleError(err, setErrorMsg);
-				});
+				},
+			});
 		}
 	}
 
