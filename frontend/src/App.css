@@ -195,11 +195,13 @@ h3 {
   color: var(--clr-darkgreen);
 }
 
-.email {
+.email,
+.password {
   margin: 0 0 20px 0;
 }
 
-.emailLabel {
+.emailLabel,
+.passwordLabel {
   display: inline-block;
   width: 100px;
 }

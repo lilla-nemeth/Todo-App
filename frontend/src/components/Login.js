@@ -70,8 +70,8 @@ export default function Login(props) {
 						/>
 						<span className='loginActive'></span>
 					</div>
-					<div className='password' style={styles.div}>
-						<label style={styles.label}>Password</label>
+					<div className='password'>
+						<label className='passwordLabel'>Password</label>
 						<input
 							className='loginInput'
 							name='password'
