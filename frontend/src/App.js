@@ -7,11 +7,27 @@ import Navbar from './components/Navbar';
 import './styles/App.css';
 import axios from 'axios';
 import { handleError, handleLogOut } from './utils/HelperFunctions';
+import { createOptions } from './context/RequestOptions';
+import { changeOrGetData } from './context/Requests';
 
 function App() {
 	const [token, setToken] = useState(null);
 	const [user, setUser] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
+
+	function addUser(token) {
+		const options = createOptions('get', '/user', 'cors', 'application/json', token, null);
+
+		changeOrGetData({
+			options,
+			successCb: (res) => {
+				setUser(res.data);
+			},
+			errorCb: (err) => {
+				handleError(err, setErrorMsg);
+			},
+		});
+	}
 
 	useEffect(() => {
 		let tokenFromLocalStorage = localStorage.getItem('token');
@@ -19,20 +35,9 @@ function App() {
 		if (tokenFromLocalStorage) {
 			setToken(tokenFromLocalStorage);
 
-			let options = {
-				method: 'get',
-				url: '/user',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'x-auth-token': token,
-				},
-			};
-			axios(options)
-				.then((res) => setUser(res.data))
-				.catch((err) => handleError(err, setErrorMsg));
+			addUser(token);
 		}
-	});
+	}, [token]);
 
 	if (!token) {
 		return (

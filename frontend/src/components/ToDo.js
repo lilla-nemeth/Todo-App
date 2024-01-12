@@ -1,10 +1,12 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { handleError } from '../utils/HelperFunctions';
 import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
 import { createBrowserHistory } from 'history';
+import { createOptions } from '../context/RequestOptions.js';
+import { changeOrGetData } from '../context/Requests.js';
 
 let history = createBrowserHistory();
 
@@ -24,23 +26,32 @@ export default function ToDo(props) {
 	const [loading, setLoading] = useState(true);
 
 	function getAllTodos() {
-		let options = {
-			method: 'get',
-			url: '/todos',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-auth-token': props.token,
-			},
-		};
-		axios(options)
-			.then((res) => {
+		const options = createOptions('get', '/todos', 'cors', 'application/json', props.token, null);
+
+		changeOrGetData({
+			options,
+			successCb: (res) => {
 				setLoading(false);
 				setAllTodos(res.data);
-			})
-			.catch((err) => {
+			},
+			errorCb: (err) => {
 				handleError(err, setErrorMsg);
-			});
+			},
+		});
+	}
+
+	function deleteAllTodos() {
+		const options = createOptions('delete', '/todos', 'cors', 'application/json', props.token, null);
+
+		changeOrGetData({
+			options,
+			successCb: (res) => {
+				setAllTodos([]);
+			},
+			errorCb: (err) => {
+				handleError(err, setErrorMsg);
+			},
+		});
 	}
 
 	useEffect(() => {
@@ -48,7 +59,7 @@ export default function ToDo(props) {
 		getAllTodos();
 	}, []);
 
-	let sortedAllTodos = allTodos.sort((a, b) => {
+	const sortedAllTodos = allTodos.sort((a, b) => {
 		if (orderBy === order.newest) {
 			return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
 		}
@@ -98,25 +109,6 @@ export default function ToDo(props) {
 				</svg>
 			</div>
 		);
-	}
-
-	function deleteAllTodos() {
-		let options = {
-			method: 'delete',
-			url: '/todos',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-auth-token': props.token,
-			},
-		};
-		axios(options)
-			.then((res) => {
-				setAllTodos([]);
-			})
-			.catch((err) => {
-				handleError(err, setErrorMsg);
-			});
 	}
 
 	return (

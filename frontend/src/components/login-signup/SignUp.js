@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
+import { createOptions } from '../../context/RequestOptions';
+import { changeOrGetData } from '../../context/Requests';
 
 export default function SignUp() {
 	const [email, setEmail] = useState('');
@@ -18,25 +19,14 @@ export default function SignUp() {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		let options = {
-			method: 'post',
-			url: '/signup',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			data: {
-				email,
-				username,
-				pw,
-			},
-		};
+		const options = createOptions('post', '/signup', 'cors', 'application/json', null, { email, username, pw });
 
 		if (!disabled) {
 			setLoading(true);
 
-			axios(options)
-				.then((res) => {
+			changeOrGetData({
+				options,
+				successCb: (res) => {
 					setLoading(false);
 					setErrorMsg('');
 					setSuccessMsg(res.data.msg);
@@ -47,12 +37,13 @@ export default function SignUp() {
 						setPw('');
 						navigate('/login');
 					}, 2500);
-				})
-				.catch((err) => {
+				},
+				errorCb: (err) => {
 					setLoading(false);
 					clearError();
 					handleError(err, setErrorMsg);
-				});
+				},
+			});
 		}
 	}
 
@@ -72,8 +63,8 @@ export default function SignUp() {
 							onChange={(event) => setEmail(event.target.value)}
 						/>
 					</div>
-					<div className='username' style={styles.div}>
-						<label style={styles.label}>Username</label>
+					<div className='username'>
+						<label className='usernameLabel'>Username</label>
 						<input
 							className='signUpInput'
 							name='username'
@@ -83,8 +74,8 @@ export default function SignUp() {
 							onChange={(event) => setUsername(event.target.value)}
 						/>
 					</div>
-					<div className='password' style={styles.div}>
-						<label style={styles.label}>Password</label>
+					<div className='password'>
+						<label className='passwordLabel'>Password</label>
 						<input
 							className='signUpInput'
 							name='password'
