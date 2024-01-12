@@ -6,16 +6,6 @@ import { createBrowserHistory } from 'history';
 
 let history = createBrowserHistory();
 
-const styles = {
-	div: {
-		marginBottom: '20px',
-	},
-	label: {
-		display: 'inline-block',
-		width: '100px',
-	},
-};
-
 export default function Login(props) {
 	const [email, setEmail] = useState('');
 	const [pw, setPw] = useState('');
@@ -42,8 +32,6 @@ export default function Login(props) {
 
 		if (!disabled) {
 			setLoading(true);
-			// console.log('disabled status', disabled);
-
 			axios(options)
 				.then((res) => {
 					setLoading(false);
@@ -70,8 +58,8 @@ export default function Login(props) {
 			<section className='container'>
 				<form className='form' onSubmit={handleSubmit}>
 					<h3>Login</h3>
-					<div className='email' style={styles.div}>
-						<label style={styles.label}>Email</label>
+					<div className='email'>
+						<label className='emailLabel'>Email</label>
 						<input
 							className='loginInput'
 							name='email'

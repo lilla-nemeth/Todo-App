@@ -3,16 +3,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../utils/HelperFunctions';
 
-const styles = {
-  div: {
-    marginBottom: '20px',
-  },
-  label: {
-    display: 'inline-block',
-    width: '100px',
-  },
-};
-
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -71,8 +61,8 @@ export default function SignUp() {
       <section className='container'>
         <form className='form' method='POST' onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
-          <div className='email' style={styles.div}>
-            <label style={styles.label}>Email</label>
+					<div className='email'>
+						<label className='emailLabel'>Email</label>
             <input
               className='signUpInput'
               name='email'
