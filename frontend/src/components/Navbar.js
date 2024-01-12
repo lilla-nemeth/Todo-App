@@ -1,19 +1,21 @@
 import React from 'react';
 
 export default function Navbar(props) {
-    const { user, handleLogOut, setToken } = props;
+	const { user, handleLogOut, setToken } = props;
 
-    return (
-        <div className='navbar'>
-                <div className='navbarWelcomeBox'>
-                    <p>Hi {user}!</p>
-                </div>
-                <div className='navbarTodoBox'>
-                    <h3>Todo</h3>
-                </div>
-                <div className='navbarLogOutBox'>
-                    <button className='buttonLogOut' onClick={() => handleLogOut(setToken)}>Log out</button>
-                </div>
-        </div>
-    )
+	return (
+		<div className='navbar'>
+			<div className='navbarWelcomeBox'>
+				<p>Hi {user}!</p>
+			</div>
+			<div className='navbarTodoBox'>
+				<h3>Todo</h3>
+			</div>
+			<div className='navbarLogOutBox'>
+				<button className='buttonLogOut' onClick={() => handleLogOut(setToken)}>
+					Log out
+				</button>
+			</div>
+		</div>
+	);
 }
