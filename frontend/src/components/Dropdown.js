@@ -46,7 +46,7 @@ export default function Dropdown(props) {
           {Object.entries(options).map((option) => {
             return (
               <div
-                id={generateId(option[0])}
+                key={generateId(option[0])}
                 className='dropdownOption'
                 onClick={() => {
                   setDropdownOpen(false);
