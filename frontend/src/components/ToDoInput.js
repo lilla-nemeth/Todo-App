@@ -1,16 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { handleError } from '../utils/HelperFunctions'; 
+import { handleError, handleChange } from '../utils/HelperFunctions';
 
 export default function ToDoInput(props) {
     const { getAllTodos, token } = props;
 
     const [input, setInput] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-
-    function handleChange(event) {
-        setInput(event.target.value);
-    }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -21,32 +17,32 @@ export default function ToDoInput(props) {
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
-                'x-auth-token': token
+                'x-auth-token': token,
             },
             data: {
-                title: input
-            }
-        }
+                title: input,
+            },
+        };
         if (input != '') {
             axios(options)
-            .then((res) => getAllTodos())
-            .catch((err) => handleError(err, setErrorMsg));
+                .then((res) => getAllTodos())
+                .catch((err) => handleError(err, setErrorMsg));
         }
         setInput('');
     }
 
     return (
         <div>
-            <form className='form' onSubmit={handleSubmit}>
-                <input 
-                    type='text'
-                    placeholder='Add to do'
+            <form className="form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Add todo"
                     value={input}
-                    className='todoInput'
-                    onChange={handleChange}
+                    className="todoInput"
+                    onChange={(e) => handleChange(e, setInput)}
                 />
-                <p style={{color: 'red'}}>{errorMsg}</p>
+                <p className="errorMsg">{errorMsg}</p>
             </form>
         </div>
-    )
+    );
 }
