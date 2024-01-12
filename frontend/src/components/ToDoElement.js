@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Sugar from 'sugar';
-import { handleError } from './HelperFunctions';
+import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown.js';
 import Tooltip from './Tooltip.js';
 import { ReactComponent as PencilIcon } from '../assets/icons/pencil.svg';
@@ -54,16 +54,6 @@ export default function ToDoElement(props) {
     axios(options)
       .then((res) => getAllTodos())
       .catch((err) => handleError(err, setErrorMsg));
-  }
-
-  function selectToEdit(el) {
-    if (editedTodoId == el.id) {
-      setEditedTodoId(null);
-      setEditedTodoInput('');
-    } else {
-      setEditedTodoId(el.id);
-      setEditedTodoInput(el.title);
-    }
   }
 
   function editTodo(el, event) {
@@ -128,7 +118,7 @@ export default function ToDoElement(props) {
               checked={el.completed}
               onChange={() => completeTodo(el)}
             />
-            <span class='checkmark'></span>
+            <span className='checkmark'></span>
           </label>
           {editedTodoId != el.id ? (
             <div className='titleContainer'>
@@ -157,7 +147,7 @@ export default function ToDoElement(props) {
             <div className='buttonListElements'>
               <button
                 className={el.completed ? 'buttonEditInactive' : 'buttonEdit'}
-                onClick={() => selectToEdit(el)}
+                onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
               >
                 <PencilIcon className='icon' />
               </button>
@@ -171,7 +161,7 @@ export default function ToDoElement(props) {
                   border: 'none',
                   fill: 'white',
                 }}
-                onClick={() => selectToEdit(el)}
+                onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
               >
                 <PencilIcon className='icon' />
               </button>

@@ -196,9 +196,8 @@ app.post('/login', [isEmail], (request, response) => {
           if (isMatch === true) {
             jwt.sign({ id: res.rows[0].id }, 'nomoresecret', (err, token) => {
               let currentUser = {};
+              
               currentUser.token = token;
-              // currentUser.id = res.rows[0].id;
-              // currentUser.name = res.rows[0].username;
               response.status(200).json(currentUser);
             });
           } else {

@@ -1,59 +1,52 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { handleError, clearError } from './HelperFunctions.js';
-import { createBrowserHistory } from 'history';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { handleError, clearError } from '../../utils/HelperFunctions';
 
-let history = createBrowserHistory();
-
-const styles = {
-	div: {
-		marginBottom: '20px',
-	},
-	label: {
-		display: 'inline-block',
-		width: '100px',
-	},
-};
-
-export default function Login(props) {
+export default function SignUp() {
 	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
 	const [pw, setPw] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
+	const [successMsg, setSuccessMsg] = useState('');
 	const [loading, setLoading] = useState(false);
 
-	let disabled = !email || !pw || loading;
+	const navigate = useNavigate();
+
+	let disabled = !email || !username || !pw || loading;
 
 	function handleSubmit(event) {
 		event.preventDefault();
 
 		let options = {
 			method: 'post',
-			url: '/login',
+			url: '/signup',
 			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			data: {
 				email,
+				username,
 				pw,
 			},
 		};
 
 		if (!disabled) {
 			setLoading(true);
-			// console.log('disabled status', disabled);
 
 			axios(options)
 				.then((res) => {
 					setLoading(false);
 					setErrorMsg('');
-					let token = res.data.token;
-
-					localStorage.setItem('token', token);
-					props.setToken(token);
-					setEmail('');
-					setPw('');
+					setSuccessMsg(res.data.msg);
+					setTimeout(() => {
+						setSuccessMsg('');
+						setEmail('');
+						setUsername('');
+						setPw('');
+						navigate('/login');
+					}, 2500);
 				})
 				.catch((err) => {
 					setLoading(false);
@@ -63,29 +56,37 @@ export default function Login(props) {
 		}
 	}
 
-	history.replace('/login');
-
 	return (
 		<main>
 			<section className='container'>
-				<form className='form' onSubmit={handleSubmit}>
-					<h3>Login</h3>
-					<div className='email' style={styles.div}>
-						<label style={styles.label}>Email</label>
+				<form className='form' method='POST' onSubmit={handleSubmit}>
+					<h3>Sign Up</h3>
+					<div className='email'>
+						<label className='emailLabel'>Email</label>
 						<input
-							className='loginInput'
+							className='signUpInput'
 							name='email'
 							type='email'
 							placeholder='Email address'
 							value={email}
 							onChange={(event) => setEmail(event.target.value)}
 						/>
-						<span className='loginActive'></span>
+					</div>
+					<div className='username' style={styles.div}>
+						<label style={styles.label}>Username</label>
+						<input
+							className='signUpInput'
+							name='username'
+							type='text'
+							placeholder='Username'
+							value={username}
+							onChange={(event) => setUsername(event.target.value)}
+						/>
 					</div>
 					<div className='password' style={styles.div}>
 						<label style={styles.label}>Password</label>
 						<input
-							className='loginInput'
+							className='signUpInput'
 							name='password'
 							type='password'
 							placeholder='Password'
@@ -95,18 +96,19 @@ export default function Login(props) {
 					</div>
 					<div>
 						<button type='submit' className={disabled ? 'buttonSignUpInactive' : 'buttonSignUp'} disabled={disabled}>
-							Login
+							Create Account
 						</button>
 					</div>
-					<div className='textSignUpContainer'>
-						<p>Need an account?</p>
-						<Link className='textSignUp' to='/signup' style={{ textDecoration: 'none' }}>
-							<p className='signUp'>Sign Up</p>
+					<div className='textLoginContainer'>
+						<p>Do you have account?</p>
+						<Link className='textLoginUp' to='/login' style={{ textDecoration: 'none' }}>
+							<p className='login'>Login</p>
 						</Link>
 					</div>
 				</form>
 				<div className='message'>
 					<p className='errorMessage'>{errorMsg}</p>
+					<p className='successMessage'>{successMsg}</p>
 				</div>
 			</section>
 		</main>

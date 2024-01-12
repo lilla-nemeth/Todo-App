@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { handleError } from './HelperFunctions.js';
+import { handleError } from '../utils/HelperFunctions';
 import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
@@ -50,17 +50,14 @@ export default function ToDo(props) {
 
 	let sortedAllTodos = allTodos.sort((a, b) => {
 		if (orderBy === order.newest) {
-			// console.log("newest")
 			return a.created.valueOf() < b.created.valueOf() ? 1 : -1;
 		}
 
 		if (orderBy === order.oldest) {
-			// console.log("oldest")
 			return a.created.valueOf() < b.created.valueOf() ? -1 : 1;
 		}
 
 		if (orderBy === order.mostImportant) {
-			// console.log("most important")
 			if (a.importance === b.importance) {
 				return a.title < b.title ? 1 : -1;
 			} else {
@@ -69,7 +66,6 @@ export default function ToDo(props) {
 		}
 
 		if (orderBy === order.leastImportant) {
-			// console.log("least important")
 			if (a.importance === b.importance) {
 				return a.title < b.title ? -1 : 1;
 			} else {
@@ -78,7 +74,6 @@ export default function ToDo(props) {
 		}
 
 		if (orderBy === order.uncompleted) {
-			// console.log("uncompleted")
 			if (!a.completed && !b.completed) {
 				return;
 			} else {
@@ -87,7 +82,6 @@ export default function ToDo(props) {
 		}
 
 		if (orderBy === order.completed) {
-			// console.log("completed")
 			if (!a.completed && !b.completed) {
 				return;
 			} else {
@@ -130,9 +124,8 @@ export default function ToDo(props) {
 			<section className='todoContainer'>
 				<ToDoInput getAllTodos={() => getAllTodos()} token={props.token} />
 				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
-
 				{sortedAllTodos.map((el) => {
-					return <ToDoElement getAllTodos={() => getAllTodos()} el={el} token={props.token} />;
+					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={props.token} />;
 				})}
 				{allTodos.length > 0 && (
 					<div className='buttonDeleteAllContainer'>
