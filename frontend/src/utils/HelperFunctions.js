@@ -62,3 +62,8 @@ export function chooseColor(
       return urgentColor;
     }
 }
+
+export function handleLogOut(setToken) {
+  localStorage.removeItem('token');
+  setToken(null);
+}

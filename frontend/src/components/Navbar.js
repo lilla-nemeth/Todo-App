@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Navbar(props) {
-    const { user } = props;
+    const { user, handleLogOut, setToken } = props;
 
     return (
         <div className='navbar'>
@@ -12,7 +12,7 @@ export default function Navbar(props) {
                     <h3>Todo</h3>
                 </div>
                 <div className='navbarLogOutBox'>
-                    <button className='buttonLogOut' onClick={() => props.handleLogOut()}>Log out</button>
+                    <button className='buttonLogOut' onClick={() => handleLogOut(setToken)}>Log out</button>
                 </div>
         </div>
     )

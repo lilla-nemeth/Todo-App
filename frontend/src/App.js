@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import './App.css';
 import axios from 'axios';
-import { handleError } from './utils/HelperFunctions';
+import { handleError, handleLogOut } from './utils/HelperFunctions';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -34,17 +34,16 @@ function App() {
     }
   });
 
-  function handleLogOut() {
-    localStorage.removeItem('token');
-    setToken(null);
-  }
-
   if (!token) {
     return (
       <>
         <BrowserRouter>
           <Routes>
-            <Route path='/signup' element={<SignUp />}></Route>
+            <Route 
+              path='/signup' 
+              element={<SignUp />}
+            >
+            </Route>
             <Route
               path='/login'
               element={<Login setToken={setToken} />}
@@ -58,7 +57,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar handleLogOut={handleLogOut} user={user} />
+        <Navbar 
+          handleLogOut={handleLogOut} 
+          setToken={setToken} 
+          user={user} 
+        />
         <Routes>
           <Route exact path='/' element={<ToDo token={token} />}></Route>
           <Route path='*' element={<ToDo token={token} />}></Route>
