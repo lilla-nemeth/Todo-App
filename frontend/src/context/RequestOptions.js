@@ -4,7 +4,6 @@
 // mode
 // appJson - application/json
 
-// More types:
 // token - (string | null)
 // dataObject - dataObject (Object | null)
 export function createOptions(requestMethod, endpoint, mode, appJson, token, dataObject) {
