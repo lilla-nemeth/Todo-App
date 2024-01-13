@@ -6,10 +6,10 @@ import { changeOrGetData } from '../../context/Requests.js';
 
 const Login = (props: any) => {
 	const { setToken } = props;
-	const [email, setEmail] = useState('');
-	const [pw, setPw] = useState('');
-	const [errorMsg, setErrorMsg] = useState('');
-	const [loading, setLoading] = useState(false);
+	const [email, setEmail] = useState<string>('');
+	const [pw, setPw] = useState<string>('');
+	const [errorMsg, setErrorMsg] = useState<string>('');
+	const [loading, setLoading] = useState<boolean>(false);
 	const navigate = useNavigate();
 
 	const disabled = !email || !pw || loading;
