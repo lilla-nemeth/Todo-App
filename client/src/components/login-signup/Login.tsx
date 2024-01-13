@@ -25,7 +25,7 @@ const Login = (props: any) => {
 			changeOrGetData({
 				options,
 				successCb: (res: any) => {
-					const token = res.data.token;
+					const token: string = res.data.token;
 					localStorage.setItem('token', token);
 					setLoading(false);
 					setErrorMsg('');
