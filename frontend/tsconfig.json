@@ -8,8 +8,9 @@
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"esModuleInterop": true,
-		"types": ["node"]
+		"types": ["node"],
+		"outDir": "build"
 	},
 	"include": ["src/**/*"],
-	"exclude": ["node_modules", "**/*.spec.ts"]
+	"exclude": ["node_modules", "build/**/*"]
 }
