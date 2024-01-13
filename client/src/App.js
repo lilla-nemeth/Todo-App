@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToDo from './components/ToDo';
 import SignUp from './components/login-signup/SignUp';
 // import Login from './components/login-signup/Login';

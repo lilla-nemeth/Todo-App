@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ReactComponent as ArrowDown } from '../assets/icons/arrow_down.svg';
 import { generateId, chooseColor } from '../utils/HelperFunctions';
 

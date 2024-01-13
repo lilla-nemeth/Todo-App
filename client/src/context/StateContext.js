@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import { changeOrGetData } from './Requests.js';
 
 export const StateContext = createContext();

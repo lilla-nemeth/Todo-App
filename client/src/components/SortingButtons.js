@@ -1,4 +1,3 @@
-import React from 'react';
 import { order } from '../components/ToDo.js';
 import { ReactComponent as AscArrow } from '../assets/icons/ascending_arrow.svg';
 import { ReactComponent as DescArrow } from '../assets/icons/descending_arrow.svg';

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Sugar from 'sugar';
 import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown.js';
