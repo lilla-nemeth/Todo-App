@@ -615,29 +615,49 @@ input:focus::placeholder {
 .buttonDelete:hover {
 	border: none;
 	background-color: var(--clr-green);
-	fill: white;
+	fill: var(--clr-white);
 }
 
 .buttonDelete:active {
 	border: none;
 	background-color: var(--clr-darkgreen);
-	fill: white;
+	fill: var(--clr-white);
 }
 
 .buttonCalendar {
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
-	background-color: var(--clr-white);
 	border-radius: 0.8rem;
 	border: 2px solid var(--clr-green);
+}
+
+.buttonWhite {
+	background-color: var(--clr-white);
 	fill: var(--clr-green);
 }
 
-.buttonCalendar:hover {
-	border: none;
+.buttonGreen {
 	background-color: var(--clr-green);
-	fill: white;
+	fill: var(--clr-white);
+}
+
+.bubbleContainer {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.bubbleWrapper {
+	position: absolute;
+	height: fit-content;
+	bottom: 70%;
+	left: 20%;
+	opacity: 1;
+	z-index: 29;
+	width: 70px;
+	height: 70px;
 }
 
 .icon {
