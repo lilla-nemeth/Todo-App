@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions.js';
-import { createBrowserHistory } from 'history';
 import { createOptions } from '../../context/RequestOptions.js';
 import { changeOrGetData } from '../../context/Requests.js';
-
-let history = createBrowserHistory();
 
 export default function Login(props) {
 	const { setToken } = props;
@@ -14,7 +11,9 @@ export default function Login(props) {
 	const [errorMsg, setErrorMsg] = useState('');
 	const [loading, setLoading] = useState(false);
 
-	let disabled = !email || !pw || loading;
+	const navigate = useNavigate();
+
+	const disabled = !email || !pw || loading;
 
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -44,7 +43,9 @@ export default function Login(props) {
 		}
 	}
 
-	history.replace('/login');
+	useEffect(() => {
+		navigate('/login');
+	}, []);
 
 	return (
 		<main>

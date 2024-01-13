@@ -1,14 +1,11 @@
-// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { handleError } from '../utils/HelperFunctions';
 import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
 import SortingButtons from './SortingButtons.js';
-import { createBrowserHistory } from 'history';
 import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
-
-let history = createBrowserHistory();
 
 export const order = {
 	newest: 'Newest',
@@ -24,6 +21,7 @@ export default function ToDo(props) {
 	const [errorMsg, setErrorMsg] = useState('');
 	const [orderBy, setOrderBy] = useState(order.newest);
 	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
 
 	function getAllTodos() {
 		const options = createOptions('get', '/todos', 'cors', 'application/json', props.token, null);
@@ -55,7 +53,8 @@ export default function ToDo(props) {
 	}
 
 	useEffect(() => {
-		history.replace('/');
+		navigate('/');
+
 		getAllTodos();
 	}, []);
 
