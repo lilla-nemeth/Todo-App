@@ -1,4 +1,4 @@
-export default function Navbar(props) {
+const Navbar = (props: any) => {
 	const { user, handleLogOut, setToken } = props;
 
 	return (
@@ -16,4 +16,6 @@ export default function Navbar(props) {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Navbar;
