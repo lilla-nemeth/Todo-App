@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
 import { createOptions } from '../../context/RequestOptions.js';
 import { changeOrGetData } from '../../context/Requests.js';
+import { Token } from '../../types/types';
 
 const Login = (props: any) => {
 	const { setToken } = props;
@@ -25,7 +26,7 @@ const Login = (props: any) => {
 			changeOrGetData({
 				options,
 				successCb: (res: any) => {
-					const token: string = res.data.token;
+					const token: Token['token'] = res.data.token;
 					localStorage.setItem('token', token);
 					setLoading(false);
 					setErrorMsg('');
