@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Sugar from 'sugar';
 import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown.js';
@@ -15,6 +14,8 @@ export default function ToDoElement(props) {
 	const [editedTodoId, setEditedTodoId] = useState(null);
 	const [editedTodoInput, setEditedTodoInput] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
+	const [hover, setHover] = useState(false);
+	const hoverTimeout = useRef;
 
 	const { getAllTodos, token, el } = props;
 
@@ -154,9 +155,9 @@ export default function ToDoElement(props) {
 							<TrashIcon className='icon' />
 						</button>
 					</div>
-					<Tooltip date={formattedDate} time={formattedTime}>
+					<Tooltip hover={hover} setHover={setHover} hoverTimeout={hoverTimeout} date={formattedDate} time={formattedTime}>
 						<div className='buttonListElements'>
-							<button className='buttonCalendar'>
+							<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
 								<CalendarIcon className='icon' />
 							</button>
 						</div>
