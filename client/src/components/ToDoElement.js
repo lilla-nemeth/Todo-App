@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import Sugar from 'sugar';
 import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown.js';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip.tsx';
 import { ReactComponent as PencilIcon } from '../assets/icons/pencil.svg';
 import { ReactComponent as TrashIcon } from '../assets/icons/trash_can.svg';
 import { ReactComponent as CalendarIcon } from '../assets/icons/calendar.svg';
