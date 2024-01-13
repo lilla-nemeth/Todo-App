@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { handleError } from '../utils/HelperFunctions';
 import ToDoInput from './ToDoInput.js';
 import ToDoElement from './ToDoElement.js';
-import SortingButtons from './SortingButtons.js';
+import SortingButtons from './SortingButtons';
 import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
 
+// export const order: { [index: string]: any } = {
 export const order = {
 	newest: 'Newest',
 	oldest: 'Oldest',
