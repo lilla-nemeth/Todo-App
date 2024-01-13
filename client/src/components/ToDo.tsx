@@ -33,7 +33,6 @@ const ToDo = (props: any) => {
 			successCb: (res: any) => {
 				setLoading(false);
 				setAllTodos(res.data);
-				console.log(res.data);
 			},
 			errorCb: (err: any) => {
 				handleError(err, setErrorMsg);
