@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
 import { createOptions } from '../../context/RequestOptions';
 import { changeOrGetData } from '../../context/Requests';
+import { Message } from '../../types/types';
 
 const SignUp = () => {
 	const [email, setEmail] = useState<string>('');
@@ -26,9 +27,10 @@ const SignUp = () => {
 			changeOrGetData({
 				options,
 				successCb: (res: any) => {
+					const message: Message['msg'] = res.data.msg;
 					setLoading(false);
 					setErrorMsg('');
-					setSuccessMsg(res.data.msg);
+					setSuccessMsg(message);
 					setTimeout(() => {
 						setSuccessMsg('');
 						setEmail('');
