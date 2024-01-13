@@ -17,6 +17,7 @@ export const order = {
 };
 
 export default function ToDo(props) {
+	const { token } = props;
 	const [allTodos, setAllTodos] = useState([]);
 	const [errorMsg, setErrorMsg] = useState('');
 	const [orderBy, setOrderBy] = useState(order.newest);
@@ -24,7 +25,7 @@ export default function ToDo(props) {
 	const navigate = useNavigate();
 
 	function getAllTodos() {
-		const options = createOptions('get', '/todos', 'cors', 'application/json', props.token, null);
+		const options = createOptions('get', '/todos', 'cors', 'application/json', token, null);
 
 		changeOrGetData({
 			options,
@@ -38,8 +39,8 @@ export default function ToDo(props) {
 		});
 	}
 
-	function deleteAllTodos() {
-		const options = createOptions('delete', '/todos', 'cors', 'application/json', props.token, null);
+	function deleteAllTodos(token) {
+		const options = createOptions('delete', '/todos', 'cors', 'application/json', token, {});
 
 		changeOrGetData({
 			options,
@@ -113,14 +114,14 @@ export default function ToDo(props) {
 	return (
 		<main className='todoMain'>
 			<section className='todoContainer'>
-				<ToDoInput getAllTodos={() => getAllTodos()} token={props.token} />
+				<ToDoInput getAllTodos={() => getAllTodos()} token={token} />
 				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
 				{sortedAllTodos.map((el) => {
-					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={props.token} />;
+					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={token} />;
 				})}
 				{allTodos.length > 0 && (
 					<div className='buttonDeleteAllContainer'>
-						<button onClick={deleteAllTodos} className='buttonDeleteAll'>
+						<button onClick={() => deleteAllTodos(token)} className='buttonDeleteAll'>
 							Delete all
 						</button>
 					</div>
