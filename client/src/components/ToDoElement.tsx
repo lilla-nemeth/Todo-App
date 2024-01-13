@@ -2,14 +2,15 @@ import { useState, useRef } from 'react';
 import Sugar from 'sugar';
 import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown';
-import Tooltip from './Tooltip.tsx';
-import { ReactComponent as PencilIcon } from '../assets/icons/pencil.svg';
-import { ReactComponent as TrashIcon } from '../assets/icons/trash_can.svg';
-import { ReactComponent as CalendarIcon } from '../assets/icons/calendar.svg';
+import Tooltip from './Tooltip';
+import Pencil from '../assets/icons/Pencil';
+import Trash from '../assets/icons/Trash';
+import Calendar from '../assets/icons/Calendar';
 import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
 
-export default function ToDoElement(props) {
+const ToDoElement = (props: any) => {
+	const { getAllTodos, token, el } = props;
 	const [allTodos, setAllTodos] = useState([]);
 	const [editedTodoId, setEditedTodoId] = useState(null);
 	const [editedTodoInput, setEditedTodoInput] = useState('');
@@ -17,23 +18,21 @@ export default function ToDoElement(props) {
 	const [hover, setHover] = useState(false);
 	const hoverTimeout = useRef;
 
-	const { getAllTodos, token, el } = props;
-
-	function deleteElement(id) {
+	function deleteElement(id: number) {
 		const options = createOptions('delete', `/todos/${id}`, 'cors', 'application/json', token, { title: allTodos });
 
 		changeOrGetData({
 			options,
-			successCb: (res) => {
+			successCb: (res: any) => {
 				getAllTodos();
 			},
-			errorCb: (err) => {
+			errorCb: (err: any) => {
 				handleError(err, setErrorMsg);
 			},
 		});
 	}
 
-	function completeTodo(el) {
+	function completeTodo(el: any) {
 		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
 			title: el.title,
 			completed: el.completed ? false : true,
@@ -42,16 +41,16 @@ export default function ToDoElement(props) {
 
 		changeOrGetData({
 			options,
-			successCb: (res) => {
+			successCb: (res: any) => {
 				getAllTodos();
 			},
-			errorCb: (err) => {
+			errorCb: (err: any) => {
 				handleError(err, setErrorMsg);
 			},
 		});
 	}
 
-	function editTodo(el, event) {
+	function editTodo(el: any, event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
 		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
@@ -62,18 +61,18 @@ export default function ToDoElement(props) {
 
 		changeOrGetData({
 			options,
-			successCb: (res) => {
+			successCb: (res: any) => {
 				getAllTodos();
 				setEditedTodoId(null);
 				setEditedTodoInput('');
 			},
-			errorCb: (err) => {
+			errorCb: (err: any) => {
 				handleError(err, setErrorMsg);
 			},
 		});
 	}
 
-	function updateImportance(el, number) {
+	function updateImportance(el: any, number: number) {
 		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
 			title: el.title,
 			completed: el.completed,
@@ -82,10 +81,10 @@ export default function ToDoElement(props) {
 
 		changeOrGetData({
 			options,
-			successCb: (res) => {
+			successCb: (res: any) => {
 				getAllTodos();
 			},
-			errorCb: (err) => {
+			errorCb: (err: any) => {
 				handleError(err, setErrorMsg);
 			},
 		});
@@ -132,7 +131,7 @@ export default function ToDoElement(props) {
 								className={el.completed ? 'buttonEditInactive' : 'buttonEdit'}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
 							>
-								<PencilIcon className='icon' />
+								<Pencil className='icon' />
 							</button>
 						</div>
 					) : (
@@ -146,19 +145,19 @@ export default function ToDoElement(props) {
 								}}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
 							>
-								<PencilIcon className='icon' />
+								<Pencil className='icon' />
 							</button>
 						</div>
 					)}
 					<div className='buttonListElements'>
 						<button className='buttonDelete' onClick={() => deleteElement(el.id)}>
-							<TrashIcon className='icon' />
+							<Trash className='icon' />
 						</button>
 					</div>
 					<Tooltip hover={hover} setHover={setHover} hoverTimeout={hoverTimeout} date={formattedDate} time={formattedTime}>
 						<div className='buttonListElements'>
 							<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
-								<CalendarIcon className='icon' />
+								<Calendar className='icon' />
 							</button>
 						</div>
 					</Tooltip>
@@ -168,11 +167,13 @@ export default function ToDoElement(props) {
 				<Dropdown
 					value={el.importance}
 					isCompleted={el.completed}
-					onSelect={(num) => {
+					onSelect={(num: number) => {
 						updateImportance(el, num);
 					}}
 				/>
 			</div>
 		</div>
 	);
-}
+};
+
+export default ToDoElement;
