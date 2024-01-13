@@ -640,6 +640,24 @@ input:focus::placeholder {
 	fill: white;
 }
 
+.bubbleContainer {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.bubbleWrapper {
+	position: absolute;
+	height: fit-content;
+	bottom: 70%;
+	left: 20%;
+	opacity: 1;
+	z-index: 29;
+	width: 70px;
+	height: 70px;
+}
+
 .icon {
 	width: 20px;
 	height: 20px;
