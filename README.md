@@ -3,7 +3,7 @@
 ## Description
 
 Todo app, that covers the CRUD operations.  
-🛠 Created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
+🛠 Created with Node.js, Express, PostgreSQL, TypeScript and React with custom UI.
 
 ![Todo List](https://raw.githubusercontent.com/lilla-nemeth/todo/main/client/src/assets/screenshots/app_screenshot_00.png)
 
