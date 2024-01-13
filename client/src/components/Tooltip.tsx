@@ -1,4 +1,4 @@
-import Bubble from './Bubble';
+import Bubble from '../assets/icons/Bubble';
 
 const Tooltip = (props: any) => {
 	const { hover, setHover, hoverTimeout, date, time } = props;
