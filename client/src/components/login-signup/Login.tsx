@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
 import { createOptions } from '../../context/RequestOptions.js';
 import { changeOrGetData } from '../../context/Requests.js';
-import { Token } from '../../types/Types';
+import { Token } from '../../types/interfaces';
 
 const Login = (props: any) => {
 	const { setToken } = props;

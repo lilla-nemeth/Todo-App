@@ -1,19 +1,15 @@
 import { useState } from 'react';
-import { ReactComponent as ArrowDown } from '../assets/icons/arrow_down.svg';
-import { generateId, chooseColor } from '../utils/HelperFunctions';
+import DownArrow from '../assets/icons/DownArrow';
+import { generateId, changeColor } from '../utils/HelperFunctions';
+import * as colorTypes from '../types/colors';
 
-const notImportantColor = 'rgb(255, 200, 200)';
-const importantColor = 'rgb(255, 157, 157)';
-const urgentColor = 'rgb(255, 103, 103)';
-const doneColor = '#ccc';
-
-const priorityNames = {
+const priorityNames: { [index: string]: any } = {
 	1: 'Not important',
 	2: 'Important',
 	3: 'Urgent',
 };
 
-export default function Dropdown(props) {
+const Dropdown = (props: any) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { value, isCompleted, onSelect } = props;
 
@@ -26,16 +22,39 @@ export default function Dropdown(props) {
 			<div
 				className='dropdownSelected'
 				style={{
-					border: `2px solid ${chooseColor(value, isCompleted, doneColor, notImportantColor, importantColor, urgentColor)}`,
-					color: chooseColor(value, isCompleted, doneColor, notImportantColor, importantColor, urgentColor),
+					border: `2px solid ${changeColor(
+						value,
+						isCompleted,
+						colorTypes.doneColor,
+						colorTypes.notImportantColor,
+						colorTypes.importantColor,
+						colorTypes.urgentColor
+					)}`,
+					color: changeColor(
+						value,
+						isCompleted,
+						colorTypes.doneColor,
+						colorTypes.notImportantColor,
+						colorTypes.importantColor,
+						colorTypes.urgentColor
+					),
 				}}
 			>
 				{priorityNames[value]}{' '}
-				<ArrowDown
+				<DownArrow
 					style={
 						isCompleted
 							? { fill: '#ccc', strokeWidth: '3' }
-							: { fill: chooseColor(value, isCompleted, doneColor, notImportantColor, importantColor, urgentColor) }
+							: {
+									fill: changeColor(
+										value,
+										isCompleted,
+										colorTypes.doneColor,
+										colorTypes.notImportantColor,
+										colorTypes.importantColor,
+										colorTypes.urgentColor
+									),
+							  }
 					}
 				/>
 			</div>
@@ -60,4 +79,6 @@ export default function Dropdown(props) {
 			)}
 		</div>
 	);
-}
+};
+
+export default Dropdown;

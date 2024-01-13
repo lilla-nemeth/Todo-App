@@ -38,7 +38,7 @@ export function generateId(num) {
 	}
 }
 
-export function chooseColor(number, isCompleted, doneColor, notImportantColor, importantColor, urgentColor) {
+export function changeColor(number, isCompleted, doneColor, notImportantColor, importantColor, urgentColor) {
 	if (isCompleted) {
 		return doneColor;
 	} else if (number === 1) {

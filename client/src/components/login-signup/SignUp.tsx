@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError } from '../../utils/HelperFunctions';
 import { createOptions } from '../../context/RequestOptions';
 import { changeOrGetData } from '../../context/Requests';
-import { Message } from '../../types/Types';
+import { Message } from '../../types/interfaces';
 
 const SignUp = () => {
 	const [email, setEmail] = useState<string>('');
