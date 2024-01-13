@@ -8,11 +8,11 @@
 		"@testing-library/user-event": "^14.0.4",
 		"@types/react": "^18.2.47",
 		"@types/react-dom": "^18.2.18",
-		"axios": "^0.26.1",
+		"axios": "^1.6.5",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
 		"react-router-dom": "^6.3.0",
-		"react-scripts": "5.0.0",
+		"react-scripts": "^3.0.1",
 		"sugar": "^2.0.6",
 		"web-vitals": "^2.1.4"
 	},
@@ -40,5 +40,8 @@
 			"last 1 safari version"
 		]
 	},
-	"proxy": "http://localhost:3002"
+	"proxy": "http://localhost:3002",
+	"devDependencies": {
+		"@types/node": "^20.11.0"
+	}
 }
