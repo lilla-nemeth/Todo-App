@@ -10,12 +10,11 @@ const Login = (props: any) => {
 	const [pw, setPw] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
 	const [loading, setLoading] = useState(false);
-
 	const navigate = useNavigate();
 
 	const disabled = !email || !pw || loading;
 
-	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		const options = createOptions('post', '/login', 'cors', 'application/json', null, { email, pw });
@@ -41,11 +40,11 @@ const Login = (props: any) => {
 				},
 			});
 		}
-	}
+	};
 
 	useEffect(() => {
 		navigate('/login');
-	}, []); 
+	}, []);
 
 	return (
 		<main>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import ToDo from './components/ToDo';
 import SignUp from './components/login-signup/SignUp';
-// import Login from './components/login-signup/Login';
 import Login from './components/login-signup/Login.tsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
