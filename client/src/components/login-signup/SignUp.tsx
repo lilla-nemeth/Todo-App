@@ -4,19 +4,18 @@ import { handleError, clearError } from '../../utils/HelperFunctions';
 import { createOptions } from '../../context/RequestOptions';
 import { changeOrGetData } from '../../context/Requests';
 
-export default function SignUp() {
-	const [email, setEmail] = useState('');
-	const [username, setUsername] = useState('');
-	const [pw, setPw] = useState('');
-	const [errorMsg, setErrorMsg] = useState('');
-	const [successMsg, setSuccessMsg] = useState('');
-	const [loading, setLoading] = useState(false);
-
+const SignUp = () => {
+	const [email, setEmail] = useState<string>('');
+	const [username, setUsername] = useState<string>('');
+	const [pw, setPw] = useState<string>('');
+	const [errorMsg, setErrorMsg] = useState<string>('');
+	const [successMsg, setSuccessMsg] = useState<string>('');
+	const [loading, setLoading] = useState<boolean>(false);
 	const navigate = useNavigate();
 
-	let disabled = !email || !username || !pw || loading;
+	const disabled = !email || !username || !pw || loading;
 
-	function handleSubmit(event) {
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
 		const options = createOptions('post', '/signup', 'cors', 'application/json', null, { email, username, pw });
@@ -26,7 +25,7 @@ export default function SignUp() {
 
 			changeOrGetData({
 				options,
-				successCb: (res) => {
+				successCb: (res: any) => {
 					setLoading(false);
 					setErrorMsg('');
 					setSuccessMsg(res.data.msg);
@@ -38,7 +37,7 @@ export default function SignUp() {
 						navigate('/login');
 					}, 2500);
 				},
-				errorCb: (err) => {
+				errorCb: (err: any) => {
 					setLoading(false);
 					clearError();
 					handleError(err, setErrorMsg);
@@ -104,4 +103,6 @@ export default function SignUp() {
 			</section>
 		</main>
 	);
-}
+};
+
+export default SignUp;
