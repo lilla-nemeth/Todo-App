@@ -1,4 +1,4 @@
-import { order } from '../components/ToDo.js';
+import { order } from '../components/ToDo';
 import AscendingArrow from '../assets/icons/AscendingArrow';
 import DescendingArrow from '../assets/icons/DescendingArrow';
 
