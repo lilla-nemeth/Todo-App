@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { handleError, clearError } from '../../utils/helperFunctions';
-import { handleInputChange } from '../../utils/helperFunctions';
-import { createOptions } from '../../context/RequestOptions.js';
+import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../context/Requests.js';
-import { Token } from '../../types/interfaces';
+import { DataToken, DataLogin } from '../../types/interfaces';
 
 const Login = (props: any) => {
 	const { setToken } = props;
-	const [email, setEmail] = useState<string>('');
-	const [pw, setPw] = useState<string>('');
+	const [email, setEmail] = useState<DataLogin['email']>('');
+	const [pw, setPw] = useState<DataLogin['pw']>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [loading, setLoading] = useState<boolean>(false);
 	const navigate = useNavigate();
@@ -27,7 +25,7 @@ const Login = (props: any) => {
 			changeOrGetData({
 				options,
 				successCb: (res: any) => {
-					const token: Token['token'] = res.data.token;
+					const token: DataToken['token'] = res.data.token;
 					localStorage.setItem('token', token);
 					setLoading(false);
 					setErrorMsg('');

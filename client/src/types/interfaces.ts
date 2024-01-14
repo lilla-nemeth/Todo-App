@@ -1,5 +1,5 @@
 export type Username = string;
-export type Token = string | null;
+export type Token = string;
 
 export interface DataToken {
 	token: Token;
