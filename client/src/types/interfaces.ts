@@ -1,5 +1,19 @@
 export type Username = string;
 export type Token = string;
+export type Title = string;
+export type Completed = boolean;
+export type Importance = number;
+
+export interface TodoItem {
+	id: number;
+	userid: number;
+	title: Title;
+	importance: Importance;
+	completed: Completed;
+	created: string;
+}
+
+export interface TodoItem extends Array<TodoItem> {}
 
 export interface DataToken {
 	token: Token;
@@ -29,6 +43,12 @@ export interface DataInput {
 	title: string;
 }
 
+export interface DataCompleteTodo {
+	title: Title;
+	completed: Completed;
+	importance: Importance;
+}
+
 export interface Headers {
 	appJson: string;
 	token?: Token;
@@ -41,17 +61,6 @@ export interface Options {
 	headers: Headers;
 	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username | DataDeleteTodo | DataInput;
 }
-
-export interface TodoItem {
-	id: number;
-	userid: number;
-	title: string;
-	importance: number;
-	completed: boolean;
-	created: string;
-}
-
-export interface TodoItem extends Array<TodoItem> {}
 
 export interface TodoOrderNames {
 	newest: string;
