@@ -6,7 +6,7 @@ import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
 import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
-// import TodoItem from '../types/interfaces';
+import { Token, TodoItem, TodoOrderNames } from '../types/interfaces';
 
 export const order: { [index: string]: any } = {
 	newest: 'Newest',
@@ -17,12 +17,12 @@ export const order: { [index: string]: any } = {
 	completed: 'Completed',
 };
 
-const ToDo = (props: any) => {
+const ToDo = (props: Token) => {
 	const { token } = props;
-	const [allTodos, setAllTodos] = useState([]);
-	const [errorMsg, setErrorMsg] = useState('');
-	const [orderBy, setOrderBy] = useState(order.newest);
-	const [loading, setLoading] = useState(true);
+	const [allTodos, setAllTodos] = useState<TodoItem[]>([]);
+	const [errorMsg, setErrorMsg] = useState<string>('');
+	const [orderBy, setOrderBy] = useState<TodoOrderNames['newest']>(order.newest);
+	const [loading, setLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 
 	function getAllTodos() {
@@ -61,80 +61,74 @@ const ToDo = (props: any) => {
 	}, []);
 
 	// const sortedAllTodos: TodoItem[] = allTodos.sort((a, b) => {
-	// 	if (orderBy === order.newest) {
-	// 		// const createdA: TodoItem['created'] = a.created;
-	// 		// const createdB: TodoItem['created'] = b.created;
-
-	// 		if (a.created.valueOf() < b.created.valueOf()) {
+	// if (orderBy === order.newest) {
+	// 	// const createdA: TodoItem['created'] = a.created;
+	// 	// const createdB: TodoItem['created'] = b.created;
+	// 	if (a.created.valueOf() < b.created.valueOf()) {
+	// 		return 1;
+	// 	} else {
+	// 		return -1;
+	// 	}
+	// }
+	// if (orderBy === order.oldest) {
+	// 	if (a.created.valueOf() < b.created.valueOf()) {
+	// 		return -1;
+	// 	} else {
+	// 		return 1;
+	// 	}
+	// }
+	// if (orderBy === order.mostImportant) {
+	// 	if (a.importance === b.importance) {
+	// 		if (a.title < b.title) {
+	// 			return 1;
+	// 		} else {
+	// 			return -1;
+	// 		}
+	// 	} else {
+	// 		if (a.importance < b.importance) {
 	// 			return 1;
 	// 		} else {
 	// 			return -1;
 	// 		}
 	// 	}
-
-	// 	if (orderBy === order.oldest) {
-	// 		if (a.created.valueOf() < b.created.valueOf()) {
+	// }
+	// if (orderBy === order.leastImportant) {
+	// 	if (a.importance === b.importance) {
+	// 		if (a.title < b.title) {
+	// 			return -1;
+	// 		} else {
+	// 			return 1;
+	// 		}
+	// 	} else {
+	// 		if (a.importance < b.importance) {
 	// 			return -1;
 	// 		} else {
 	// 			return 1;
 	// 		}
 	// 	}
-
-	// 	if (orderBy === order.mostImportant) {
-	// 		if (a.importance === b.importance) {
-	// 			if (a.title < b.title) {
-	// 				return 1;
-	// 			} else {
-	// 				return -1;
-	// 			}
+	// }
+	// if (orderBy === order.uncompleted) {
+	// 	if (!a.completed && !b.completed) {
+	// 		return;
+	// 	} else {
+	// 		if (a.completed < b.completed) {
+	// 			return -1;
 	// 		} else {
-	// 			if (a.importance < b.importance) {
-	// 				return 1;
-	// 			} else {
-	// 				return -1;
-	// 			}
+	// 			return 1;
 	// 		}
 	// 	}
-
-	// 	if (orderBy === order.leastImportant) {
-	// 		if (a.importance === b.importance) {
-	// 			if (a.title < b.title) {
-	// 				return -1;
-	// 			} else {
-	// 				return 1;
-	// 			}
+	// }
+	// if (orderBy === order.completed) {
+	// 	if (!a.completed && !b.completed) {
+	// 		return;
+	// 	} else {
+	// 		if (a.completed < b.completed) {
+	// 			return 1;
 	// 		} else {
-	// 			if (a.importance < b.importance) {
-	// 				return -1;
-	// 			} else {
-	// 				return 1;
-	// 			}
+	// 			return -1;
 	// 		}
 	// 	}
-
-	// 	if (orderBy === order.uncompleted) {
-	// 		if (!a.completed && !b.completed) {
-	// 			return;
-	// 		} else {
-	// 			if (a.completed < b.completed) {
-	// 				return -1;
-	// 			} else {
-	// 				return 1;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	if (orderBy === order.completed) {
-	// 		if (!a.completed && !b.completed) {
-	// 			return;
-	// 		} else {
-	// 			if (a.completed < b.completed) {
-	// 				return 1;
-	// 			} else {
-	// 				return -1;
-	// 			}
-	// 		}
-	// 	}
+	// }
 	// });
 
 	if (loading) {
@@ -155,6 +149,9 @@ const ToDo = (props: any) => {
 				{/* {sortedAllTodos.map((el: any) => {
 					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={token} />;
 				})} */}
+				{allTodos.map((el: any) => {
+					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={token} />;
+				})}
 				{allTodos.length > 0 && (
 					<div className='buttonDeleteAllContainer'>
 						<button onClick={() => deleteAllTodos(token)} className='buttonDeleteAll'>
