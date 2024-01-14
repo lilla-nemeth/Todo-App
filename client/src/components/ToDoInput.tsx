@@ -1,12 +1,11 @@
 import { useState } from 'react';
-// import { handleError } from '../utils/helperFunctions';
-import { handleInputChange } from '../utils/helperFunctions';
-import { createOptions } from '../context/RequestOptions';
+import { handleError, handleInputChange, createOptions } from '../utils/helperFunctions';
 import { changeOrGetData } from '../context/Requests';
+import { DataInput } from '../types/interfaces';
 
 const ToDoInput = (props: any) => {
 	const { getAllTodos, token } = props;
-	const [input, setInput] = useState('');
+	const [input, setInput] = useState<DataInput['title']>('');
 	const [errorMsg, setErrorMsg] = useState('');
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

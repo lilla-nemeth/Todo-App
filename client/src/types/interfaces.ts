@@ -25,6 +25,10 @@ export interface DataDeleteTodo {
 	title: TodoItem[];
 }
 
+export interface DataInput {
+	title: string;
+}
+
 export interface Headers {
 	appJson: string;
 	token?: Token;
@@ -35,7 +39,7 @@ export interface Options {
 	url: string;
 	mode: string;
 	headers: Headers;
-	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username;
+	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username | DataDeleteTodo | DataInput;
 }
 
 export interface TodoItem {
