@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { handleError, clearError } from '../../utils/HelperFunctions';
+// import { handleError, clearError } from '../../utils/helperFunctions';
+import { handleInputChange } from '../../utils/helperFunctions';
 import { createOptions } from '../../context/RequestOptions.js';
 import { changeOrGetData } from '../../context/Requests.js';
 import { Token } from '../../types/interfaces';
@@ -60,7 +61,7 @@ const Login = (props: any) => {
 							type='email'
 							placeholder='Email address'
 							value={email}
-							onChange={(event) => setEmail(event.target.value)}
+							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
 						<span className='loginActive'></span>
 					</div>
@@ -72,7 +73,7 @@ const Login = (props: any) => {
 							type='password'
 							placeholder='Password'
 							value={pw}
-							onChange={(event) => setPw(event.target.value)}
+							onChange={(event) => handleInputChange(setPw, event)}
 						/>
 					</div>
 					<div>

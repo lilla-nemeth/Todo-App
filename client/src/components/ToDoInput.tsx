@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { handleError, handleChange } from '../utils/HelperFunctions';
+// import { handleError } from '../utils/helperFunctions';
+import { handleInputChange } from '../utils/helperFunctions';
 import { createOptions } from '../context/RequestOptions';
 import { changeOrGetData } from '../context/Requests';
 
@@ -30,7 +31,13 @@ const ToDoInput = (props: any) => {
 	return (
 		<div>
 			<form className='form' onSubmit={handleSubmit}>
-				<input type='text' placeholder='Add todo' value={input} className='todoInput' onChange={(e) => handleChange(e, setInput)} />
+				<input
+					type='text'
+					placeholder='Add todo'
+					value={input}
+					className='todoInput'
+					onChange={(event) => handleInputChange(setInput, event)}
+				/>
 				<p className='errorMsg'>{errorMsg}</p>
 			</form>
 		</div>

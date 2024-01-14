@@ -1,9 +1,5 @@
 let timeOut;
 
-export function handleChange(event, setter) {
-	setter(event.target.value);
-}
-
 export function handleError(err, setter) {
 	setter(err && err.response && err.response.data && err.response.data.msg);
 

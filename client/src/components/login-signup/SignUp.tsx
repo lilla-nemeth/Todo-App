@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { handleError, clearError } from '../../utils/HelperFunctions';
+// import { handleError, clearError } from '../../utils/helperFunctions';
+import { handleInputChange } from '../../utils/helperFunctions';
 import { createOptions } from '../../context/RequestOptions';
 import { changeOrGetData } from '../../context/Requests';
 import { Message } from '../../types/interfaces';
@@ -61,7 +62,7 @@ const SignUp = () => {
 							type='email'
 							placeholder='Email address'
 							value={email}
-							onChange={(event) => setEmail(event.target.value)}
+							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
 					</div>
 					<div className='username'>
@@ -72,7 +73,7 @@ const SignUp = () => {
 							type='text'
 							placeholder='Username'
 							value={username}
-							onChange={(event) => setUsername(event.target.value)}
+							onChange={(event) => handleInputChange(setUsername, event)}
 						/>
 					</div>
 					<div className='password'>
@@ -83,7 +84,7 @@ const SignUp = () => {
 							type='password'
 							placeholder='Password'
 							value={pw}
-							onChange={(event) => setPw(event.target.value)}
+							onChange={(event) => handleInputChange(setPw, event)}
 						/>
 					</div>
 					<div>
