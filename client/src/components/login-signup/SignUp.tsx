@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { handleError, clearError } from '../../utils/helperFunctions';
-import { handleInputChange } from '../../utils/helperFunctions';
-import { createOptions } from '../../context/RequestOptions';
+import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../context/Requests';
-import { Message } from '../../types/interfaces';
+import { DataMessage, DataSignUp } from '../../types/interfaces';
 
 const SignUp = () => {
-	const [email, setEmail] = useState<string>('');
-	const [username, setUsername] = useState<string>('');
-	const [pw, setPw] = useState<string>('');
+	const [email, setEmail] = useState<DataSignUp['email']>('');
+	const [username, setUsername] = useState<DataSignUp['username']>('');
+	const [pw, setPw] = useState<DataSignUp['pw']>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [successMsg, setSuccessMsg] = useState<string>('');
 	const [loading, setLoading] = useState<boolean>(false);
@@ -28,7 +26,7 @@ const SignUp = () => {
 			changeOrGetData({
 				options,
 				successCb: (res: any) => {
-					const message: Message['msg'] = res.data.msg;
+					const message: DataMessage['msg'] = res.data.msg;
 					setLoading(false);
 					setErrorMsg('');
 					setSuccessMsg(message);
