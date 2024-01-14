@@ -1,6 +1,7 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import Sugar from 'sugar';
-import { handleError, selectToEdit, createDate, createFormattedDate, createFormattedTime } from '../utils/HelperFunctions';
+// import { handleError, selectToEdit, createDate, createFormattedDate, createFormattedTime } from '../utils/helperFunctions';
+import { createFormattedDate } from '../utils/helperFunctions';
 import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
 import Pencil from '../assets/icons/Pencil';
@@ -13,10 +14,11 @@ const ToDoElement = (props: any) => {
 	const { getAllTodos, token, el } = props;
 	const [allTodos, setAllTodos] = useState([]);
 	const [editedTodoId, setEditedTodoId] = useState(null);
-	const [editedTodoInput, setEditedTodoInput] = useState('');
-	const [errorMsg, setErrorMsg] = useState('');
-	const [hover, setHover] = useState(false);
-	const hoverTimeout = useRef;
+	const [editedTodoInput, setEditedTodoInput] = useState<string>('');
+	const [errorMsg, setErrorMsg] = useState<string>('');
+	const [hover, setHover] = useState<boolean>(false);
+	// const hoverTimeout = useRef;
+	const hoverTimeout = useRef<HTMLDivElement>(null);
 
 	function deleteElement(id: number) {
 		const options = createOptions('delete', `/todos/${id}`, 'cors', 'application/json', token, { title: allTodos });
@@ -152,8 +154,8 @@ const ToDoElement = (props: any) => {
 						hover={hover}
 						setHover={setHover}
 						hoverTimeout={hoverTimeout}
-						date={createFormattedDate(Sugar, el, createDate)}
-						time={createFormattedTime(Sugar, el, createDate)}
+						date={createFormattedDate(Sugar, el, '{dd}/{MM}/{yyyy}')}
+						time={createFormattedDate(Sugar, el, '{HH}:{mm}:{ss}')}
 					>
 						<div className='buttonListElements'>
 							<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
