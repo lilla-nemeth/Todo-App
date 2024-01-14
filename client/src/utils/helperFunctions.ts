@@ -1,10 +1,42 @@
 import { Dispatch, SetStateAction, ChangeEvent } from 'react';
 import { TodoItem } from '../types/interfaces';
 
+// TODO: change any type
+let timeOut: any;
+
 export const handleInputChange = (stateSetter: Dispatch<SetStateAction<string>>, event: ChangeEvent<HTMLInputElement>) => {
 	stateSetter(event.target.value);
 };
 
+// TODO: create interface in types for err and change type of any
+export const handleError = (err: any, stateSetter: Dispatch<SetStateAction<string>>) => {
+	stateSetter(err && err.response && err.response.data && err.response.data.msg);
+
+	timeOut = setTimeout(() => {
+		stateSetter('');
+	}, 5000);
+};
+
+export const clearError = () => {
+	clearTimeout(timeOut);
+};
+
+export const selectToEdit = (
+	el: TodoItem,
+	editedId: number | null,
+	stateSetterForID: Dispatch<SetStateAction<number | null>>,
+	stateSetterForInput: Dispatch<SetStateAction<string>>
+) => {
+	if (el && editedId === el.id) {
+		stateSetterForID(null);
+		stateSetterForInput('');
+	} else {
+		stateSetterForID(el.id);
+		stateSetterForInput(el.title);
+	}
+};
+
+// TODO: use constants for these strings
 export const generateId = (num: string) => {
 	const number = Number(num);
 
@@ -28,14 +60,14 @@ export const createFormattedDate = (Sugar: sugarjs.Sugar, el: TodoItem, dateForm
 	return formattedDate;
 };
 
-export function changeColor(
+export const changeColor = (
 	number: TodoItem['importance'],
 	isCompleted: TodoItem['completed'],
 	doneColor: string,
 	notImportantColor: string,
 	importantColor: string,
 	urgentColor: string
-) {
+) => {
 	if (isCompleted) {
 		return doneColor;
 	} else if (number === 1) {
@@ -45,4 +77,4 @@ export function changeColor(
 	} else if (number === 3) {
 		return urgentColor;
 	}
-}
+};

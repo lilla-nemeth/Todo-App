@@ -1,7 +1,6 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import Sugar from 'sugar';
-// import { handleError, selectToEdit, createDate, createFormattedDate, createFormattedTime } from '../utils/helperFunctions';
-import { createFormattedDate } from '../utils/helperFunctions';
+import { handleError, selectToEdit, createFormattedDate } from '../utils/helperFunctions';
 import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
 import Pencil from '../assets/icons/Pencil';
@@ -13,11 +12,10 @@ import { changeOrGetData } from '../context/Requests.js';
 const ToDoElement = (props: any) => {
 	const { getAllTodos, token, el } = props;
 	const [allTodos, setAllTodos] = useState([]);
-	const [editedTodoId, setEditedTodoId] = useState(null);
+	const [editedTodoId, setEditedTodoId] = useState<number | null>(null);
 	const [editedTodoInput, setEditedTodoInput] = useState<string>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [hover, setHover] = useState<boolean>(false);
-	// const hoverTimeout = useRef;
 	const hoverTimeout = useRef<HTMLDivElement>(null);
 
 	function deleteElement(id: number) {
