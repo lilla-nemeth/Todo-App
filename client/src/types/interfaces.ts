@@ -1,17 +1,41 @@
-export interface Token {
-	token: string;
+export type Username = string;
+export type Token = string | null;
+
+export interface DataToken {
+	token: Token;
 }
 
-export interface Message {
+export interface DataMessage {
 	msg: string;
 }
 
-export interface TokenData {
-	[key: string]: Token;
+export interface DataLogin {
+	email: string;
+	pw: string;
 }
 
-export interface MessageData {
-	[key: string]: Message;
+export interface DataSignUp {
+	email: string;
+	pw: string;
+	username: Username;
+}
+
+export interface DataDeleteTodo {
+	// { title: allTodos }
+	title: TodoItem[];
+}
+
+export interface Headers {
+	appJson: string;
+	token?: Token;
+}
+
+export interface Options {
+	method: string;
+	url: string;
+	mode: string;
+	headers: Headers;
+	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username;
 }
 
 export interface TodoItem {
@@ -32,4 +56,8 @@ export interface TodoOrderNames {
 	leastImportant: string;
 	uncompleted: string;
 	completed: string;
+}
+
+export interface CallbackOneParameter<typeOne, typeTwo = void> {
+	(param1: typeOne): typeTwo;
 }
