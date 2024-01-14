@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleError } from '../utils/helperFunctions';
+import { handleError, createOptions } from '../utils/helperFunctions';
 import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
-import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
-import { Token, TodoItem, TodoOrderNames } from '../types/interfaces';
+import { TodoItem, TodoOrderNames } from '../types/interfaces';
 
 export const order: { [index: string]: any } = {
 	newest: 'Newest',
@@ -17,7 +16,7 @@ export const order: { [index: string]: any } = {
 	completed: 'Completed',
 };
 
-const ToDo = (props: Token) => {
+const ToDo = (props: string | null) => {
 	const { token } = props;
 	const [allTodos, setAllTodos] = useState<TodoItem[]>([]);
 	const [errorMsg, setErrorMsg] = useState<string>('');
@@ -25,7 +24,7 @@ const ToDo = (props: Token) => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 
-	function getAllTodos() {
+	function getAllTodos(token: string | null) {
 		const options = createOptions('get', '/todos', 'cors', 'application/json', token, null);
 
 		changeOrGetData({
@@ -40,7 +39,7 @@ const ToDo = (props: Token) => {
 		});
 	}
 
-	function deleteAllTodos(token: string) {
+	function deleteAllTodos(token: string | null) {
 		const options = createOptions('delete', '/todos', 'cors', 'application/json', token, {});
 
 		changeOrGetData({
@@ -57,7 +56,7 @@ const ToDo = (props: Token) => {
 	useEffect(() => {
 		navigate('/');
 
-		getAllTodos();
+		getAllTodos(token);
 	}, []);
 
 	// const sortedAllTodos: TodoItem[] = allTodos.sort((a, b) => {
@@ -144,13 +143,13 @@ const ToDo = (props: Token) => {
 	return (
 		<main className='todoMain'>
 			<section className='todoContainer'>
-				<ToDoInput getAllTodos={() => getAllTodos()} token={token} />
+				<ToDoInput getAllTodos={() => getAllTodos(token)} token={token} />
 				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
 				{/* {sortedAllTodos.map((el: any) => {
 					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={token} />;
 				})} */}
 				{allTodos.map((el: any) => {
-					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={token} />;
+					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos(token)} el={el} token={token} />;
 				})}
 				{allTodos.length > 0 && (
 					<div className='buttonDeleteAllContainer'>

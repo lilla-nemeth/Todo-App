@@ -1,17 +1,17 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import Sugar from 'sugar';
-import { handleError, selectToEdit, createFormattedDate } from '../utils/helperFunctions';
+import { handleError, selectToEdit, createFormattedDate, createOptions } from '../utils/helperFunctions';
 import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
 import Pencil from '../assets/icons/Pencil';
 import Trash from '../assets/icons/Trash';
 import Calendar from '../assets/icons/Calendar';
-import { createOptions } from '../context/RequestOptions.js';
 import { changeOrGetData } from '../context/Requests.js';
+import { TodoItem } from '../types/interfaces';
 
 const ToDoElement = (props: any) => {
 	const { getAllTodos, token, el } = props;
-	const [allTodos, setAllTodos] = useState([]);
+	const [allTodos, setAllTodos] = useState<TodoItem[]>([]);
 	const [editedTodoId, setEditedTodoId] = useState<number | null>(null);
 	const [editedTodoInput, setEditedTodoInput] = useState<string>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
@@ -32,7 +32,7 @@ const ToDoElement = (props: any) => {
 		});
 	}
 
-	function completeTodo(el: any) {
+	function completeTodo(el: TodoItem) {
 		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
 			title: el.title,
 			completed: el.completed ? false : true,

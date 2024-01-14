@@ -5,16 +5,16 @@ import SignUp from './components/login-signup/SignUp';
 import Login from './components/login-signup/Login';
 import Navbar from './components/Navbar';
 import './styles/App.css';
-import { handleError, handleLogOut } from './utils/helperFunctions';
-import { createOptions } from './context/RequestOptions';
+import { handleError, handleLogOut, createOptions } from './utils/helperFunctions';
 import { changeOrGetData } from './context/Requests';
+import { Username } from './types/interfaces';
 
 const App = () => {
-	const [token, setToken] = useState<string | null>(null);
-	const [username, setUsername] = useState<string>('');
+	const [token, setToken] = useState<string | null>('');
+	const [username, setUsername] = useState<Username>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 
-	function addUser(token: any) {
+	function addUser(token: string | null) {
 		const options = createOptions('get', '/user', 'cors', 'application/json', token, null);
 
 		changeOrGetData({
@@ -29,7 +29,7 @@ const App = () => {
 	}
 
 	useEffect(() => {
-		const tokenFromLocalStorage: string | null = localStorage.getItem('token');
+		const tokenFromLocalStorage: string = JSON.parse(localStorage.getItem('token') || '');
 
 		if (tokenFromLocalStorage) {
 			setToken(tokenFromLocalStorage);
