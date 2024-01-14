@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, ChangeEvent } from 'react';
-import { TodoItem } from '../types/interfaces';
+import { TodoItem, Options, Headers } from '../types/interfaces';
+import axios from 'axios';
 
 // TODO: change any type
 let timeOut: any;
@@ -78,3 +79,65 @@ export const changeColor = (
 		return urgentColor;
 	}
 };
+
+// ORIGINAL:
+
+// Strings:
+// method - requestMethod
+// url - endpoint
+// mode
+// appJson - application/json
+
+// token - (string | null)
+// dataObject - dataObject (Object | null)
+
+// export function createOptions(requestMethod, endpoint, mode, appJson, token, dataObject) {
+// 	const options = {
+// 		method: requestMethod,
+// 		url: endpoint,
+// 		mode: mode,
+// 		headers: {
+// 			'Content-Type': appJson,
+// 			'x-auth-token': token,
+// 		},
+// 		data: dataObject,
+// 	};
+
+// 	return options;
+// }
+
+export const createOptions = (
+	requestMethod: Options['method'],
+	endpoint: Options['url'],
+	mode: Options['mode'],
+	appJson: Headers['appJson'],
+	token: string | null,
+	dataObject: Options['data'] | null
+) => {
+	const options = {
+		method: requestMethod,
+		url: endpoint,
+		mode: mode,
+		headers: {
+			'Content-Type': appJson,
+			'x-auth-token': token,
+		},
+		data: dataObject,
+	};
+
+	return options;
+};
+
+// options - createOptions function (object)
+// successCb - success callback
+// errorCb - error callback
+
+// export const changeOrGetData = ({ options, successCb, errorCb }) => {
+// 	axios(options)
+// 		.then((res) => {
+// 			if (res && successCb) successCb(res);
+// 		})
+// 		.catch((err) => {
+// 			if (err && errorCb) errorCb(err);
+// 		});
+// };
