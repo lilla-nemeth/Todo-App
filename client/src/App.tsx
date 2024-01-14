@@ -5,14 +5,14 @@ import SignUp from './components/login-signup/SignUp';
 import Login from './components/login-signup/Login';
 import Navbar from './components/Navbar';
 import './styles/App.css';
-import { handleError, handleLogOut } from './utils/HelperFunctions';
+import { handleError, handleLogOut } from './utils/helperFunctions';
 import { createOptions } from './context/RequestOptions';
 import { changeOrGetData } from './context/Requests';
 
 const App = () => {
 	const [token, setToken] = useState<string | null>(null);
-	const [user, setUser] = useState('');
-	const [errorMsg, setErrorMsg] = useState('');
+	const [username, setUsername] = useState<string>('');
+	const [errorMsg, setErrorMsg] = useState<string>('');
 
 	function addUser(token: any) {
 		const options = createOptions('get', '/user', 'cors', 'application/json', token, null);
@@ -20,7 +20,7 @@ const App = () => {
 		changeOrGetData({
 			options,
 			successCb: (res: any) => {
-				setUser(res.data);
+				setUsername(res.data);
 			},
 			errorCb: (err: any) => {
 				handleError(err, setErrorMsg);
@@ -54,7 +54,7 @@ const App = () => {
 	return (
 		<>
 			<BrowserRouter>
-				<Navbar handleLogOut={handleLogOut} setToken={setToken} user={user} />
+				<Navbar handleLogOut={handleLogOut} setToken={setToken} username={username} />
 				<Routes>
 					<Route path='/' element={<ToDo token={token} />}></Route>
 					<Route path='*' element={<ToDo token={token} />}></Route>
