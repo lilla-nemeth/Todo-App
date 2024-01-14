@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleError } from '../utils/HelperFunctions';
+import { handleError } from '../utils/helperFunctions';
 import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
