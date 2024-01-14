@@ -24,3 +24,12 @@ export interface TodoItem {
 }
 
 export interface TodoItem extends Array<TodoItem> {}
+
+export interface TodoOrderNames {
+	newest: string;
+	oldest: string;
+	mostImportant: string;
+	leastImportant: string;
+	uncompleted: string;
+	completed: string;
+}
