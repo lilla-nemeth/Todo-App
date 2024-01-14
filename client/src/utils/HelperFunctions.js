@@ -54,3 +54,20 @@ export function handleLogOut(setToken) {
 	localStorage.removeItem('token');
 	setToken(null);
 }
+
+export function createDate(Sugar, el) {
+	const sugarDate = Sugar.Date.create(el.created);
+	return sugarDate;
+}
+
+export function createFormattedDate(Sugar, el, dateCb) {
+	dateCb(Sugar, el);
+	const formattedDate = Sugar.Date.format(dateCb(Sugar, el), '{dd}/{MM}/{yyyy}');
+	return formattedDate;
+}
+
+export function createFormattedTime(Sugar, el, dateCb) {
+	dateCb(Sugar, el);
+	const formattedTime = Sugar.Date.format(dateCb(Sugar, el), '{HH}:{mm}:{ss}');
+	return formattedTime;
+}

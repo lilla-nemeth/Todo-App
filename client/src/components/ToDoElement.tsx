@@ -1,6 +1,6 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import Sugar from 'sugar';
-import { handleError, selectToEdit } from '../utils/HelperFunctions';
+import { handleError, selectToEdit, createDate, createFormattedDate, createFormattedTime } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
 import Pencil from '../assets/icons/Pencil';
@@ -94,10 +94,6 @@ const ToDoElement = (props: any) => {
 		setEditedTodoInput(event.target.value);
 	};
 
-	let sugarDate = Sugar.Date.create(el.created);
-	let formattedDate = Sugar.Date.format(sugarDate, '{dd}/{MM}/{yyyy}');
-	let formattedTime = Sugar.Date.format(sugarDate, '{HH}:{mm}:{ss}');
-
 	return (
 		<div className='todoWrapper'>
 			<div className='checkboxTitleButtons'>
@@ -152,7 +148,13 @@ const ToDoElement = (props: any) => {
 							<Trash className='icon' />
 						</button>
 					</div>
-					<Tooltip hover={hover} setHover={setHover} hoverTimeout={hoverTimeout} date={formattedDate} time={formattedTime}>
+					<Tooltip
+						hover={hover}
+						setHover={setHover}
+						hoverTimeout={hoverTimeout}
+						date={createFormattedDate(Sugar, el, createDate)}
+						time={createFormattedTime(Sugar, el, createDate)}
+					>
 						<div className='buttonListElements'>
 							<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
 								<Calendar className='icon' />
