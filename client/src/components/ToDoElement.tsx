@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, ChangeEvent } from 'react';
 import Sugar from 'sugar';
 import { handleError, selectToEdit } from '../utils/HelperFunctions';
 import Dropdown from './Dropdown';
@@ -90,6 +90,10 @@ const ToDoElement = (props: any) => {
 		});
 	}
 
+	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+		setEditedTodoInput(event.target.value);
+	};
+
 	let sugarDate = Sugar.Date.create(el.created);
 	let formattedDate = Sugar.Date.format(sugarDate, '{dd}/{MM}/{yyyy}');
 	let formattedTime = Sugar.Date.format(sugarDate, '{HH}:{mm}:{ss}');
@@ -112,13 +116,7 @@ const ToDoElement = (props: any) => {
 						<div className='titleContainer'>
 							<div className='todoElement'>
 								<form onSubmit={(event) => editTodo(el, event)}>
-									<input
-										type='text'
-										value={editedTodoInput}
-										className='editInput'
-										autoFocus
-										onChange={(event) => setEditedTodoInput(event.target.value)}
-									/>
+									<input type='text' value={editedTodoInput} className='editInput' autoFocus onChange={handleInputChange} />
 								</form>
 							</div>
 						</div>
