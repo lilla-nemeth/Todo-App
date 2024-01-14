@@ -27,3 +27,22 @@ export const createFormattedDate = (Sugar: sugarjs.Sugar, el: TodoItem, dateForm
 	const formattedDate = Sugar.Date.format(date, dateFormat);
 	return formattedDate;
 };
+
+export function changeColor(
+	number: TodoItem['importance'],
+	isCompleted: TodoItem['completed'],
+	doneColor: string,
+	notImportantColor: string,
+	importantColor: string,
+	urgentColor: string
+) {
+	if (isCompleted) {
+		return doneColor;
+	} else if (number === 1) {
+		return notImportantColor;
+	} else if (number === 2) {
+		return importantColor;
+	} else if (number === 3) {
+		return urgentColor;
+	}
+}
