@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { handleError, handleInputChange, createOptions } from '../utils/helperFunctions';
 import { changeOrGetData } from '../utils/helperFunctions';
-import { DataInput } from '../types/types';
+import { DataInput, AxiosRequestConfig, AxiosError } from '../types/types';
 
 const ToDoInput = (props: any) => {
 	const { getAllTodos, token } = props;
@@ -11,15 +11,15 @@ const ToDoInput = (props: any) => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const options = createOptions('post', '/todos', 'cors', 'application/json', token, { title: input });
+		const options: AxiosRequestConfig = createOptions('post', '/todos', 'cors', 'application/json', token, { title: input });
 
 		if (input !== '') {
 			changeOrGetData({
 				options,
-				successCb: (res: any) => {
+				successCb: () => {
 					getAllTodos();
 				},
-				errorCb: (err: any) => {
+				errorCb: (err: AxiosError) => {
 					handleError(err, setErrorMsg);
 				},
 			});

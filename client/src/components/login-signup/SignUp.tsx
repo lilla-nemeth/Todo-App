@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../utils/helperFunctions';
-import { DataMessage, DataSignUp } from '../../types/types';
+import { DataMessage, DataSignUp, AxiosRequestConfig, AxiosResponse, AxiosError } from '../../types/types';
 
 const SignUp = () => {
 	const [email, setEmail] = useState<DataSignUp['email']>('');
@@ -19,14 +19,14 @@ const SignUp = () => {
 		event.preventDefault();
 
 		// TODO: token should be null not an empty string...
-		const options = createOptions('post', '/signup', 'cors', 'application/json', '', { email, username, pw });
+		const options: AxiosRequestConfig = createOptions('post', '/signup', 'cors', 'application/json', '', { email, username, pw });
 
 		if (!disabled) {
 			setLoading(true);
 
 			changeOrGetData({
 				options,
-				successCb: (res: any) => {
+				successCb: (res: AxiosResponse) => {
 					const message: DataMessage['msg'] = res.data.msg;
 					setLoading(false);
 					setErrorMsg('');
@@ -39,7 +39,7 @@ const SignUp = () => {
 						navigate('/login');
 					}, 2500);
 				},
-				errorCb: (err: any) => {
+				errorCb: (err: AxiosError) => {
 					setLoading(false);
 					clearError();
 					handleError(err, setErrorMsg);

@@ -5,7 +5,7 @@ import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
 import { changeOrGetData } from '../utils/helperFunctions';
-import { TodoItem, TodoOrderNames, TodoProps, Token } from '../types/types';
+import { TodoItem, TodoOrderNames, TodoProps, Token, AxiosRequestConfig, AxiosResponse, AxiosError } from '../types/types';
 
 export const order: { [index: string]: any } = {
 	newest: 'Newest',
@@ -25,29 +25,29 @@ const ToDo = (props: TodoProps) => {
 	const navigate = useNavigate();
 
 	function getAllTodos(token: Token) {
-		const options = createOptions('get', '/todos', 'cors', 'application/json', token, undefined);
+		const options: AxiosRequestConfig = createOptions('get', '/todos', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: (res: AxiosResponse) => {
 				setLoading(false);
 				setAllTodos(res.data);
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});
 	}
 
 	function deleteAllTodos(token: Token) {
-		const options = createOptions('delete', '/todos', 'cors', 'application/json', token, undefined);
+		const options: AxiosRequestConfig = createOptions('delete', '/todos', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: () => {
 				setAllTodos([]);
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});

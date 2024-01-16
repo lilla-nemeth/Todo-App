@@ -7,7 +7,7 @@ import Pencil from '../assets/icons/Pencil';
 import Trash from '../assets/icons/Trash';
 import Calendar from '../assets/icons/Calendar';
 import { changeOrGetData } from '../utils/helperFunctions';
-import { TodoItem } from '../types/types';
+import { TodoItem, AxiosRequestConfig, AxiosError } from '../types/types';
 
 const ToDoElement = (props: any) => {
 	const { getAllTodos, token, el } = props;
@@ -19,14 +19,14 @@ const ToDoElement = (props: any) => {
 	const hoverTimeout = useRef<HTMLDivElement>(null);
 
 	function deleteElement(id: number) {
-		const options = createOptions('delete', `/todos/${id}`, 'cors', 'application/json', token, { title: allTodos });
+		const options: AxiosRequestConfig = createOptions('delete', `/todos/${id}`, 'cors', 'application/json', token, { title: allTodos });
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: () => {
 				getAllTodos();
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});
@@ -41,10 +41,10 @@ const ToDoElement = (props: any) => {
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: () => {
 				getAllTodos();
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});
@@ -61,12 +61,12 @@ const ToDoElement = (props: any) => {
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: () => {
 				getAllTodos();
 				setEditedTodoId(null);
 				setEditedTodoInput('');
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});
@@ -81,10 +81,10 @@ const ToDoElement = (props: any) => {
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: () => {
 				getAllTodos();
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});

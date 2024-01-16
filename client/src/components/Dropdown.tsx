@@ -10,7 +10,7 @@ const priorityNames: { [index: string]: any } = {
 };
 
 const Dropdown = (props: any) => {
-	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 	const { value, isCompleted, onSelect } = props;
 
 	return (

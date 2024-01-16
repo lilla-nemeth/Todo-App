@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../utils/helperFunctions';
-import { DataToken, DataLogin } from '../../types/types';
+import { DataToken, DataLogin, AxiosRequestConfig, AxiosResponse, AxiosError } from '../../types/types';
 
 const Login = (props: any) => {
 	const { setToken } = props;
@@ -18,14 +18,14 @@ const Login = (props: any) => {
 		event.preventDefault();
 
 		// TODO: token should be null not an empty string...
-		const options = createOptions('post', '/login', 'cors', 'application/json', '', { email, pw });
+		const options: AxiosRequestConfig = createOptions('post', '/login', 'cors', 'application/json', '', { email, pw });
 
 		if (!disabled) {
 			setLoading(true);
 
 			changeOrGetData({
 				options,
-				successCb: (res: any) => {
+				successCb: (res: AxiosResponse) => {
 					const token: DataToken['token'] = res.data.token;
 					localStorage.setItem('token', token);
 					setLoading(false);
@@ -34,7 +34,7 @@ const Login = (props: any) => {
 					setEmail('');
 					setPw('');
 				},
-				errorCb: (err: any) => {
+				errorCb: (err: AxiosError) => {
 					setLoading(false);
 					clearError();
 					handleError(err, setErrorMsg);

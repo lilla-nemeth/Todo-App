@@ -74,32 +74,6 @@ export interface AxiosRequestConfig {
 	headers?: Record<string, string>;
 	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username | DataDeleteTodo | DataInput | DataUpdateTodo;
 	mode?: string;
-	// baseURL?: string;
-	// transformRequest?: any;
-	// transformResponse?: any;
-	// params?: any;
-	// paramsSerializer?: (params: any) => string;
-	// timeout?: number;
-	// timeoutErrorMessage?: string;
-	// withCredentials?: boolean;
-	// adapter?: any;
-	// auth?: any;
-	// responseType?: ResponseType;
-	// xsrfCookieName?: string;
-	// xsrfHeaderName?: string;
-	// onUploadProgress?: (progressEvent: any) => void;
-	// onDownloadProgress?: (progressEvent: any) => void;
-	// maxContentLength?: number;
-	// validateStatus?: ((status: number) => boolean) | null;
-	// maxBodyLength?: number;
-	// maxRedirects?: number;
-	// socketPath?: string | null;
-	// httpAgent?: any;
-	// httpsAgent?: any;
-	// proxy?: any | false;
-	// cancelToken?: any;
-	// decompress?: boolean;
-	// transitional?: any;
 }
 
 export interface RequestArgs {
@@ -108,7 +82,7 @@ export interface RequestArgs {
 	errorCb: Function;
 }
 
-// export interface AxiosResponse<T = any> {
+// export interface AxiosResponse<T = never> {
 // 	data: T;
 // 	status: number;
 // 	statusText: string;
