@@ -1,3 +1,4 @@
+// TYPES
 export type Username = string;
 export type Token = string;
 export type Title = string;
@@ -5,11 +6,29 @@ export type Completed = boolean;
 export type Importance = number;
 export type TodoId = number;
 export type UserId = number;
+export type Method =
+	| 'get'
+	| 'GET'
+	| 'delete'
+	| 'DELETE'
+	| 'head'
+	| 'HEAD'
+	| 'options'
+	| 'OPTIONS'
+	| 'post'
+	| 'POST'
+	| 'put'
+	| 'PUT'
+	| 'patch'
+	| 'PATCH'
+	| 'purge'
+	| 'PURGE'
+	| 'link'
+	| 'LINK'
+	| 'unlink'
+	| 'UNLINK';
 
-export type TodoProps = {
-	token: Token;
-};
-
+// INTERFACES
 export interface TodoItem {
 	id: TodoId;
 	userid: UserId;
@@ -69,7 +88,7 @@ export interface Headers {
 }
 
 export interface AxiosRequestConfig {
-	method?: string;
+	method?: Method;
 	url?: string;
 	headers?: Record<string, string>;
 	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username | DataDeleteTodo | DataInput | DataUpdateTodo;
@@ -106,3 +125,18 @@ export interface AxiosPromise extends Promise<Response> {}
 export type Request = (object: { options: AxiosRequestConfig; successCb: Function; errorCb: Function }) => void;
 
 // export type HTTPRequest = (input: RequestArgs) => AxiosPromise;
+
+// PROPS
+export interface TodoProps {
+	token: Token;
+}
+
+export interface TodoElementProps {
+	getAllTodos: Function;
+	token: Token;
+	el: TodoItem;
+}
+
+export interface SetTokenProps {
+	setToken: React.Dispatch<React.SetStateAction<string>>;
+}
