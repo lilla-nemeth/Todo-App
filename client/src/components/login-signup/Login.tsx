@@ -52,28 +52,34 @@ const Login = (props: any) => {
 				<form className='form' onSubmit={handleSubmit}>
 					<h3>Login</h3>
 					<div className='email'>
-						<label className='emailLabel' htmlFor='email'>
+						<label className='emailLabel' htmlFor='email-input'>
 							Email
 						</label>
 						<input
+							id='email-input'
 							className='loginInput'
 							name='email'
 							type='email'
 							placeholder='Email address'
+							autoComplete='on'
+							required
 							value={email}
 							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
 						<span className='loginActive'></span>
 					</div>
 					<div className='password'>
-						<label className='passwordLabel' htmlFor='password'>
+						<label className='passwordLabel' htmlFor='password-input'>
 							Password
 						</label>
 						<input
+							id='password-input'
 							className='loginInput'
 							name='password'
 							type='password'
 							placeholder='Password'
+							autoComplete='on'
+							required
 							value={pw}
 							onChange={(event) => handleInputChange(setPw, event)}
 						/>

@@ -53,40 +53,49 @@ const SignUp = () => {
 				<form className='form' method='POST' onSubmit={handleSubmit}>
 					<h3>Sign Up</h3>
 					<div className='email'>
-						<label className='emailLabel' htmlFor='email'>
+						<label className='emailLabel' htmlFor='email-input'>
 							Email
 						</label>
 						<input
+							id='email-input'
 							className='signUpInput'
 							name='email'
 							type='email'
 							placeholder='Email address'
+							autoComplete='on'
+							required
 							value={email}
 							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
 					</div>
 					<div className='username'>
-						<label className='usernameLabel' htmlFor='username'>
+						<label className='usernameLabel' htmlFor='username-input'>
 							Username
 						</label>
 						<input
+							id='username-input'
 							className='signUpInput'
 							name='username'
 							type='text'
 							placeholder='Username'
+							autoComplete='on'
+							required
 							value={username}
 							onChange={(event) => handleInputChange(setUsername, event)}
 						/>
 					</div>
 					<div className='password'>
-						<label className='passwordLabel' htmlFor='password'>
+						<label className='passwordLabel' htmlFor='password-input'>
 							Password
 						</label>
 						<input
+							id='password-input'
 							className='signUpInput'
 							name='password'
 							type='password'
 							placeholder='Password'
+							autoComplete='on'
+							required
 							value={pw}
 							onChange={(event) => handleInputChange(setPw, event)}
 						/>

@@ -98,8 +98,8 @@ const ToDoElement = (props: any) => {
 		<div className='todoWrapper'>
 			<div className='checkboxTitleButtons'>
 				<div className='todoElement' key={el.id}>
-					<label className='checkboxContainer' htmlFor='checkbox'>
-						<input type='checkbox' name='checkbox' checked={el.completed} onChange={() => completeTodo(el)} />
+					<label className='checkboxContainer' htmlFor='checkbox-input'>
+						<input id='checkbox-input' type='checkbox' name='checkbox' checked={el.completed} onChange={() => completeTodo(el)} />
 						<span className='checkmark'></span>
 					</label>
 					{editedTodoId != el.id ? (

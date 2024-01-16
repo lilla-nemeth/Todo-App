@@ -32,6 +32,7 @@ const ToDoInput = (props: any) => {
 			<form className='form' onSubmit={handleSubmit}>
 				<input
 					type='text'
+					id='todo-input'
 					placeholder='Add todo'
 					value={input}
 					className='todoInput'
