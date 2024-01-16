@@ -52,7 +52,9 @@ const Login = (props: any) => {
 				<form className='form' onSubmit={handleSubmit}>
 					<h3>Login</h3>
 					<div className='email'>
-						<label className='emailLabel'>Email</label>
+						<label className='emailLabel' htmlFor='email'>
+							Email
+						</label>
 						<input
 							className='loginInput'
 							name='email'
@@ -64,7 +66,9 @@ const Login = (props: any) => {
 						<span className='loginActive'></span>
 					</div>
 					<div className='password'>
-						<label className='passwordLabel'>Password</label>
+						<label className='passwordLabel' htmlFor='password'>
+							Password
+						</label>
 						<input
 							className='loginInput'
 							name='password'

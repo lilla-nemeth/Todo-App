@@ -53,7 +53,9 @@ const SignUp = () => {
 				<form className='form' method='POST' onSubmit={handleSubmit}>
 					<h3>Sign Up</h3>
 					<div className='email'>
-						<label className='emailLabel'>Email</label>
+						<label className='emailLabel' htmlFor='email'>
+							Email
+						</label>
 						<input
 							className='signUpInput'
 							name='email'
@@ -64,7 +66,9 @@ const SignUp = () => {
 						/>
 					</div>
 					<div className='username'>
-						<label className='usernameLabel'>Username</label>
+						<label className='usernameLabel' htmlFor='username'>
+							Username
+						</label>
 						<input
 							className='signUpInput'
 							name='username'
@@ -75,7 +79,9 @@ const SignUp = () => {
 						/>
 					</div>
 					<div className='password'>
-						<label className='passwordLabel'>Password</label>
+						<label className='passwordLabel' htmlFor='password'>
+							Password
+						</label>
 						<input
 							className='signUpInput'
 							name='password'
