@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { handleError, handleInputChange, createOptions } from '../utils/helperFunctions';
 import { changeOrGetData } from '../utils/helperFunctions';
-import { DataInput, AxiosRequestConfig, AxiosError } from '../types/types';
+import { DataInput, AxiosRequestConfig, AxiosError, TodoInputProps } from '../types/types';
 
-const ToDoInput = (props: any) => {
+const ToDoInput = (props: TodoInputProps) => {
 	const { getAllTodos, token } = props;
 	const [input, setInput] = useState<DataInput['title']>('');
 	const [errorMsg, setErrorMsg] = useState('');

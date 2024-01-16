@@ -158,3 +158,8 @@ export interface TooltipProps {
 	date: string;
 	time: string;
 }
+
+export interface TodoInputProps {
+	getAllTodos: Function;
+	token: Token;
+}
