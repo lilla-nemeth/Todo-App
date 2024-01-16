@@ -3,10 +3,16 @@ export type Token = string;
 export type Title = string;
 export type Completed = boolean;
 export type Importance = number;
+export type TodoId = number;
+export type UserId = number;
+
+export type TodoProps = {
+	token: Token;
+};
 
 export interface TodoItem {
-	id: number;
-	userid: number;
+	id: TodoId;
+	userid: UserId;
 	title: Title;
 	importance: Importance;
 	completed: Completed;
@@ -43,7 +49,7 @@ export interface DataInput {
 	title: string;
 }
 
-export interface DataCompleteTodo {
+export interface DataUpdateTodo {
 	title: Title;
 	completed: Completed;
 	importance: Importance;
@@ -59,7 +65,7 @@ export interface Options {
 	url: string;
 	mode: string;
 	headers: Headers;
-	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username | DataDeleteTodo | DataInput;
+	data?: DataToken | DataLogin | DataMessage | DataToken | DataSignUp | Username | DataDeleteTodo | DataInput | DataUpdateTodo;
 }
 
 export interface TodoOrderNames {
