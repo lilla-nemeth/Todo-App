@@ -5,7 +5,7 @@ import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
 import { changeOrGetData } from '../context/Requests.js';
-import { TodoItem, TodoOrderNames } from '../types/interfaces';
+import { TodoItem, TodoOrderNames, TodoProps, Token } from '../types/interfaces';
 
 export const order: { [index: string]: any } = {
 	newest: 'Newest',
@@ -16,7 +16,7 @@ export const order: { [index: string]: any } = {
 	completed: 'Completed',
 };
 
-const ToDo = (props: string | null) => {
+const ToDo = (props: TodoProps) => {
 	const { token } = props;
 	const [allTodos, setAllTodos] = useState<TodoItem[]>([]);
 	const [errorMsg, setErrorMsg] = useState<string>('');
@@ -24,7 +24,7 @@ const ToDo = (props: string | null) => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 
-	function getAllTodos(token: string | null) {
+	function getAllTodos(token: Token) {
 		const options = createOptions('get', '/todos', 'cors', 'application/json', token, null);
 
 		changeOrGetData({
@@ -39,8 +39,9 @@ const ToDo = (props: string | null) => {
 		});
 	}
 
-	function deleteAllTodos(token: string | null) {
-		const options = createOptions('delete', '/todos', 'cors', 'application/json', token, {});
+	function deleteAllTodos(token: Token) {
+		// const options = createOptions('delete', '/todos', 'cors', 'application/json', token, {});
+		const options = createOptions('delete', '/todos', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
 			options,
