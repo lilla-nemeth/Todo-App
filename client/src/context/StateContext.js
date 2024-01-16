@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { changeOrGetData } from './Requests.js';
+import { changeOrGetData } from '../utils/helperFunctions';
 
 export const StateContext = createContext();
 

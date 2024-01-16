@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
-import { changeOrGetData } from '../../context/Requests.js';
+import { changeOrGetData } from '../../utils/helperFunctions';
 import { DataToken, DataLogin } from '../../types/types';
 
 const Login = (props: any) => {
@@ -17,7 +17,8 @@ const Login = (props: any) => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const options = createOptions('post', '/login', 'cors', 'application/json', null, { email, pw });
+		// TODO: token should be null not an empty string...
+		const options = createOptions('post', '/login', 'cors', 'application/json', '', { email, pw });
 
 		if (!disabled) {
 			setLoading(true);

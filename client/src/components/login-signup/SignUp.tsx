@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
-import { changeOrGetData } from '../../context/Requests';
+import { changeOrGetData } from '../../utils/helperFunctions';
 import { DataMessage, DataSignUp } from '../../types/types';
 
 const SignUp = () => {
@@ -18,7 +18,8 @@ const SignUp = () => {
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
-		const options = createOptions('post', '/signup', 'cors', 'application/json', null, { email, username, pw });
+		// TODO: token should be null not an empty string...
+		const options = createOptions('post', '/signup', 'cors', 'application/json', '', { email, username, pw });
 
 		if (!disabled) {
 			setLoading(true);

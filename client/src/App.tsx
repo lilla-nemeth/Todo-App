@@ -6,16 +6,16 @@ import Login from './components/login-signup/Login';
 import Navbar from './components/Navbar';
 import './styles/App.css';
 import { handleError, handleLogOut, createOptions } from './utils/helperFunctions';
-import { changeOrGetData } from './context/Requests';
+import { changeOrGetData } from './utils/helperFunctions';
 import { Username } from './types/types';
 
 const App = () => {
-	const [token, setToken] = useState<string | null>(null);
+	const [token, setToken] = useState<string>('');
 	const [username, setUsername] = useState<Username>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 
-	function addUser(token: string | null) {
-		const options = createOptions('get', '/user', 'cors', 'application/json', token, null);
+	function addUser(token: string) {
+		const options = createOptions('get', '/user', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
 			options,

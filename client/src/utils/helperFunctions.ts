@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, ChangeEvent } from 'react';
-import { TodoItem, Options, Headers } from '../types/types';
+import { TodoItem, Headers, Request, AxiosRequestConfig, AxiosResponse, AxiosError } from '../types/types';
 import axios from 'axios';
 
 // TODO: change any type
@@ -80,39 +80,13 @@ export const changeColor = (
 	}
 };
 
-// ORIGINAL:
-
-// Strings:
-// method - requestMethod
-// url - endpoint
-// mode
-// appJson - application/json
-
-// token - (string | null)
-// dataObject - dataObject (Object | null)
-
-// export function createOptions(requestMethod, endpoint, mode, appJson, token, dataObject) {
-// 	const options = {
-// 		method: requestMethod,
-// 		url: endpoint,
-// 		mode: mode,
-// 		headers: {
-// 			'Content-Type': appJson,
-// 			'x-auth-token': token,
-// 		},
-// 		data: dataObject,
-// 	};
-
-// 	return options;
-// }
-
 export const createOptions = (
-	requestMethod: Options['method'],
-	endpoint: Options['url'],
-	mode: Options['mode'],
+	requestMethod: AxiosRequestConfig['method'],
+	endpoint: AxiosRequestConfig['url'],
+	mode: AxiosRequestConfig['mode'],
 	appJson: Headers['appJson'],
-	token: string | null,
-	dataObject: Options['data'] | null
+	token: string,
+	dataObject: AxiosRequestConfig['data']
 ) => {
 	const options = {
 		method: requestMethod,
@@ -128,16 +102,12 @@ export const createOptions = (
 	return options;
 };
 
-// options - createOptions function (object)
-// successCb - success callback
-// errorCb - error callback
-
-// export const changeOrGetData = ({ options, successCb, errorCb }) => {
-// 	axios(options)
-// 		.then((res) => {
-// 			if (res && successCb) successCb(res);
-// 		})
-// 		.catch((err) => {
-// 			if (err && errorCb) errorCb(err);
-// 		});
-// };
+export const changeOrGetData: Request = ({ options, successCb, errorCb }) => {
+	axios(options)
+		.then((res: AxiosResponse) => {
+			if (res && successCb) successCb(res);
+		})
+		.catch((err: AxiosError) => {
+			if (err && errorCb) errorCb(err);
+		});
+};

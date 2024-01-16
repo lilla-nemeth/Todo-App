@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { handleError, handleInputChange, createOptions } from '../utils/helperFunctions';
-import { changeOrGetData } from '../context/Requests';
+import { changeOrGetData } from '../utils/helperFunctions';
 import { DataInput } from '../types/types';
 
 const ToDoInput = (props: any) => {

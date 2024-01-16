@@ -4,7 +4,7 @@ import { handleError, createOptions } from '../utils/helperFunctions';
 import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
-import { changeOrGetData } from '../context/Requests.js';
+import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, TodoOrderNames, TodoProps, Token } from '../types/types';
 
 export const order: { [index: string]: any } = {
@@ -25,7 +25,7 @@ const ToDo = (props: TodoProps) => {
 	const navigate = useNavigate();
 
 	function getAllTodos(token: Token) {
-		const options = createOptions('get', '/todos', 'cors', 'application/json', token, null);
+		const options = createOptions('get', '/todos', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
 			options,
@@ -40,7 +40,6 @@ const ToDo = (props: TodoProps) => {
 	}
 
 	function deleteAllTodos(token: Token) {
-		// const options = createOptions('delete', '/todos', 'cors', 'application/json', token, {});
 		const options = createOptions('delete', '/todos', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
