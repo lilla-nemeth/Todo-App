@@ -7,9 +7,9 @@ import Pencil from '../assets/icons/Pencil';
 import Trash from '../assets/icons/Trash';
 import Calendar from '../assets/icons/Calendar';
 import { changeOrGetData } from '../utils/helperFunctions';
-import { TodoItem, AxiosRequestConfig, AxiosError } from '../types/types';
+import { TodoItem, AxiosRequestConfig, AxiosError, TodoElementProps } from '../types/types';
 
-const ToDoElement = (props: any) => {
+const ToDoElement = (props: TodoElementProps) => {
 	const { getAllTodos, token, el } = props;
 	const [allTodos, setAllTodos] = useState<TodoItem[]>([]);
 	const [editedTodoId, setEditedTodoId] = useState<number | null>(null);
@@ -24,7 +24,7 @@ const ToDoElement = (props: any) => {
 		changeOrGetData({
 			options,
 			successCb: () => {
-				getAllTodos();
+				getAllTodos(token);
 			},
 			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
@@ -42,7 +42,7 @@ const ToDoElement = (props: any) => {
 		changeOrGetData({
 			options,
 			successCb: () => {
-				getAllTodos();
+				getAllTodos(token);
 			},
 			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
@@ -62,7 +62,7 @@ const ToDoElement = (props: any) => {
 		changeOrGetData({
 			options,
 			successCb: () => {
-				getAllTodos();
+				getAllTodos(token);
 				setEditedTodoId(null);
 				setEditedTodoInput('');
 			},
@@ -82,7 +82,7 @@ const ToDoElement = (props: any) => {
 		changeOrGetData({
 			options,
 			successCb: () => {
-				getAllTodos();
+				getAllTodos(token);
 			},
 			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
@@ -98,8 +98,8 @@ const ToDoElement = (props: any) => {
 		<div className='todoWrapper'>
 			<div className='checkboxTitleButtons'>
 				<div className='todoElement' key={el.id}>
-					<label className='checkboxContainer' htmlFor={el.id}>
-						<input id={el.id} type='checkbox' name='checkbox' checked={el.completed} onChange={() => completeTodo(el)} />
+					<label className='checkboxContainer' htmlFor={el.id.toString()}>
+						<input id={el.id.toString()} type='checkbox' name='checkbox' checked={el.completed} onChange={() => completeTodo(el)} />
 						<span className='checkmark'></span>
 					</label>
 					{editedTodoId != el.id ? (
