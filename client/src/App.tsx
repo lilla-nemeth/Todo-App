@@ -10,7 +10,7 @@ import { changeOrGetData } from './context/Requests';
 import { Username } from './types/types';
 
 const App = () => {
-	const [token, setToken] = useState<string | null>('');
+	const [token, setToken] = useState<string | null>(null);
 	const [username, setUsername] = useState<Username>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 
@@ -29,7 +29,7 @@ const App = () => {
 	}
 
 	useEffect(() => {
-		const tokenFromLocalStorage: string = JSON.parse(localStorage.getItem('token') || '');
+		const tokenFromLocalStorage: string | null = localStorage.getItem('token');
 
 		if (tokenFromLocalStorage) {
 			setToken(tokenFromLocalStorage);
