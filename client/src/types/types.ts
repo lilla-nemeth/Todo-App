@@ -140,3 +140,11 @@ export interface TodoElementProps {
 export interface LoginProps {
 	setToken: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface BubbleIconProps {
+	backgroundColor?: string;
+	textColor?: string;
+	fontSize?: string;
+	date: string;
+	time: string;
+}

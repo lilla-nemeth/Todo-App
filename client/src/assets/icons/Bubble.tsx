@@ -1,4 +1,6 @@
-const Bubble = (props: any) => {
+import { BubbleIconProps } from '../../types/types';
+
+const Bubble = (props: BubbleIconProps) => {
 	const { backgroundColor, textColor, fontSize, date, time } = props;
 
 	return (
