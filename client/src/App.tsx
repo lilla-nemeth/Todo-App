@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import './styles/App.css';
 import { handleError, handleLogOut, createOptions } from './utils/helperFunctions';
 import { changeOrGetData } from './utils/helperFunctions';
-import { Username } from './types/types';
+import { Username, AxiosRequestConfig, AxiosResponse, AxiosError } from './types/types';
 
 const App = () => {
 	const [token, setToken] = useState<string>('');
@@ -15,14 +15,14 @@ const App = () => {
 	const [errorMsg, setErrorMsg] = useState<string>('');
 
 	function addUser(token: string) {
-		const options = createOptions('get', '/user', 'cors', 'application/json', token, undefined);
+		const options: AxiosRequestConfig = createOptions('get', '/user', 'cors', 'application/json', token, undefined);
 
 		changeOrGetData({
 			options,
-			successCb: (res: any) => {
+			successCb: (res: AxiosResponse) => {
 				setUsername(res.data);
 			},
-			errorCb: (err: any) => {
+			errorCb: (err: AxiosError) => {
 				handleError(err, setErrorMsg);
 			},
 		});
