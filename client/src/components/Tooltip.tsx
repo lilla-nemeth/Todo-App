@@ -1,6 +1,7 @@
 import Bubble from '../assets/icons/Bubble';
+import { TooltipProps } from '../types/types';
 
-const Tooltip = (props: any) => {
+const Tooltip = (props: TooltipProps) => {
 	const { hover, setHover, hoverTimeout, date, time } = props;
 
 	const handleMouseEnter = () => {
@@ -26,7 +27,7 @@ const Tooltip = (props: any) => {
 					</div>
 				</div>
 			)}
-			{props.children}
+			{/* {props.children} */}
 		</div>
 	);
 };

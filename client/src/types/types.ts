@@ -148,3 +148,13 @@ export interface BubbleIconProps {
 	date: string;
 	time: string;
 }
+
+export interface TooltipProps {
+	hover: boolean;
+	setHover: React.Dispatch<React.SetStateAction<boolean>>;
+	// TODO change the type of hoverTimeout
+	// hoverTimeout: React.RefObject<number | null>;
+	hoverTimeout: any;
+	date: string;
+	time: string;
+}
