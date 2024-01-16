@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, ChangeEvent } from 'react';
-import { TodoItem, Options, Headers } from '../types/interfaces';
+import { TodoItem, Options, Headers } from '../types/types';
 import axios from 'axios';
 
 // TODO: change any type

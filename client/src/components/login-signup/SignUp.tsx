@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../context/Requests';
-import { DataMessage, DataSignUp } from '../../types/interfaces';
+import { DataMessage, DataSignUp } from '../../types/types';
 
 const SignUp = () => {
 	const [email, setEmail] = useState<DataSignUp['email']>('');

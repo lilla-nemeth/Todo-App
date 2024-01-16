@@ -5,7 +5,7 @@ import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
 import { changeOrGetData } from '../context/Requests.js';
-import { TodoItem, TodoOrderNames, TodoProps, Token } from '../types/interfaces';
+import { TodoItem, TodoOrderNames, TodoProps, Token } from '../types/types';
 
 export const order: { [index: string]: any } = {
 	newest: 'Newest',

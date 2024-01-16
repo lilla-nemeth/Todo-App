@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import './styles/App.css';
 import { handleError, handleLogOut, createOptions } from './utils/helperFunctions';
 import { changeOrGetData } from './context/Requests';
-import { Username } from './types/interfaces';
+import { Username } from './types/types';
 
 const App = () => {
 	const [token, setToken] = useState<string | null>('');

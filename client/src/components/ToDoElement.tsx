@@ -7,7 +7,7 @@ import Pencil from '../assets/icons/Pencil';
 import Trash from '../assets/icons/Trash';
 import Calendar from '../assets/icons/Calendar';
 import { changeOrGetData } from '../context/Requests.js';
-import { TodoItem } from '../types/interfaces';
+import { TodoItem } from '../types/types';
 
 const ToDoElement = (props: any) => {
 	const { getAllTodos, token, el } = props;

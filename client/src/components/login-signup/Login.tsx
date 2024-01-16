@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../context/Requests.js';
-import { DataToken, DataLogin } from '../../types/interfaces';
+import { DataToken, DataLogin } from '../../types/types';
 
 const Login = (props: any) => {
 	const { setToken } = props;
