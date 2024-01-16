@@ -50,7 +50,7 @@ const ToDoElement = (props: any) => {
 		});
 	}
 
-	function editTodo(el: any, event: React.FormEvent<HTMLFormElement>) {
+	function editTodo(el: TodoItem, event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
 		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
@@ -72,7 +72,7 @@ const ToDoElement = (props: any) => {
 		});
 	}
 
-	function updateImportance(el: any, number: number) {
+	function updateImportance(el: TodoItem, number: number) {
 		const options = createOptions('put', `/todos/${el.id}`, 'cors', 'application/json', token, {
 			title: el.title,
 			completed: el.completed,
