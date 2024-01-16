@@ -137,6 +137,6 @@ export interface TodoElementProps {
 	el: TodoItem;
 }
 
-export interface SetTokenProps {
+export interface LoginProps {
 	setToken: React.Dispatch<React.SetStateAction<string>>;
 }

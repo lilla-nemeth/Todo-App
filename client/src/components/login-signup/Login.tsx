@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../utils/helperFunctions';
-import { DataToken, DataLogin, AxiosRequestConfig, AxiosResponse, AxiosError } from '../../types/types';
+import { DataToken, DataLogin, AxiosRequestConfig, AxiosResponse, AxiosError, LoginProps } from '../../types/types';
 
-const Login = (props: any) => {
+const Login = (props: LoginProps) => {
 	const { setToken } = props;
 	const [email, setEmail] = useState<DataLogin['email']>('');
 	const [pw, setPw] = useState<DataLogin['pw']>('');
