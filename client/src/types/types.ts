@@ -155,7 +155,7 @@ export interface TooltipProps {
 	time: string;
 	onMouseEnter: React.MouseEventHandler<HTMLDivElement>;
 	onMouseLeave: React.MouseEventHandler<HTMLDivElement>;
-	calendar: any;
+	calendar: React.ReactNode;
 }
 
 export interface TodoInputProps {
