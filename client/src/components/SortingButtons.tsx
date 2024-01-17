@@ -17,14 +17,14 @@ const SortingButtons = (props: SortingProps) => {
 			return (
 				<div className='sortingButtonArrow'>
 					{ascending}
-					<AscendingArrow />
+					<AscendingArrow className={''} />
 				</div>
 			);
 		} else {
 			return (
 				<div className='sortingButtonArrow'>
 					{passive}
-					<AscendingArrow style={{ fill: 'none' }} />
+					<AscendingArrow className={'sortingButtonAscArrow'} />
 				</div>
 			);
 		}

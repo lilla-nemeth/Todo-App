@@ -125,7 +125,7 @@ const ToDoElement = (props: TodoElementProps) => {
 								className={el.completed ? 'buttonEditInactive' : 'buttonEdit'}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
 							>
-								<Pencil className='icon' />
+								<Pencil />
 							</button>
 						</div>
 					) : (
@@ -139,13 +139,13 @@ const ToDoElement = (props: TodoElementProps) => {
 								}}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
 							>
-								<Pencil className='icon' />
+								<Pencil />
 							</button>
 						</div>
 					)}
 					<div className='buttonListElements'>
 						<button className='buttonDelete' onClick={() => deleteElement(el.id)}>
-							<Trash className='icon' />
+							<Trash />
 						</button>
 					</div>
 					<Tooltip
@@ -157,7 +157,7 @@ const ToDoElement = (props: TodoElementProps) => {
 					>
 						<div className='buttonListElements'>
 							<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
-								<Calendar className='icon' />
+								<Calendar />
 							</button>
 						</div>
 					</Tooltip>

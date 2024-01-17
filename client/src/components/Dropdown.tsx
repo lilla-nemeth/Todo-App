@@ -2,6 +2,7 @@ import { useState } from 'react';
 import DownArrow from '../assets/icons/DownArrow';
 import { generateId, changeColor } from '../utils/helperFunctions';
 import * as colorTypes from '../types/colors';
+import { DropdownProps } from '../types/types';
 
 const priorityNames: { [index: string]: any } = {
 	1: 'Not important',
@@ -9,7 +10,7 @@ const priorityNames: { [index: string]: any } = {
 	3: 'Urgent',
 };
 
-const Dropdown = (props: any) => {
+const Dropdown = (props: DropdownProps) => {
 	const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 	const { value, isCompleted, onSelect } = props;
 

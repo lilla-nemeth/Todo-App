@@ -1,4 +1,6 @@
-const Navbar = (props: any) => {
+import { NavbarProps } from '../types/types';
+
+const Navbar = (props: NavbarProps) => {
 	const { username, handleLogOut, setToken } = props;
 
 	return (

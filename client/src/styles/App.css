@@ -380,8 +380,13 @@ input:focus::placeholder {
 	align-items: center;
 }
 
-.sortingButtonArrow svg {
+.sortingButtonAscArrow {
+	fill: none;
 	width: 15px;
+}
+
+.sortingButtonDescArrow {
+
 }
 
 .buttonDate,

@@ -168,3 +168,19 @@ export interface SortingProps {
 	orderBy: TodoOrderNames;
 	setOrderBy: React.Dispatch<React.SetStateAction<TodoOrderNames>>;
 }
+
+export interface NavbarProps {
+	username: Username;
+	handleLogOut: Function;
+	setToken: React.Dispatch<React.SetStateAction<Token>>;
+}
+
+export interface DropdownProps {
+	value: TodoItem['importance'];
+	isCompleted: TodoItem['completed'];
+	onSelect: Function;
+}
+
+export interface IconClassNameProps {
+	className: string;
+}
