@@ -1,8 +1,9 @@
 import { order } from '../components/ToDo';
 import AscendingArrow from '../assets/icons/AscendingArrow';
 import DescendingArrow from '../assets/icons/DescendingArrow';
+import { SortingProps } from '../types/types';
 
-const SortingButtons = (props: any) => {
+const SortingButtons = (props: SortingProps) => {
 	const { orderBy, setOrderBy } = props;
 	function createButtonText(currentState: any, descending: any, ascending: any, passive: any) {
 		if (currentState === descending) {

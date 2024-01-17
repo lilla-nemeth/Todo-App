@@ -163,3 +163,8 @@ export interface TodoInputProps {
 	getAllTodos: Function;
 	token: Token;
 }
+
+export interface SortingProps {
+	orderBy: TodoOrderNames;
+	setOrderBy: React.Dispatch<React.SetStateAction<TodoOrderNames>>;
+}
