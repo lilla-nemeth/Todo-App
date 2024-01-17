@@ -60,15 +60,13 @@ const ToDo = (props: TodoProps) => {
 	}, []);
 
 	// const sortedAllTodos: TodoItem[] = allTodos.sort((a, b) => {
-	// if (orderBy === order.newest) {
-	// 	// const createdA: TodoItem['created'] = a.created;
-	// 	// const createdB: TodoItem['created'] = b.created;
-	// 	if (a.created.valueOf() < b.created.valueOf()) {
-	// 		return 1;
-	// 	} else {
-	// 		return -1;
+	// 	if (orderBy === order.newest) {
+	// 		if (a.created.valueOf() < b.created.valueOf()) {
+	// 			return 1;
+	// 		} else {
+	// 			return -1;
+	// 		}
 	// 	}
-	// }
 	// if (orderBy === order.oldest) {
 	// 	if (a.created.valueOf() < b.created.valueOf()) {
 	// 		return -1;
@@ -146,7 +144,7 @@ const ToDo = (props: TodoProps) => {
 				<ToDoInput getAllTodos={() => getAllTodos(token)} token={token} />
 				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
 				{/* {sortedAllTodos.map((el: any) => {
-					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos()} el={el} token={token} />;
+					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos(token)} el={el} token={token} />;
 				})} */}
 				{allTodos.map((el: any) => {
 					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos(token)} el={el} token={token} />;
