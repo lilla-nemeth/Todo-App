@@ -3,10 +3,9 @@
 ## Description
 
 Todo app, that covers the CRUD operations.  
-🛠 Created with Node.js, Express, PostgreSQL, JavaScript and React with custom UI.
+🛠 Created with Node.js, Express, PostgreSQL, TypeScript and React with custom UI.
 
-![Todo List](https://raw.githubusercontent.com/lilla-nemeth/todo/main/frontend/src/assets/screenshots/app_screenshot_00.png)
-
+![Todo List](https://raw.githubusercontent.com/lilla-nemeth/todo/main/client/src/assets/screenshots/app_screenshot_00.png)
 
 ## Features
 
@@ -19,7 +18,7 @@ Todo app, that covers the CRUD operations.
 - Delete one or more selected todo
 - Set the order of todos by date, importance and completion (each filter effect the other)
 
-## Installing, running locally  
+## Installing, running locally
 
 Clone the repo
 
@@ -30,6 +29,7 @@ git clone https://github.com/lilla-nemeth/todo.git
 ### Server
 
 Go to the project root directory
+
 ```
 cd todo
 ```
@@ -41,26 +41,38 @@ npm install
 ```
 
 Run the server
+
 ```
 nodemon index.js
 ```
+
 Server is running on port 3002
 </br></br>
+
 ### Client
 
-Go to the frontend folder
+Go to the client folder
+
 ```
-cd frontend
+cd client
 ```
+
 Install the dependencies
 
 ```
-npm install
+yarn
+```
+
+or
+
+```
+yarn install
 ```
 
 Start the client
+
 ```
-npm start
+yarn start
 ```
 
 ## Environment Variables
