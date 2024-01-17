@@ -17,7 +17,6 @@ const Login = (props: LoginProps) => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		// TODO: token should be null not an empty string...
 		const options: AxiosRequestConfig = createOptions('post', '/login', 'cors', 'application/json', '', { email, pw });
 
 		if (!disabled) {
