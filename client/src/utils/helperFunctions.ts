@@ -111,3 +111,72 @@ export const changeOrGetData: Request = ({ options, successCb, errorCb }) => {
 			if (err && errorCb) errorCb(err);
 		});
 };
+
+// export const sortedAllTodos: TodoItem[] = allTodos.sort((a, b) => {
+// 	if (orderBy === order.newest) {
+// 		if (a.created.valueOf() < b.created.valueOf()) {
+// 			return 1;
+// 		} else {
+// 			return -1;
+// 		}
+// 	}
+// 	if (orderBy === order.oldest) {
+// 		if (a.created.valueOf() < b.created.valueOf()) {
+// 			return -1;
+// 		} else {
+// 			return 1;
+// 		}
+// 	}
+// 	if (orderBy === order.mostImportant) {
+// 		if (a.importance === b.importance) {
+// 			if (a.title < b.title) {
+// 				return 1;
+// 			} else {
+// 				return -1;
+// 			}
+// 		} else {
+// 			if (a.importance < b.importance) {
+// 				return 1;
+// 			} else {
+// 				return -1;
+// 			}
+// 		}
+// 	}
+// 	if (orderBy === order.leastImportant) {
+// 		if (a.importance === b.importance) {
+// 			if (a.title < b.title) {
+// 				return -1;
+// 			} else {
+// 				return 1;
+// 			}
+// 		} else {
+// 			if (a.importance < b.importance) {
+// 				return -1;
+// 			} else {
+// 				return 1;
+// 			}
+// 		}
+// 	}
+// 	if (orderBy === order.uncompleted) {
+// 		if (!a.completed && !b.completed) {
+// 			return;
+// 		} else {
+// 			if (a.completed < b.completed) {
+// 				return -1;
+// 			} else {
+// 				return 1;
+// 			}
+// 		}
+// 	}
+// 	if (orderBy === order.completed) {
+// 		if (!a.completed && !b.completed) {
+// 			return;
+// 		} else {
+// 			if (a.completed < b.completed) {
+// 				return 1;
+// 			} else {
+// 				return -1;
+// 			}
+// 		}
+// 	}
+// });
