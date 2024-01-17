@@ -150,11 +150,9 @@ export interface BubbleIconProps {
 }
 
 export interface TooltipProps {
+	calendar: any;
 	hover: boolean;
 	setHover: React.Dispatch<React.SetStateAction<boolean>>;
-	// TODO change the type of hoverTimeout
-	// hoverTimeout: React.RefObject<number | null>;
-	hoverTimeout: any;
 	date: string;
 	time: string;
 }
@@ -165,8 +163,23 @@ export interface TodoInputProps {
 }
 
 export interface SortingProps {
-	orderBy: TodoOrderNames;
-	setOrderBy: React.Dispatch<React.SetStateAction<TodoOrderNames>>;
+	orderBy:
+		| TodoOrderNames['newest']
+		| TodoOrderNames['oldest']
+		| TodoOrderNames['mostImportant']
+		| TodoOrderNames['leastImportant']
+		| TodoOrderNames['uncompleted']
+		| TodoOrderNames['completed'];
+	setOrderBy: React.Dispatch<
+		React.SetStateAction<
+			| TodoOrderNames['newest']
+			| TodoOrderNames['oldest']
+			| TodoOrderNames['mostImportant']
+			| TodoOrderNames['leastImportant']
+			| TodoOrderNames['uncompleted']
+			| TodoOrderNames['completed']
+		>
+	>;
 }
 
 export interface NavbarProps {
