@@ -1,19 +1,21 @@
+import { useRef } from 'react';
 import Bubble from '../assets/icons/Bubble';
 import { TooltipProps } from '../types/types';
 
 const Tooltip = (props: TooltipProps) => {
-	const { hover, setHover, hoverTimeout, date, time } = props;
+	const { hover, setHover, date, time, calendar } = props;
+	const hoverTimeOut = useRef<number | any>(null);
 
 	const handleMouseEnter = () => {
-		hoverTimeout.current = setTimeout(() => {
+		hoverTimeOut.current = setTimeout(() => {
 			setHover(true);
 		}, 200);
 	};
 
 	const handleMouseLeave = () => {
-		if (hoverTimeout.current) {
-			clearTimeout(hoverTimeout.current);
-			hoverTimeout.current = null;
+		if (hoverTimeOut.current) {
+			clearTimeout(hoverTimeOut.current);
+			hoverTimeOut.current = null;
 		}
 		setHover(false);
 	};
@@ -27,7 +29,7 @@ const Tooltip = (props: TooltipProps) => {
 					</div>
 				</div>
 			)}
-			{/* {props.children} */}
+			{calendar}
 		</div>
 	);
 };

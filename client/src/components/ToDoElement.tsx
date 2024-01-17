@@ -16,7 +16,6 @@ const ToDoElement = (props: TodoElementProps) => {
 	const [editedTodoInput, setEditedTodoInput] = useState<string>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [hover, setHover] = useState<boolean>(false);
-	const hoverTimeout = useRef<number | null>(null);
 
 	function deleteElement(id: number) {
 		const options: AxiosRequestConfig = createOptions('delete', `/todos/${id}`, 'cors', 'application/json', token, { title: allTodos });
@@ -151,16 +150,18 @@ const ToDoElement = (props: TodoElementProps) => {
 					<Tooltip
 						hover={hover}
 						setHover={setHover}
-						hoverTimeout={hoverTimeout}
 						date={createFormattedDate(Sugar, el, '{dd}/{MM}/{yyyy}')}
 						time={createFormattedDate(Sugar, el, '{HH}:{mm}:{ss}')}
-					>
-						<div className='buttonListElements'>
-							<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
-								<Calendar />
-							</button>
-						</div>
-					</Tooltip>
+						calendar={
+							<>
+								<div className='buttonListElements'>
+									<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
+										<Calendar />
+									</button>
+								</div>
+							</>
+						}
+					></Tooltip>
 				</div>
 			</div>
 			<div className='dropdownWrapper'>
