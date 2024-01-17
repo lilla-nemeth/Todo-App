@@ -1,11 +1,23 @@
 import { order } from '../components/ToDo';
 import AscendingArrow from '../assets/icons/AscendingArrow';
 import DescendingArrow from '../assets/icons/DescendingArrow';
-import { SortingProps } from '../types/types';
+import { SortingProps, TodoOrderNames } from '../types/types';
 
 const SortingButtons = (props: SortingProps) => {
 	const { orderBy, setOrderBy } = props;
-	function createButtonText(currentState: any, descending: any, ascending: any, passive: any) {
+
+	function createButtonText(
+		currentState:
+			| TodoOrderNames['newest']
+			| TodoOrderNames['mostImportant']
+			| TodoOrderNames['uncompleted']
+			| TodoOrderNames['oldest']
+			| TodoOrderNames['leastImportant']
+			| TodoOrderNames['completed'],
+		descending: TodoOrderNames['newest'] | TodoOrderNames['mostImportant'] | TodoOrderNames['uncompleted'],
+		ascending: TodoOrderNames['oldest'] | TodoOrderNames['leastImportant'] | TodoOrderNames['completed'],
+		passive: string
+	) {
 		if (currentState === descending) {
 			return (
 				<div className='sortingButtonArrow'>

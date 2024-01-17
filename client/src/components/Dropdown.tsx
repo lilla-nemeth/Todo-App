@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import DownArrow from '../assets/icons/DownArrow';
 import { generateId, changeColor } from '../utils/helperFunctions';
-import * as colorTypes from '../types/colors';
+import * as colorTypes from '../types/priority';
 import { DropdownProps } from '../types/types';
 
-const priorityNames: { [index: string]: any } = {
+const priorityNames: { [index: string]: string } = {
 	1: 'Not important',
 	2: 'Important',
 	3: 'Urgent',

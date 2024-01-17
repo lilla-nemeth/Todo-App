@@ -1,16 +1,15 @@
 import { Dispatch, SetStateAction, ChangeEvent } from 'react';
 import { TodoItem, Headers, Request, AxiosRequestConfig, AxiosResponse, AxiosError } from '../types/types';
+import * as priority from '../types/priority';
 import axios from 'axios';
 
-// TODO: change any type
-let timeOut: any;
+let timeOut: NodeJS.Timeout;
 
 export const handleInputChange = (stateSetter: Dispatch<SetStateAction<string>>, event: ChangeEvent<HTMLInputElement>) => {
 	stateSetter(event.target.value);
 };
 
-// TODO: create interface in types for err and change type of any
-export const handleError = (err: any, stateSetter: Dispatch<SetStateAction<string>>) => {
+export const handleError = (err: AxiosError, stateSetter: Dispatch<SetStateAction<string>>) => {
 	stateSetter(err && err.response && err.response.data && err.response.data.msg);
 
 	timeOut = setTimeout(() => {
@@ -37,16 +36,15 @@ export const selectToEdit = (
 	}
 };
 
-// TODO: use constants for these strings
 export const generateId = (num: string) => {
 	const number = Number(num);
 
 	if (number === 1) {
-		return 'notimportant';
+		return priority.notImportant;
 	} else if (number === 2) {
-		return 'important';
+		return priority.important;
 	} else {
-		return 'urgent';
+		return priority.urgent;
 	}
 };
 
@@ -111,72 +109,3 @@ export const changeOrGetData: Request = ({ options, successCb, errorCb }) => {
 			if (err && errorCb) errorCb(err);
 		});
 };
-
-// export const sortedAllTodos: TodoItem[] = allTodos.sort((a, b) => {
-// 	if (orderBy === order.newest) {
-// 		if (a.created.valueOf() < b.created.valueOf()) {
-// 			return 1;
-// 		} else {
-// 			return -1;
-// 		}
-// 	}
-// 	if (orderBy === order.oldest) {
-// 		if (a.created.valueOf() < b.created.valueOf()) {
-// 			return -1;
-// 		} else {
-// 			return 1;
-// 		}
-// 	}
-// 	if (orderBy === order.mostImportant) {
-// 		if (a.importance === b.importance) {
-// 			if (a.title < b.title) {
-// 				return 1;
-// 			} else {
-// 				return -1;
-// 			}
-// 		} else {
-// 			if (a.importance < b.importance) {
-// 				return 1;
-// 			} else {
-// 				return -1;
-// 			}
-// 		}
-// 	}
-// 	if (orderBy === order.leastImportant) {
-// 		if (a.importance === b.importance) {
-// 			if (a.title < b.title) {
-// 				return -1;
-// 			} else {
-// 				return 1;
-// 			}
-// 		} else {
-// 			if (a.importance < b.importance) {
-// 				return -1;
-// 			} else {
-// 				return 1;
-// 			}
-// 		}
-// 	}
-// 	if (orderBy === order.uncompleted) {
-// 		if (!a.completed && !b.completed) {
-// 			return;
-// 		} else {
-// 			if (a.completed < b.completed) {
-// 				return -1;
-// 			} else {
-// 				return 1;
-// 			}
-// 		}
-// 	}
-// 	if (orderBy === order.completed) {
-// 		if (!a.completed && !b.completed) {
-// 			return;
-// 		} else {
-// 			if (a.completed < b.completed) {
-// 				return 1;
-// 			} else {
-// 				return -1;
-// 			}
-// 		}
-// 	}
-// });

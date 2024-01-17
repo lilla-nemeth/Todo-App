@@ -18,7 +18,6 @@ const SignUp = () => {
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
-		// TODO: token should be null not an empty string...
 		const options: AxiosRequestConfig = createOptions('post', '/signup', 'cors', 'application/json', '', { email, username, pw });
 
 		if (!disabled) {

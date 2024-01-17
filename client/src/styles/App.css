@@ -375,18 +375,13 @@ input:focus::placeholder {
 .sortingButtonArrow {
 	display: flex;
 	justify-content: space-between;
-	fill: var(--clr-white);
 	flex-direction: row;
 	align-items: center;
 }
 
-.sortingButtonAscArrow {
-	fill: none;
-	width: 15px;
-}
-
-.sortingButtonDescArrow {
-
+.sortingButtonArrow svg {
+	fill: var(--clr-white);
+	width: 16px;
 }
 
 .buttonDate,
@@ -431,7 +426,7 @@ input:focus::placeholder {
 .buttonStatus:active {
 	background-color: var(--clr-darkgreen);
 	color: var(--clr-white);
-	fill: white;
+	fill: var(--clr-white);
 }
 
 .buttonDateActive,

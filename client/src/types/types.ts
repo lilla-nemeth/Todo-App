@@ -101,14 +101,6 @@ export interface RequestArgs {
 	errorCb: Function;
 }
 
-// export interface AxiosResponse<T = never> {
-// 	data: T;
-// 	status: number;
-// 	statusText: string;
-// 	headers: Record<string, string>;
-// 	config: AxiosRequestConfig<T>;
-// 	request?: any;
-// }
 export type AxiosResponse = any;
 
 export interface AxiosError extends Error {
@@ -123,8 +115,6 @@ export interface AxiosError extends Error {
 export interface AxiosPromise extends Promise<Response> {}
 
 export type Request = (object: { options: AxiosRequestConfig; successCb: Function; errorCb: Function }) => void;
-
-// export type HTTPRequest = (input: RequestArgs) => AxiosPromise;
 
 // PROPS
 export interface TodoProps {

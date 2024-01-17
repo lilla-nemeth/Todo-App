@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleError, createOptions, sortedAllTodos } from '../utils/helperFunctions';
+import { handleError, createOptions } from '../utils/helperFunctions';
 import ToDoInput from './ToDoInput';
 import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
 import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, TodoOrderNames, TodoProps, Token, AxiosRequestConfig, AxiosResponse, AxiosError } from '../types/types';
 
-export const order: { [index: string]: any } = {
+export const order: { [index: string]: string } = {
 	newest: 'Newest',
 	oldest: 'Oldest',
 	mostImportant: 'Most Important',
@@ -59,6 +59,76 @@ const ToDo = (props: TodoProps) => {
 		getAllTodos(token);
 	}, []);
 
+	// @ts-ignore
+	const sortedAllTodos: TodoItem[] = allTodos.sort((a, b) => {
+		if (orderBy === order.newest) {
+			if (a.created.valueOf() < b.created.valueOf()) {
+				return 1;
+			} else {
+				return -1;
+			}
+		}
+		if (orderBy === order.oldest) {
+			if (a.created.valueOf() < b.created.valueOf()) {
+				return -1;
+			} else {
+				return 1;
+			}
+		}
+		if (orderBy === order.mostImportant) {
+			if (a.importance === b.importance) {
+				if (a.title < b.title) {
+					return 1;
+				} else {
+					return -1;
+				}
+			} else {
+				if (a.importance < b.importance) {
+					return 1;
+				} else {
+					return -1;
+				}
+			}
+		}
+		if (orderBy === order.leastImportant) {
+			if (a.importance === b.importance) {
+				if (a.title < b.title) {
+					return -1;
+				} else {
+					return 1;
+				}
+			} else {
+				if (a.importance < b.importance) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		}
+		if (orderBy === order.uncompleted) {
+			if (!a.completed && !b.completed) {
+				return;
+			} else {
+				if (a.completed < b.completed) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		}
+		if (orderBy === order.completed) {
+			if (!a.completed && !b.completed) {
+				return;
+			} else {
+				if (a.completed < b.completed) {
+					return 1;
+				} else {
+					return -1;
+				}
+			}
+		}
+	});
+
 	if (loading) {
 		return (
 			<div className='loaderContainer'>
@@ -74,10 +144,7 @@ const ToDo = (props: TodoProps) => {
 			<section className='todoContainer'>
 				<ToDoInput getAllTodos={() => getAllTodos(token)} token={token} />
 				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
-				{/* {sortedAllTodos.map((el: any) => {
-					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos(token)} el={el} token={token} />;
-				})} */}
-				{allTodos.map((el: any) => {
+				{sortedAllTodos.map((el: TodoItem) => {
 					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos(token)} el={el} token={token} />;
 				})}
 				{allTodos.length > 0 && (
