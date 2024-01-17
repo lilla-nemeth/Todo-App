@@ -1,27 +1,11 @@
-import { useRef } from 'react';
 import Bubble from '../assets/icons/Bubble';
 import { TooltipProps } from '../types/types';
 
 const Tooltip = (props: TooltipProps) => {
-	const { hover, setHover, date, time, calendar } = props;
-	const hoverTimeOut = useRef<number | any>(null);
-
-	const handleMouseEnter = () => {
-		hoverTimeOut.current = setTimeout(() => {
-			setHover(true);
-		}, 200);
-	};
-
-	const handleMouseLeave = () => {
-		if (hoverTimeOut.current) {
-			clearTimeout(hoverTimeOut.current);
-			hoverTimeOut.current = null;
-		}
-		setHover(false);
-	};
+	const { hover, date, time, onMouseEnter, onMouseLeave, calendar } = props;
 
 	return (
-		<div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+		<div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
 			{hover && (
 				<div className='bubbleContainer'>
 					<div className='bubbleWrapper'>

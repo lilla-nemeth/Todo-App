@@ -16,6 +16,7 @@ const ToDoElement = (props: TodoElementProps) => {
 	const [editedTodoInput, setEditedTodoInput] = useState<string>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
 	const [hover, setHover] = useState<boolean>(false);
+	const hoverTimeOut = useRef<number | any>(null);
 
 	function deleteElement(id: number) {
 		const options: AxiosRequestConfig = createOptions('delete', `/todos/${id}`, 'cors', 'application/json', token, { title: allTodos });
@@ -93,6 +94,20 @@ const ToDoElement = (props: TodoElementProps) => {
 		setEditedTodoInput(event.target.value);
 	};
 
+	const handleMouseEnter = () => {
+		hoverTimeOut.current = setTimeout(() => {
+			setHover(true);
+		}, 200);
+	};
+
+	const handleMouseLeave = () => {
+		if (hoverTimeOut.current) {
+			clearTimeout(hoverTimeOut.current);
+			hoverTimeOut.current = null;
+		}
+		setHover(false);
+	};
+
 	return (
 		<div className='todoWrapper'>
 			<div className='checkboxTitleButtons'>
@@ -149,9 +164,10 @@ const ToDoElement = (props: TodoElementProps) => {
 					</div>
 					<Tooltip
 						hover={hover}
-						setHover={setHover}
 						date={createFormattedDate(Sugar, el, '{dd}/{MM}/{yyyy}')}
 						time={createFormattedDate(Sugar, el, '{HH}:{mm}:{ss}')}
+						onMouseEnter={handleMouseEnter}
+						onMouseLeave={handleMouseLeave}
 						calendar={
 							<>
 								<div className='buttonListElements'>

@@ -150,11 +150,12 @@ export interface BubbleIconProps {
 }
 
 export interface TooltipProps {
-	calendar: any;
 	hover: boolean;
-	setHover: React.Dispatch<React.SetStateAction<boolean>>;
 	date: string;
 	time: string;
+	onMouseEnter: React.MouseEventHandler<HTMLDivElement>;
+	onMouseLeave: React.MouseEventHandler<HTMLDivElement>;
+	calendar: any;
 }
 
 export interface TodoInputProps {
