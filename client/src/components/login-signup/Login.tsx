@@ -64,6 +64,7 @@ const Login = (props: LoginProps) => {
 							placeholder={'Email address'}
 							autoComplete={'on'}
 							required={true}
+							autoFocus={true}
 							value={email}
 							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
@@ -81,6 +82,7 @@ const Login = (props: LoginProps) => {
 							placeholder={'Password'}
 							autoComplete={'on'}
 							required={true}
+							autoFocus={true}
 							value={pw}
 							onChange={(event) => handleInputChange(setPw, event)}
 						/>

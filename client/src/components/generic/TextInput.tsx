@@ -1,7 +1,7 @@
 import { TextInputProps } from '../../types/types';
 
 const TextInput = (props: TextInputProps) => {
-	const { labelName, labelClassName, htmlFor, id, className, name, type, placeholder, autoComplete, required, value, onChange } = props;
+	const { labelName, labelClassName, htmlFor, id, className, name, type, placeholder, autoComplete, required, autoFocus, value, onChange } = props;
 
 	return (
 		<>
@@ -16,6 +16,7 @@ const TextInput = (props: TextInputProps) => {
 				placeholder={placeholder}
 				autoComplete={autoComplete}
 				required={required}
+                autoFocus={autoFocus}
 				value={value}
 				onChange={onChange}
 			/>

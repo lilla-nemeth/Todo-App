@@ -42,6 +42,7 @@ const ToDoInput = (props: TodoInputProps) => {
 					placeholder={'Add todo'}
 					autoComplete={'on'}
 					required={true}
+					autoFocus={true}
 					value={input}
 					onChange={(event) => handleInputChange(setInput, event)}
 				/>

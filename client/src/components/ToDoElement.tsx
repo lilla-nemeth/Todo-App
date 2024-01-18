@@ -8,6 +8,7 @@ import Trash from '../assets/icons/Trash';
 import Calendar from '../assets/icons/Calendar';
 import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, AxiosRequestConfig, AxiosError, TodoElementProps } from '../types/types';
+import TextInput from './generic/TextInput';
 
 const ToDoElement = (props: TodoElementProps) => {
 	const { getAllTodos, token, el } = props;
@@ -126,7 +127,22 @@ const ToDoElement = (props: TodoElementProps) => {
 						<div className='titleContainer'>
 							<div className='todoElement'>
 								<form onSubmit={(event) => editTodo(el, event)}>
-									<input type='text' value={editedTodoInput} className='editInput' autoFocus onChange={handleInputChange} />
+									{/* <input type='text' value={editedTodoInput} className='editInput' autoFocus onChange={handleInputChange} /> */}
+									<TextInput
+										labelName={''}
+										labelClassName={''}
+										htmlFor={''}
+										type={'text'}
+										id={'edit-todo-input'}
+										className={'editInput'}
+										name={'edit-todo'}
+										placeholder={'Edit todo'}
+										autoComplete={'on'}
+										required={true}
+										autoFocus={true}
+										value={editedTodoInput}
+										onChange={handleInputChange}
+									/>
 								</form>
 							</div>
 						</div>

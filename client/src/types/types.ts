@@ -201,6 +201,7 @@ export interface TextInputProps {
 	placeholder: string;
 	autoComplete: string;
 	required: boolean;
+	autoFocus: boolean;
 	value: string;
 	onChange: React.ChangeEventHandler<HTMLInputElement>;
 }

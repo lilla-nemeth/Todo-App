@@ -65,6 +65,7 @@ const SignUp = () => {
 							placeholder={'Email address'}
 							autoComplete={'on'}
 							required={true}
+							autoFocus={true}
 							value={email}
 							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
@@ -81,6 +82,7 @@ const SignUp = () => {
 							placeholder={'Username'}
 							autoComplete={'on'}
 							required={true}
+							autoFocus={true}
 							value={username}
 							onChange={(event) => handleInputChange(setUsername, event)}
 						/>
@@ -97,6 +99,7 @@ const SignUp = () => {
 							placeholder={'Password'}
 							autoComplete={'on'}
 							required={true}
+							autoFocus={true}
 							value={pw}
 							onChange={(event) => handleInputChange(setPw, event)}
 						/>
