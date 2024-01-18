@@ -4,6 +4,7 @@ import { handleError, clearError, handleInputChange, createOptions } from '../..
 import { changeOrGetData } from '../../utils/helperFunctions';
 import { DataToken, DataLogin, AxiosRequestConfig, AxiosResponse, AxiosError, LoginProps } from '../../types/types';
 import TextInput from '../generic/TextInput';
+import Button from '../generic/Button';
 
 const Login = (props: LoginProps) => {
 	const { setToken } = props;
@@ -88,9 +89,12 @@ const Login = (props: LoginProps) => {
 						/>
 					</div>
 					<div>
-						<button type='submit' className={disabled ? 'buttonSignUpInactive' : 'buttonSignUp'} disabled={disabled}>
-							Login
-						</button>
+						<Button
+							type={'submit'}
+							className={disabled ? 'buttonSignUpInactive' : 'buttonSignUp'}
+							disabled={disabled}
+							buttonContent={'Login'}
+						/>
 					</div>
 					<div className='textSignUpContainer'>
 						<p>Need an account?</p>

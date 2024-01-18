@@ -151,7 +151,7 @@ main {
 	--clr-lightgreen: rgb(225, 241, 232);
 	--clr-lightgreentransparent: rgba(225, 241, 232, 0.342);
 	--clr-green: rgb(177, 203, 187);
-	--clr-darkgreen: rgb(93, 175, 126);
+	--clr-darkgreen: rgb(63 148 97);
 	--clr-lightsalmon: rgb(255, 200, 200);
 	--clr-salmon: rgb(255, 157, 157);
 	--clr-brightsalmon: rgb(255, 103, 103);
@@ -592,23 +592,6 @@ input:-webkit-autofill:focus {
 	align-items: center;
 }
 
-.buttonEdit {
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
-	background-color: var(--clr-white);
-	border-radius: 0.8rem;
-	border: 2px solid var(--clr-green);
-	fill: var(--clr-green);
-	cursor: pointer;
-}
-
-.buttonEdit:hover {
-	border: none;
-	background-color: var(--clr-green);
-	fill: white;
-}
-
 .buttonEditInactive {
 	width: 40px;
 	height: 40px;
@@ -620,7 +603,8 @@ input:-webkit-autofill:focus {
 	pointer-events: none;
 }
 
-.buttonDelete {
+.buttonDelete,
+.buttonEdit {
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
@@ -631,7 +615,8 @@ input:-webkit-autofill:focus {
 	fill: var(--clr-green);
 }
 
-.buttonDelete:hover {
+.buttonDelete:hover,
+.buttonEdit:hover {
 	border: none;
 	background-color: var(--clr-green);
 	fill: var(--clr-white);

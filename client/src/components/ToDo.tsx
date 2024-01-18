@@ -6,6 +6,7 @@ import ToDoElement from './ToDoElement';
 import SortingButtons from './SortingButtons';
 import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, TodoOrderNames, TodoProps, Token, AxiosRequestConfig, AxiosResponse, AxiosError } from '../types/types';
+import Button from './generic/Button';
 
 export const order: { [index: string]: string } = {
 	newest: 'Newest',
@@ -143,15 +144,13 @@ const ToDo = (props: TodoProps) => {
 		<main className='todoMain'>
 			<section className='todoContainer'>
 				<ToDoInput getAllTodos={() => getAllTodos(token)} token={token} />
-				<SortingButtons orderBy={orderBy} setOrderBy={setOrderBy} />
+				<SortingButtons order={order} orderBy={orderBy} setOrderBy={setOrderBy} />
 				{sortedAllTodos.map((el: TodoItem) => {
 					return <ToDoElement key={el.id} getAllTodos={() => getAllTodos(token)} el={el} token={token} />;
 				})}
 				{allTodos.length > 0 && (
 					<div className='buttonDeleteAllContainer'>
-						<button onClick={() => deleteAllTodos(token)} className='buttonDeleteAll'>
-							Delete all
-						</button>
+						<Button onClick={() => deleteAllTodos(token)} className={'buttonDeleteAll'} buttonContent={'Delete all'} />
 					</div>
 				)}
 			</section>

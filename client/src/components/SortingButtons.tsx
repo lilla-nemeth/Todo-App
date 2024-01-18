@@ -1,10 +1,11 @@
-import { order } from '../components/ToDo';
+// import { order } from '../components/ToDo';
 import AscendingArrow from '../assets/icons/AscendingArrow';
 import DescendingArrow from '../assets/icons/DescendingArrow';
 import { SortingProps, TodoOrderNames } from '../types/types';
+import Button from './generic/Button';
 
 const SortingButtons = (props: SortingProps) => {
-	const { orderBy, setOrderBy } = props;
+	const { order, orderBy, setOrderBy } = props;
 
 	function createButtonText(
 		currentState:
@@ -45,7 +46,7 @@ const SortingButtons = (props: SortingProps) => {
 	return (
 		<div>
 			<div className='sortingRow'>
-				<button
+				<Button
 					onClick={() => {
 						if (orderBy === order.oldest) {
 							setOrderBy(order.newest);
@@ -54,10 +55,9 @@ const SortingButtons = (props: SortingProps) => {
 						}
 					}}
 					className={orderBy === order.newest || orderBy === order.oldest ? 'buttonDateActive' : 'buttonDate'}
-				>
-					{createButtonText(orderBy, order.newest, order.oldest, 'Date')}
-				</button>
-				<button
+					buttonContent={createButtonText(orderBy, order.newest, order.oldest, 'Date')}
+				/>
+				<Button
 					onClick={() => {
 						if (orderBy === order.mostImportant) {
 							return setOrderBy(order.leastImportant);
@@ -66,10 +66,9 @@ const SortingButtons = (props: SortingProps) => {
 						}
 					}}
 					className={orderBy === order.leastImportant || orderBy === order.mostImportant ? 'buttonImportanceActive' : 'buttonImportance'}
-				>
-					{createButtonText(orderBy, order.mostImportant, order.leastImportant, 'Importance')}
-				</button>
-				<button
+					buttonContent={createButtonText(orderBy, order.mostImportant, order.leastImportant, 'Importance')}
+				/>
+				<Button
 					onClick={() => {
 						if (orderBy === order.uncompleted) {
 							return setOrderBy(order.completed);
@@ -78,9 +77,8 @@ const SortingButtons = (props: SortingProps) => {
 						}
 					}}
 					className={orderBy === order.completed || orderBy === order.uncompleted ? 'buttonStatusActive' : 'buttonStatus'}
-				>
-					{createButtonText(orderBy, order.uncompleted, order.completed, 'Status')}
-				</button>
+					buttonContent={createButtonText(orderBy, order.uncompleted, order.completed, 'Status')}
+				/>
 			</div>
 		</div>
 	);

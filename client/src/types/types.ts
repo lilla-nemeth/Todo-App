@@ -7,6 +7,7 @@ export type Importance = number;
 export type TodoId = number;
 export type UserId = number;
 export type ClassName = string;
+export type ButtonTypes = 'submit' | 'reset' | 'button' | undefined;
 export type Method =
 	| 'get'
 	| 'GET'
@@ -155,6 +156,7 @@ export interface TodoInputProps {
 }
 
 export interface SortingProps {
+	order: { [index: string]: string };
 	orderBy:
 		| TodoOrderNames['newest']
 		| TodoOrderNames['oldest']
@@ -191,17 +193,25 @@ export interface IconClassNameProps {
 }
 
 export interface TextInputProps {
-	labelName: string;
-	labelClassName: string;
-	htmlFor: string;
+	labelName?: string;
+	labelClassName?: string;
+	htmlFor?: string;
 	id: string;
 	type: string;
-	className: ClassName;
+	className?: ClassName;
 	name: string;
-	placeholder: string;
-	autoComplete: string;
-	required: boolean;
-	autoFocus: boolean;
+	placeholder?: string;
+	autoComplete?: string;
+	required?: boolean;
+	autoFocus?: boolean;
 	value: string;
 	onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface ButtonProps {
+	buttonContent: any;
+	className?: string;
+	type?: ButtonTypes;
+	disabled?: boolean;
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

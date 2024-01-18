@@ -9,6 +9,7 @@ import Calendar from '../assets/icons/Calendar';
 import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, AxiosRequestConfig, AxiosError, TodoElementProps } from '../types/types';
 import TextInput from './generic/TextInput';
+import Button from './generic/Button';
 
 const ToDoElement = (props: TodoElementProps) => {
 	const { getAllTodos, token, el } = props;
@@ -150,32 +151,23 @@ const ToDoElement = (props: TodoElementProps) => {
 				<div className='buttonListRow'>
 					{editedTodoId != el.id ? (
 						<div className='buttonListElements'>
-							<button
+							<Button
 								className={el.completed ? 'buttonEditInactive' : 'buttonEdit'}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
-							>
-								<Pencil />
-							</button>
+								buttonContent={<Pencil />}
+							/>
 						</div>
 					) : (
 						<div className='buttonListElements'>
-							<button
-								className='buttonEdit'
-								style={{
-									backgroundColor: 'rgb(114, 180, 140)',
-									border: 'none',
-									fill: 'white',
-								}}
+							<Button
+								className={'buttonEdit'}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
-							>
-								<Pencil />
-							</button>
+								buttonContent={<Pencil />}
+							/>
 						</div>
 					)}
 					<div className='buttonListElements'>
-						<button className='buttonDelete' onClick={() => deleteElement(el.id)}>
-							<Trash />
-						</button>
+						<Button className={'buttonDelete'} onClick={() => deleteElement(el.id)} buttonContent={<Trash />} />
 					</div>
 					<Tooltip
 						hover={hover}
@@ -186,9 +178,7 @@ const ToDoElement = (props: TodoElementProps) => {
 						calendar={
 							<>
 								<div className='buttonListElements'>
-									<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
-										<Calendar />
-									</button>
+									<Button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'} buttonContent={<Calendar />} />
 								</div>
 							</>
 						}

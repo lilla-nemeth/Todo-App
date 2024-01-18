@@ -4,6 +4,7 @@ import { handleError, clearError, handleInputChange, createOptions } from '../..
 import { changeOrGetData } from '../../utils/helperFunctions';
 import { DataMessage, DataSignUp, AxiosRequestConfig, AxiosResponse, AxiosError } from '../../types/types';
 import TextInput from '../generic/TextInput';
+import Button from '../generic/Button';
 
 const SignUp = () => {
 	const [email, setEmail] = useState<DataSignUp['email']>('');
@@ -105,9 +106,12 @@ const SignUp = () => {
 						/>
 					</div>
 					<div>
-						<button type='submit' className={disabled ? 'buttonSignUpInactive' : 'buttonSignUp'} disabled={disabled}>
-							Create Account
-						</button>
+						<Button
+							type={'submit'}
+							className={disabled ? 'buttonSignUpInactive' : 'buttonSignUp'}
+							disabled={disabled}
+							buttonContent={'Create Account'}
+						/>
 					</div>
 					<div className='textLoginContainer'>
 						<p>Do you have account?</p>
