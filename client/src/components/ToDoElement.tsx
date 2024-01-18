@@ -127,7 +127,6 @@ const ToDoElement = (props: TodoElementProps) => {
 						<div className='titleContainer'>
 							<div className='todoElement'>
 								<form onSubmit={(event) => editTodo(el, event)}>
-									{/* <input type='text' value={editedTodoInput} className='editInput' autoFocus onChange={handleInputChange} /> */}
 									<TextInput
 										labelName={''}
 										labelClassName={''}
