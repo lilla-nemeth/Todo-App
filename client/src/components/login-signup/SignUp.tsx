@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../utils/helperFunctions';
 import { DataMessage, DataSignUp, AxiosRequestConfig, AxiosResponse, AxiosError } from '../../types/types';
+import TextInput from '../generic/TextInput';
 
 const SignUp = () => {
 	const [email, setEmail] = useState<DataSignUp['email']>('');
@@ -53,49 +54,49 @@ const SignUp = () => {
 				<form className='form' method='POST' onSubmit={handleSubmit}>
 					<h3>Sign Up</h3>
 					<div className='email'>
-						<label className='emailLabel' htmlFor='email-input'>
-							Email
-						</label>
-						<input
-							id='email-input'
-							className='signUpInput'
-							name='email'
-							type='email'
-							placeholder='Email address'
-							autoComplete='on'
-							required
+						<TextInput
+							labelName={'Email'}
+							labelClassName={'emailLabel'}
+							htmlFor={'email-input'}
+							type={'email'}
+							id={'email-input'}
+							className={'signUpInput'}
+							name={'email'}
+							placeholder={'Email address'}
+							autoComplete={'on'}
+							required={true}
 							value={email}
 							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
 					</div>
 					<div className='username'>
-						<label className='usernameLabel' htmlFor='username-input'>
-							Username
-						</label>
-						<input
-							id='username-input'
-							className='signUpInput'
-							name='username'
-							type='text'
-							placeholder='Username'
-							autoComplete='on'
-							required
+						<TextInput
+							labelName={'Username'}
+							labelClassName={'usernameLabel'}
+							htmlFor={'username-input'}
+							type={'text'}
+							id={'username-input'}
+							className={'signUpInput'}
+							name={'username'}
+							placeholder={'Username'}
+							autoComplete={'on'}
+							required={true}
 							value={username}
 							onChange={(event) => handleInputChange(setUsername, event)}
 						/>
 					</div>
 					<div className='password'>
-						<label className='passwordLabel' htmlFor='password-input'>
-							Password
-						</label>
-						<input
-							id='password-input'
-							className='signUpInput'
-							name='password'
-							type='password'
-							placeholder='Password'
-							autoComplete='on'
-							required
+						<TextInput
+							labelName={'Password'}
+							labelClassName={'passwordLabel'}
+							htmlFor={'password-input'}
+							type={'password'}
+							id={'password-input'}
+							className={'signUpInput'}
+							name={'password'}
+							placeholder={'Password'}
+							autoComplete={'on'}
+							required={true}
 							value={pw}
 							onChange={(event) => handleInputChange(setPw, event)}
 						/>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { handleError, clearError, handleInputChange, createOptions } from '../../utils/helperFunctions';
 import { changeOrGetData } from '../../utils/helperFunctions';
 import { DataToken, DataLogin, AxiosRequestConfig, AxiosResponse, AxiosError, LoginProps } from '../../types/types';
+import TextInput from '../generic/TextInput';
 
 const Login = (props: LoginProps) => {
 	const { setToken } = props;
@@ -52,34 +53,34 @@ const Login = (props: LoginProps) => {
 				<form className='form' onSubmit={handleSubmit}>
 					<h3>Login</h3>
 					<div className='email'>
-						<label className='emailLabel' htmlFor='email-input'>
-							Email
-						</label>
-						<input
-							id='email-input'
-							className='loginInput'
-							name='email'
-							type='email'
-							placeholder='Email address'
-							autoComplete='on'
-							required
+						<TextInput
+							labelName={'Email'}
+							labelClassName={'emailLabel'}
+							htmlFor={'email-input'}
+							type={'email'}
+							id={'email-input'}
+							className={'loginInput'}
+							name={'email'}
+							placeholder={'Email address'}
+							autoComplete={'on'}
+							required={true}
 							value={email}
 							onChange={(event) => handleInputChange(setEmail, event)}
 						/>
 						<span className='loginActive'></span>
 					</div>
 					<div className='password'>
-						<label className='passwordLabel' htmlFor='password-input'>
-							Password
-						</label>
-						<input
-							id='password-input'
-							className='loginInput'
-							name='password'
-							type='password'
-							placeholder='Password'
-							autoComplete='on'
-							required
+						<TextInput
+							labelName={'Password'}
+							labelClassName={'passwordLabel'}
+							htmlFor={'password-input'}
+							type={'password'}
+							id={'password-input'}
+							className={'loginInput'}
+							name={'password'}
+							placeholder={'Password'}
+							autoComplete={'on'}
+							required={true}
 							value={pw}
 							onChange={(event) => handleInputChange(setPw, event)}
 						/>
