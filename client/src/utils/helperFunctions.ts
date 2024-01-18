@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, ChangeEvent } from 'react';
 import { TodoItem, Headers, Request, AxiosRequestConfig, AxiosResponse, AxiosError } from '../types/types';
-import * as priority from '../types/priority';
+import * as priority from '../types/priorities';
 import axios from 'axios';
 
 let timeOut: NodeJS.Timeout;

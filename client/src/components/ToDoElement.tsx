@@ -8,6 +8,9 @@ import Trash from '../assets/icons/Trash';
 import Calendar from '../assets/icons/Calendar';
 import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, AxiosRequestConfig, AxiosError, TodoElementProps } from '../types/types';
+import TextInput from './generic/TextInput';
+import Button from './generic/Button';
+import CheckboxInput from './generic/CheckboxInput';
 
 const ToDoElement = (props: TodoElementProps) => {
 	const { getAllTodos, token, el } = props;
@@ -112,10 +115,16 @@ const ToDoElement = (props: TodoElementProps) => {
 		<div className='todoWrapper'>
 			<div className='checkboxTitleButtons'>
 				<div className='todoElement' key={el.id}>
-					<label className='checkboxContainer' htmlFor={el.id.toString()}>
-						<input id={el.id.toString()} type='checkbox' name='checkbox' checked={el.completed} onChange={() => completeTodo(el)} />
-						<span className='checkmark'></span>
-					</label>
+					<CheckboxInput
+						labelClassName={'checkboxContainer'}
+						htmlFor={el.id.toString()}
+						id={el.id.toString()}
+						type={'checkbox'}
+						name={'checkbox'}
+						checked={el.completed}
+						checkmarkClassName={'checkmark'}
+						onChange={() => completeTodo(el)}
+					/>
 					{editedTodoId != el.id ? (
 						<div className='titleContainer'>
 							<div className={el.completed ? 'completed' : 'todoElement'}>
@@ -126,7 +135,21 @@ const ToDoElement = (props: TodoElementProps) => {
 						<div className='titleContainer'>
 							<div className='todoElement'>
 								<form onSubmit={(event) => editTodo(el, event)}>
-									<input type='text' value={editedTodoInput} className='editInput' autoFocus onChange={handleInputChange} />
+									<TextInput
+										labelName={''}
+										labelClassName={''}
+										htmlFor={''}
+										type={'text'}
+										id={'edit-todo-input'}
+										className={'editInput'}
+										name={'edit-todo'}
+										placeholder={'Edit todo'}
+										autoComplete={'on'}
+										required={true}
+										autoFocus={true}
+										value={editedTodoInput}
+										onChange={handleInputChange}
+									/>
 								</form>
 							</div>
 						</div>
@@ -135,32 +158,23 @@ const ToDoElement = (props: TodoElementProps) => {
 				<div className='buttonListRow'>
 					{editedTodoId != el.id ? (
 						<div className='buttonListElements'>
-							<button
+							<Button
 								className={el.completed ? 'buttonEditInactive' : 'buttonEdit'}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
-							>
-								<Pencil />
-							</button>
+								buttonContent={<Pencil />}
+							/>
 						</div>
 					) : (
 						<div className='buttonListElements'>
-							<button
-								className='buttonEdit'
-								style={{
-									backgroundColor: 'rgb(114, 180, 140)',
-									border: 'none',
-									fill: 'white',
-								}}
+							<Button
+								className={'buttonEdit'}
 								onClick={() => selectToEdit(el, editedTodoId, setEditedTodoId, setEditedTodoInput)}
-							>
-								<Pencil />
-							</button>
+								buttonContent={<Pencil />}
+							/>
 						</div>
 					)}
 					<div className='buttonListElements'>
-						<button className='buttonDelete' onClick={() => deleteElement(el.id)}>
-							<Trash />
-						</button>
+						<Button className={'buttonDelete'} onClick={() => deleteElement(el.id)} buttonContent={<Trash />} />
 					</div>
 					<Tooltip
 						hover={hover}
@@ -171,9 +185,7 @@ const ToDoElement = (props: TodoElementProps) => {
 						calendar={
 							<>
 								<div className='buttonListElements'>
-									<button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'}>
-										<Calendar />
-									</button>
+									<Button className={!hover ? 'buttonCalendar buttonWhite' : 'buttonCalendar buttonGreen'} buttonContent={<Calendar />} />
 								</div>
 							</>
 						}

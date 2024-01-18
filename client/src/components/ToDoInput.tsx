@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { handleError, handleInputChange, createOptions } from '../utils/helperFunctions';
 import { changeOrGetData } from '../utils/helperFunctions';
 import { DataInput, AxiosRequestConfig, AxiosError, TodoInputProps } from '../types/types';
+import TextInput from './generic/TextInput';
 
 const ToDoInput = (props: TodoInputProps) => {
 	const { getAllTodos, token } = props;
@@ -30,12 +31,19 @@ const ToDoInput = (props: TodoInputProps) => {
 	return (
 		<div>
 			<form className='form' onSubmit={handleSubmit}>
-				<input
-					type='text'
-					id='todo-input'
-					placeholder='Add todo'
+				<TextInput
+					labelName={''}
+					labelClassName={''}
+					htmlFor={''}
+					type={'text'}
+					id={'todo-input'}
+					className={'todoInput'}
+					name={'todo'}
+					placeholder={'Add todo'}
+					autoComplete={'on'}
+					required={true}
+					autoFocus={true}
 					value={input}
-					className='todoInput'
 					onChange={(event) => handleInputChange(setInput, event)}
 				/>
 				<p className='errorMsg'>{errorMsg}</p>

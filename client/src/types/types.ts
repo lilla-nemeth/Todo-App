@@ -6,6 +6,8 @@ export type Completed = boolean;
 export type Importance = number;
 export type TodoId = number;
 export type UserId = number;
+export type ClassName = string;
+export type ButtonTypes = 'submit' | 'reset' | 'button' | undefined;
 export type Method =
 	| 'get'
 	| 'GET'
@@ -154,6 +156,7 @@ export interface TodoInputProps {
 }
 
 export interface SortingProps {
+	order: { [index: string]: string };
 	orderBy:
 		| TodoOrderNames['newest']
 		| TodoOrderNames['oldest']
@@ -186,5 +189,40 @@ export interface DropdownProps {
 }
 
 export interface IconClassNameProps {
-	className: string;
+	className: ClassName;
+}
+
+export interface TextInputProps {
+	labelName?: string;
+	labelClassName?: string;
+	htmlFor?: string;
+	id: string;
+	type: string;
+	className?: ClassName;
+	name: string;
+	placeholder?: string;
+	autoComplete?: string;
+	required?: boolean;
+	autoFocus?: boolean;
+	value: string;
+	onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface CheckboxInputProps {
+	labelClassName?: string;
+	htmlFor?: string;
+	id: string;
+	type: 'checkbox';
+	name: string;
+	checked: boolean;
+	checkmarkClassName?: string;
+	onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface ButtonProps {
+	buttonContent: any;
+	className?: string;
+	type?: ButtonTypes;
+	disabled?: boolean;
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

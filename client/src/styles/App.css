@@ -151,7 +151,7 @@ main {
 	--clr-lightgreen: rgb(225, 241, 232);
 	--clr-lightgreentransparent: rgba(225, 241, 232, 0.342);
 	--clr-green: rgb(177, 203, 187);
-	--clr-darkgreen: rgb(93, 175, 126);
+	--clr-darkgreen: rgb(63 148 97);
 	--clr-lightsalmon: rgb(255, 200, 200);
 	--clr-salmon: rgb(255, 157, 157);
 	--clr-brightsalmon: rgb(255, 103, 103);
@@ -324,7 +324,12 @@ input:focus {
 	outline: none;
 	border: 2px solid var(--clr-green);
 	color: black;
-	background-color: var(--clr-lightgreentransparent);
+}
+
+select:-webkit-autofill,
+textarea:-webkit-autofill,
+input:-webkit-autofill {
+	color: var(--clr-darkgreen) !important;
 }
 
 input:invalid {
@@ -337,6 +342,20 @@ input:invalid {
 
 input:focus::placeholder {
 	color: var(--clr-darkgreen);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+input:focus,
+select:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px var(--clr-lightgreen) inset !important;
+	-webkit-text-fill-color: var(--clr-darkgreen);
 }
 
 .form {
@@ -573,23 +592,6 @@ input:focus::placeholder {
 	align-items: center;
 }
 
-.buttonEdit {
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
-	background-color: var(--clr-white);
-	border-radius: 0.8rem;
-	border: 2px solid var(--clr-green);
-	fill: var(--clr-green);
-	cursor: pointer;
-}
-
-.buttonEdit:hover {
-	border: none;
-	background-color: var(--clr-green);
-	fill: white;
-}
-
 .buttonEditInactive {
 	width: 40px;
 	height: 40px;
@@ -601,7 +603,8 @@ input:focus::placeholder {
 	pointer-events: none;
 }
 
-.buttonDelete {
+.buttonDelete,
+.buttonEdit {
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
@@ -612,7 +615,8 @@ input:focus::placeholder {
 	fill: var(--clr-green);
 }
 
-.buttonDelete:hover {
+.buttonDelete:hover,
+.buttonEdit:hover {
 	border: none;
 	background-color: var(--clr-green);
 	fill: var(--clr-white);
