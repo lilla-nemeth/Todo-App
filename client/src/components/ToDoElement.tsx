@@ -10,6 +10,7 @@ import { changeOrGetData } from '../utils/helperFunctions';
 import { TodoItem, AxiosRequestConfig, AxiosError, TodoElementProps } from '../types/types';
 import TextInput from './generic/TextInput';
 import Button from './generic/Button';
+import CheckboxInput from './generic/CheckboxInput';
 
 const ToDoElement = (props: TodoElementProps) => {
 	const { getAllTodos, token, el } = props;
@@ -114,10 +115,16 @@ const ToDoElement = (props: TodoElementProps) => {
 		<div className='todoWrapper'>
 			<div className='checkboxTitleButtons'>
 				<div className='todoElement' key={el.id}>
-					<label className='checkboxContainer' htmlFor={el.id.toString()}>
-						<input id={el.id.toString()} type='checkbox' name='checkbox' checked={el.completed} onChange={() => completeTodo(el)} />
-						<span className='checkmark'></span>
-					</label>
+					<CheckboxInput
+						labelClassName={'checkboxContainer'}
+						htmlFor={el.id.toString()}
+						id={el.id.toString()}
+						type={'checkbox'}
+						name={'checkbox'}
+						checked={el.completed}
+						checkmarkClassName={'checkmark'}
+						onChange={() => completeTodo(el)}
+					/>
 					{editedTodoId != el.id ? (
 						<div className='titleContainer'>
 							<div className={el.completed ? 'completed' : 'todoElement'}>

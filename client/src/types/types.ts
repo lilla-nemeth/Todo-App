@@ -208,6 +208,17 @@ export interface TextInputProps {
 	onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
+export interface CheckboxInputProps {
+	labelClassName?: string;
+	htmlFor?: string;
+	id: string;
+	type: 'checkbox';
+	name: string;
+	checked: boolean;
+	checkmarkClassName?: string;
+	onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
 export interface ButtonProps {
 	buttonContent: any;
 	className?: string;
