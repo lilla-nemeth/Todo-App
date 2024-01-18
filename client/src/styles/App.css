@@ -324,7 +324,12 @@ input:focus {
 	outline: none;
 	border: 2px solid var(--clr-green);
 	color: black;
-	background-color: var(--clr-lightgreentransparent);
+}
+
+select:-webkit-autofill,
+textarea:-webkit-autofill,
+input:-webkit-autofill {
+	color: var(--clr-darkgreen) !important;
 }
 
 input:invalid {
@@ -337,6 +342,20 @@ input:invalid {
 
 input:focus::placeholder {
 	color: var(--clr-darkgreen);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+input:focus,
+select:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px var(--clr-lightgreen) inset !important;
+	-webkit-text-fill-color: var(--clr-darkgreen);
 }
 
 .form {
