@@ -7,10 +7,10 @@ const { Pool } = require('pg');
 const path = require('path');
 require('dotenv').config();
 
+const { isPwLongEnough, isEmail, authMw } = require('./middlewares/middlewares.js');
+
 app.use(cors());
 app.use(express.json());
-
-const port = process.env.PORT || 3002;
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client/build')));
@@ -28,51 +28,10 @@ const prodSettings = {
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: process.env.NODE_ENV === 'production' ? false : true,
-		// rejectUnauthorized: true
-		// rejectUnauthorized: false
 	},
 };
 
 const pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
-
-function isPwLongEnough(req, res, next) {
-	let pw = req.body.pw;
-
-	if (pw.length >= 6) {
-		next();
-	} else {
-		res.status(403).json({ msg: 'The length of password should be at least 6 characters.' });
-	}
-}
-
-function isEmail(req, res, next) {
-	let email = req.body.email;
-	let at = '@';
-	let dot = '.';
-
-	if (email.includes(at) && email.includes(dot)) {
-		next();
-	} else {
-		res.status(403).json({ msg: 'Your email format is not valid' });
-	}
-}
-
-function authMw(request, response, next) {
-	let token = request.headers['x-auth-token'];
-
-	if (token) {
-		jwt.verify(token, 'nomoresecret', (err, decodedToken) => {
-			if (decodedToken) {
-				request.userId = decodedToken.id;
-				next();
-			} else {
-				response.status(401).json({ msg: 'Token is not valid' });
-			}
-		});
-	} else {
-		response.status(401).json({ msg: 'No token found' });
-	}
-}
 
 app.get('/todos', authMw, (request, response) => {
 	let userId = request.userId;
@@ -190,4 +149,6 @@ app.get('*', (request, response) => {
 	response.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
-app.listen(port, () => console.log('server is running on 3002'));
+module.exports = {
+	app,
+};
