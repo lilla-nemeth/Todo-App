@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 function isPwLongEnough(req, res, next) {
 	let pw = req.body.pw;
 
