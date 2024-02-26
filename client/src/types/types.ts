@@ -177,7 +177,6 @@ export interface SortingProps {
 }
 
 export interface NavbarProps {
-	username: Username;
 	handleLogOut: Function;
 	setToken: React.Dispatch<React.SetStateAction<Token>>;
 }

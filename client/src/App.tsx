@@ -5,36 +5,17 @@ import SignUp from './components/login-signup/SignUp';
 import Login from './components/login-signup/Login';
 import Navbar from './components/Navbar';
 import './styles/App.css';
-import { handleError, handleLogOut, createOptions } from './utils/helperFunctions';
-import { changeOrGetData } from './utils/helperFunctions';
-import { Username, AxiosRequestConfig, AxiosResponse, AxiosError } from './types/types';
+import { handleLogOut } from './utils/helperFunctions';
 
 const App = () => {
 	const [token, setToken] = useState<string>('');
-	const [username, setUsername] = useState<Username>('');
 	const [errorMsg, setErrorMsg] = useState<string>('');
-
-	function addUser(token: string) {
-		const options: AxiosRequestConfig = createOptions('get', '/user', 'cors', 'application/json', token, undefined);
-
-		changeOrGetData({
-			options,
-			successCb: (res: AxiosResponse) => {
-				setUsername(res.data);
-			},
-			errorCb: (err: AxiosError) => {
-				handleError(err, setErrorMsg);
-			},
-		});
-	}
 
 	useEffect(() => {
 		const tokenFromLocalStorage: string | null = localStorage.getItem('token');
 
 		if (tokenFromLocalStorage) {
 			setToken(tokenFromLocalStorage);
-
-			addUser(token);
 		}
 	}, [token]);
 
@@ -51,12 +32,13 @@ const App = () => {
 			</>
 		);
 	}
+
 	return (
 		<>
 			<BrowserRouter>
-				<Navbar handleLogOut={handleLogOut} setToken={setToken} username={username} />
+				<Navbar handleLogOut={handleLogOut} setToken={setToken} />
 				<Routes>
-					<Route path='/' element={<ToDo token={token} />}></Route>
+					<Route path='/todos' element={<ToDo token={token} />}></Route>
 					<Route path='*' element={<ToDo token={token} />}></Route>
 				</Routes>
 			</BrowserRouter>
