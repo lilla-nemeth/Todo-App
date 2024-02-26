@@ -7,8 +7,8 @@ const { Pool } = require('pg');
 const path = require('path');
 require('dotenv').config();
 
-const { isPwLongEnough, isEmail, authMw } = require('./middlewares/middlewares.js');
-const todosRouter = require('./routes/todoList.js');
+const { authMw } = require('./middlewares/middlewares.js');
+const todosRouter = require('./routes/todos.js');
 const loginRouter = require('./routes/login.js');
 const signUpRouter = require('./routes/signUp.js');
 
@@ -36,20 +36,11 @@ const prodSettings = {
 
 const pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
 
-app.use('/', todosRouter);
+app.use('/todos', todosRouter);
 
 app.use('/login', loginRouter);
 
 app.use('/signup', signUpRouter);
-
-app.get('/user', authMw, (request, response) => {
-	let id = request.userId;
-
-	pool
-		.query('SELECT * FROM users WHERE id=$1', [id])
-		.then((res) => response.status(200).json(res.rows[0].username))
-		.catch((err) => response.status(400).json({ msg: 'Failed to fetch user' }));
-});
 
 // app.get('*', (request, response) => {
 // 	response.sendFile(path.join(__dirname, '../client/build/index.html'));

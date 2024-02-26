@@ -21,7 +21,7 @@ const prodSettings = {
 
 const pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
 
-router.get('/todos', authMw, (request, response) => {
+router.get('/', authMw, (request, response) => {
 	let userId = request.userId;
 
 	pool
@@ -30,7 +30,7 @@ router.get('/todos', authMw, (request, response) => {
 		.catch((err) => response.status(400).json({ msg: 'Failed to fetch all todos' }));
 });
 
-router.get('/todos/:id', authMw, (request, response) => {
+router.get('/:id', authMw, (request, response) => {
 	let id = request.params.id;
 
 	pool
@@ -39,7 +39,7 @@ router.get('/todos/:id', authMw, (request, response) => {
 		.catch((err) => response.status(400).json({ msg: 'Failed to fetch todos by id' }));
 });
 
-router.post('/todos', authMw, (request, response) => {
+router.post('/', authMw, (request, response) => {
 	let title = request.body.title;
 	let userId = request.userId;
 
@@ -49,7 +49,7 @@ router.post('/todos', authMw, (request, response) => {
 		.catch((err) => response.status(400).json({ msg: 'Failed to add a new todo' }));
 });
 
-router.delete('/todos/:id', authMw, (request, response) => {
+router.delete('/:id', authMw, (request, response) => {
 	let id = request.params.id;
 
 	pool
@@ -58,7 +58,7 @@ router.delete('/todos/:id', authMw, (request, response) => {
 		.catch((err) => response.status(400).json({ msg: 'Failed to delete the todo' }));
 });
 
-router.delete('/todos', authMw, (request, response) => {
+router.delete('/', authMw, (request, response) => {
 	let userId = request.userId;
 
 	pool
@@ -67,7 +67,7 @@ router.delete('/todos', authMw, (request, response) => {
 		.catch((err) => response.status(400).json({ msg: 'Failed to delete all todos' }));
 });
 
-router.put('/todos/:id', authMw, (request, response) => {
+router.put('/:id', authMw, (request, response) => {
 	let id = request.params.id;
 	let title = request.body.title;
 	let completed = request.body.completed;

@@ -55,7 +55,7 @@ const ToDo = (props: TodoProps) => {
 	}
 
 	useEffect(() => {
-		navigate('/');
+		navigate('/todos');
 
 		getAllTodos(token);
 	}, []);

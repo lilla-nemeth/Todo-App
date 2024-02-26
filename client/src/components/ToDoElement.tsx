@@ -88,6 +88,7 @@ const ToDoElement = (props: TodoElementProps) => {
 				getAllTodos(token);
 			},
 			errorCb: (err: AxiosError) => {
+				console.log(err);
 				handleError(err, setErrorMsg);
 			},
 		});
