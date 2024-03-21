@@ -1,4 +1,6 @@
-const { pool } = require('../config/db.js');
+const pool = require('../config/db.js');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const login = async (request, response) => {
 	const email = request.body.email;

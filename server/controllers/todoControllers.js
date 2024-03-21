@@ -1,4 +1,4 @@
-const { pool } = require('../config/db.js');
+const pool = require('../config/db.js');
 
 const getAllTodos = async (request, response) => {
 	const userId = request.userId;
