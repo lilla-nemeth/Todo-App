@@ -43,7 +43,7 @@ npm install
 Run the server
 
 ```
-nodemon index.js
+npm start
 ```
 
 Server is running on port 3002
