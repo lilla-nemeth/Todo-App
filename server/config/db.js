@@ -15,6 +15,12 @@ const prodSettings = {
 	},
 };
 
-const pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
+let pool;
+
+try {
+	pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
+} catch (error) {
+	console.error('Error initializing database connection:', error);
+}
 
 module.exports = pool;
