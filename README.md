@@ -84,7 +84,7 @@ To run this app, you need to add the following environment variables to your .en
 #### Postgres
 
 `PG_HOST`
-`PG_USER`
+`PG_USERNAME`
 `PG_PASSWORD`
 `PG_PORT`
 `PG_DATABASE`
