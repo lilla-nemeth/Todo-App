@@ -43,10 +43,10 @@ npm install
 Run the server
 
 ```
-nodemon index.js
+npm start
 ```
 
-Server is running on port 3002
+Server is running on port 8080
 </br></br>
 
 ### Client
@@ -84,7 +84,7 @@ To run this app, you need to add the following environment variables to your .en
 #### Postgres
 
 `PG_HOST`
-`PG_USER`
+`PG_USERNAME`
 `PG_PASSWORD`
 `PG_PORT`
 `PG_DATABASE`
