@@ -46,7 +46,7 @@ Run the server
 npm start
 ```
 
-Server is running on port 3002
+Server is running on port 8080
 </br></br>
 
 ### Client
