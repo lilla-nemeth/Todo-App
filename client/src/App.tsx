@@ -9,7 +9,6 @@ import { handleLogOut } from './utils/helperFunctions';
 
 const App = () => {
 	const [token, setToken] = useState<string>('');
-	const [errorMsg, setErrorMsg] = useState<string>('');
 
 	useEffect(() => {
 		const tokenFromLocalStorage: string | null = localStorage.getItem('token');
