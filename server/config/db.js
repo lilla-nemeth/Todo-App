@@ -17,4 +17,4 @@ const prodSettings = {
 
 const pool = new Pool(process.env.NODE_ENV === 'production' ? prodSettings : devSettings);
 
-exports.module = pool;
+module.exports = pool;
